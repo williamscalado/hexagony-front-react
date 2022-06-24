@@ -1,1 +1,0 @@
-# hexagony-front-react
