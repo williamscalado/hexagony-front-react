@@ -1,0 +1,24 @@
+.Container {
+	margin: auto;
+	width: 1080px;
+	height: 80vh;
+	display: grid;
+
+	justify-items: center;
+	align-items: center;
+	justify-content: center;
+
+	img {
+		width: 300px;
+		padding: 2rem;
+	}
+}
+
+.ContainerForm {
+	margin: auto;
+	display: grid;
+	padding: 1rem 2rem;
+	width: 100%;
+	align-items: center;
+	justify-items: center;
+}

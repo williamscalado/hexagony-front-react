@@ -1,0 +1,36 @@
+.ContainerLogin {
+	width: 400px;
+
+	background: var(--bs-dark-full);
+	border-radius: 0.7rem;
+	padding: 1rem 2rem;
+	display: flex;
+	align-items: center;
+
+	form {
+		width: 100%;
+		display: grid;
+		input {
+			margin: 1rem 0 1rem 0;
+			padding: 0.8rem;
+			border: 0px;
+			border-radius: 0.3em;
+		}
+
+		button {
+			background: var(--bs-teal);
+			margin: 1.5rem 0 1rem;
+			border: 0px;
+			height: 4rem;
+			border-radius: 0.5rem;
+			font-size: 1.2rem;
+			color: var(--bs-white);
+			font-weight: 600;
+			transition: filter 0.3s;
+
+			&:hover {
+				filter: brightness(0.9);
+			}
+		}
+	}
+}
