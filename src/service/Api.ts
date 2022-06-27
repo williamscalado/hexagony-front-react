@@ -2,9 +2,10 @@ import axios from "axios";
 import { isAuth, isTokenAuth } from "../auth/authentication";
 
 const Api = axios.create({
-	baseURL: "localhots:8000",
+	baseURL: "http://localhost:8000",
 	headers: {
 		"Access-Control-Allow-Origin": "*",
+		AllowedOrigins: "*",
 		"Content-Type": "application/json",
 	},
 	withCredentials: false,
@@ -13,7 +14,7 @@ const Api = axios.create({
 Api.interceptors.request.use((req) => {
 	if (isAuth()) {
 		req.headers = {
-			Authorization: `Bearer <${isTokenAuth}>`,
+			Authorization: `Bearer ${isTokenAuth}`,
 		};
 	}
 

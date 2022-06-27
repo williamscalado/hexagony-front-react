@@ -2,6 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FormEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import Api from "../../service/Api";
 import "./style.scss";
 
 type formLogin = {
@@ -37,9 +38,14 @@ export const FormLogin = () => {
 			[input.name]: input.value,
 		});
 	};
-
+	const getTokenLogin = async (data: formLogin) => {
+		const result = await Api.post("/auth", data);
+		//console.log(result.data);
+	};
 	const onSubmit = async (data: formLogin) => {
-		console.log(data);
+		await getTokenLogin(data);
+
+		//console.log(data);
 	};
 
 	return (
