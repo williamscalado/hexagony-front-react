@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormEvent, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 import * as yup from "yup";
 import Api from "../../service/Api";
 import "./style.scss";
@@ -39,9 +40,15 @@ export const FormLogin = () => {
 		});
 	};
 	const getTokenLogin = async (data: formLogin) => {
-		const result = await Api.post("/auth", data);
-		//console.log(result.data);
+		try {
+			const result = await Api.post("auth", data).then((res) => res);
+
+			return result.data;
+		} catch (error: Error | any) {
+			toast.error(error.response.data.message);
+		}
 	};
+
 	const onSubmit = async (data: formLogin) => {
 		await getTokenLogin(data);
 
@@ -49,27 +56,33 @@ export const FormLogin = () => {
 	};
 
 	return (
-		<div className="ContainerLogin">
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<label htmlFor="">E-mail </label>
-				<input
-					{...register("email", { required: true })}
-					type="text"
-					onChange={handleInputChange}
-					placeholder="email@x.com.br"
-				/>
-				{errors.email && <span>{errors.email.message}</span>}
-				<label htmlFor="">Senha </label>
-				<input
-					type="password"
-					{...register("password", { required: true })}
-					placeholder="*****"
-					onChange={handleInputChange}
-				/>
-				{errors.password && <span>{errors.password.message}</span>}
+		<>
+			{" "}
+			<div>
+				<Toaster />
+			</div>
+			<div className="ContainerLogin">
+				<form onSubmit={handleSubmit(onSubmit)}>
+					<label htmlFor="">E-mail </label>
+					<input
+						{...register("email", { required: true })}
+						type="text"
+						onChange={handleInputChange}
+						placeholder="email@x.com.br"
+					/>
+					{errors.email && <span>{errors.email.message}</span>}
+					<label htmlFor="">Senha </label>
+					<input
+						type="password"
+						{...register("password", { required: true })}
+						placeholder="*****"
+						onChange={handleInputChange}
+					/>
+					{errors.password && <span>{errors.password.message}</span>}
 
-				<button type="submit">Entrar</button>
-			</form>
-		</div>
+					<button type="submit">Entrar</button>
+				</form>
+			</div>
+		</>
 	);
 };
