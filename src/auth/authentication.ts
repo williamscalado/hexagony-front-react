@@ -4,15 +4,17 @@ const localName = "hegaxoniAuth";
 
 export const isTokenAuth = localStorage.getItem(localName) || "";
 
-export const setAuth = (token: string) => {
+export const setAuth = async (token: string) => {
 	if (!token) return;
 
 	const decodedToken = decodeToken(token);
 	const isExpiredToken = isExpired(token);
+
 	if (!decodedToken || isExpiredToken) {
 		logout();
 		return;
 	}
+	if (isTokenAuth) logout();
 
 	localStorage.setItem(localName, token);
 };
