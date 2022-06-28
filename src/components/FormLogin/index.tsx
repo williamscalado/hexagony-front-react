@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { setAuth } from "../../auth/authentication";
+import { isAuth, setAuth } from "../../auth/authentication";
 import Api from "../../service/Api";
 import "./style.scss";
 
@@ -62,6 +62,7 @@ export const FormLogin = () => {
 			toast.error("We had a problem processing your login, please try again!");
 		}
 	};
+	console.log(isAuth());
 
 	return (
 		<>

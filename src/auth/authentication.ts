@@ -1,25 +1,26 @@
-import { decodeToken, isExpired } from "react-jwt";
+import { isExpired } from "react-jwt";
 
 const localName = "hegaxoniAuth";
 
 export const isTokenAuth = localStorage.getItem(localName) || "";
 
+const getToken = () => localStorage.getItem(localName) || "";
+
 export const setAuth = async (token: string) => {
 	if (!token) return;
 
-	const decodedToken = decodeToken(token);
 	const isExpiredToken = isExpired(token);
-
-	if (!decodedToken || isExpiredToken) {
+	console.log(isExpiredToken);
+	if (isExpiredToken) {
 		logout();
 		return;
 	}
-	if (isTokenAuth) logout();
 
 	localStorage.setItem(localName, token);
 };
 export const isAuth = () => {
-	const token = isTokenAuth;
+	const token = getToken();
+	console.log(token);
 	if (!token) return;
 
 	const isExpiredToken = isExpired(token);
