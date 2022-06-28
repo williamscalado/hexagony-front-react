@@ -1,0 +1,45 @@
+.container-new-album {
+	width: 30%;
+	background: var(--bs-white);
+	padding: 1rem;
+	border-radius: 0.8rem;
+	color: var(--bs-dark);
+}
+
+.content-new-album {
+	h3 {
+		font-weight: 700;
+		color: var(--bs-dark);
+		padding-bottom: 0.5rem;
+	}
+
+	form {
+		input {
+			width: 100%;
+			padding: 1rem 1rem;
+			margin-top: 0.75rem;
+			margin-bottom: 0.75rem;
+			border-radius: 0.25rem;
+			border: 0;
+			background-color: #e7e9ee;
+			box-sizing: border-box;
+		}
+		span {
+			margin-top: 2rem;
+		}
+		button {
+			margin-top: 0.75rem;
+			padding: 1rem;
+			border: 0px;
+			border-radius: 0.5rem;
+			height: 3rem;
+			color: var(--bs-white);
+			background: var(--bs-cyan);
+			transition: filter 0.5s;
+			font-weight: 500;
+			&:hover {
+				filter: brightness(0.8);
+			}
+		}
+	}
+}
