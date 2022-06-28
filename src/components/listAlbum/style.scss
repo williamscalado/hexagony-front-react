@@ -3,8 +3,9 @@
 	border-radius: 1rem;
 	padding: 1rem;
 	color: var(--bs-dark);
-	background-color: var(--bs-white);
+	background-color: var(--bs-dark);
 	h3 {
+		color: var(--bs-white);
 		margin: 0 0 1rem 0;
 	}
 
@@ -19,7 +20,6 @@
 	color: var(--bs-white);
 	padding: 1rem 1rem;
 	display: flex;
-	border-radius: 0.5rem;
 	justify-content: space-between;
 	align-items: center;
 }

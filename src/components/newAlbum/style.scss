@@ -1,10 +1,11 @@
 .container-new-album {
 	width: 30%;
-	height: 320px;
-	background: var(--bs-white);
+	max-height: 400px;
+
+	background: var(--bs-dark);
 	padding: 1rem;
 	border-radius: 0.8rem;
-	color: var(--bs-dark);
+	color: var(--bs-white);
 
 	@media (max-width: 780px) {
 		width: 92vw;
@@ -16,11 +17,12 @@
 .content-new-album {
 	h3 {
 		font-weight: 700;
-		color: var(--bs-dark);
+		color: var(--bs-white);
 		padding-bottom: 0.5rem;
 	}
 
 	form {
+		display: grid;
 		input {
 			width: 100%;
 			padding: 1rem 1rem;
@@ -28,22 +30,28 @@
 			margin-bottom: 0.75rem;
 			border-radius: 0.25rem;
 			border: 0;
-			background-color: #e7e9ee;
+			background-color: var(--bs-gray-dark);
 			box-sizing: border-box;
 		}
 
+		label {
+			margin-top: 0.5rem;
+		}
 		span {
-			margin-top: 2rem;
+			margin: 0 0 1rem 0;
+			color: var(--bs-red);
+			font-size: 0.8rem;
 		}
 
 		button {
 			margin-top: 0.75rem;
-			padding: 1rem;
+
+			font-size: 1rem;
 			border: 0px;
 			border-radius: 0.5rem;
 			height: 3rem;
 			color: var(--bs-white);
-			background: var(--bs-cyan);
+			background: var(--bs-teal);
 			transition: filter 0.5s;
 			font-weight: 500;
 
