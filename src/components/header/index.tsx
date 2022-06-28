@@ -15,7 +15,7 @@ export const Header = () => {
 					<nav>
 						<ul>
 							<li>
-								<Link to="/album">Album</Link>
+								<Link to="/album">Albums</Link>
 							</li>
 							<li>
 								<Link to="/users">Users</Link>
