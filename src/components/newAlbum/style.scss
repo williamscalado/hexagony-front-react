@@ -5,6 +5,12 @@
 	padding: 1rem;
 	border-radius: 0.8rem;
 	color: var(--bs-dark);
+
+	@media (max-width: 780px) {
+		width: 92vw;
+		margin: auto;
+		height: 290px;
+	}
 }
 
 .content-new-album {
@@ -25,9 +31,11 @@
 			background-color: #e7e9ee;
 			box-sizing: border-box;
 		}
+
 		span {
 			margin-top: 2rem;
 		}
+
 		button {
 			margin-top: 0.75rem;
 			padding: 1rem;
@@ -38,6 +46,7 @@
 			background: var(--bs-cyan);
 			transition: filter 0.5s;
 			font-weight: 500;
+
 			&:hover {
 				filter: brightness(0.8);
 			}

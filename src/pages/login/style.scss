@@ -1,8 +1,9 @@
 .Container {
 	margin: auto;
-	width: 1080px;
+	width: 98vw;
 	height: 80vh;
 	display: grid;
+	overflow-x: hidden;
 
 	justify-items: center;
 	align-items: center;

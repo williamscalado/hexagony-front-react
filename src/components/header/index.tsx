@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../auth/authentication";
-import "./styles.scss";
+import "./style.scss";
+
 export const Header = () => {
 	const navigate = useNavigate();
 	function handleLogout() {

@@ -1,10 +1,12 @@
+import React from "react";
 import { Header } from "../../components/header";
 import { ListAlbum } from "../../components/listAlbum";
 import { NewAlbum } from "../../components/newAlbum/intex";
 import "./style.scss";
+
 export const PageAlbum = () => {
 	return (
-		<>
+		<React.Fragment>
 			<Header />
 			<div className="container-albums">
 				<section className="content-album">
@@ -12,6 +14,6 @@ export const PageAlbum = () => {
 					<ListAlbum />
 				</section>
 			</div>
-		</>
+		</React.Fragment>
 	);
 };
