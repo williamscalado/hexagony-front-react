@@ -10,7 +10,6 @@ export const setAuth = async (token: string) => {
 	if (!token) return;
 
 	const isExpiredToken = isExpired(token);
-	console.log(isExpiredToken);
 	if (isExpiredToken) {
 		logout();
 		return;
