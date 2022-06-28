@@ -2,8 +2,6 @@
   <img src="https://github.com/williamscalado/hexagony/blob/master/logo_hexagony.png" width="300" title="Hexagony">
 </p>
 
-# Hexagony
-
 I'm using the API developed in Go created by my friend Cyro, now I'm creating the frontend in ReactJs
 
 let's code!
