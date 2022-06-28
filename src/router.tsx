@@ -1,6 +1,6 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import App from "./App";
 import { isAuth } from "./auth/authentication";
+import { PageAlbum } from "./pages/album";
 import { PageLogin } from "./pages/login";
 
 export const AppRoutes = () => {
@@ -15,8 +15,11 @@ export const AppRoutes = () => {
 			<Routes>
 				<Route path="/login" element={<PageLogin />}></Route>
 				<Route element={<ProtectRouter />}>
-					<Route path="/" element={<App />}></Route>
+					<Route path="/" element={<PageAlbum />}></Route>
+					<Route path="/album" element={<PageAlbum />}></Route>
+					<Route path="/users" element={<PageAlbum />}></Route>
 				</Route>
+				<Route path="*" element={<PageLogin />}></Route>
 			</Routes>
 		</>
 	);

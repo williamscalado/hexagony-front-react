@@ -31,4 +31,4 @@ export const isAuth = () => {
 	return true;
 };
 
-const logout = () => localStorage.removeItem(localName);
+export const logout = () => localStorage.removeItem(localName);

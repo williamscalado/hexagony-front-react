@@ -42,7 +42,9 @@
 }
 
 body {
-	background-color: var(--background);
+	background-image: url("../../public/assets/image/bg_band.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
 	font-size: 16;
 	color: var(--bs-white);
 }
