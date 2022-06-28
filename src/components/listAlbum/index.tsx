@@ -1,3 +1,8 @@
+import "./style.scss";
 export const ListAlbum = () => {
-	return <h1>list album</h1>;
+	return (
+		<div className="container-lis-album">
+			<p>List 1</p>
+		</div>
+	);
 };

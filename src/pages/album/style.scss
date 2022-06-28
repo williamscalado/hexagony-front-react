@@ -7,4 +7,9 @@
 	display: flex;
 	justify-content: space-between;
 	margin-top: 5rem;
+
+	@media (max-width: 780px) {
+		display: block;
+		margin-top: 5rem;
+	}
 }
