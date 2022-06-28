@@ -17,9 +17,9 @@ export const setAuth = async (token: string) => {
 
 	localStorage.setItem(localName, token);
 };
+
 export const isAuth = () => {
 	const token = getToken();
-	console.log(token);
 	if (!token) return;
 
 	const isExpiredToken = isExpired(token);

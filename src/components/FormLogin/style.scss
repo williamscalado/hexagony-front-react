@@ -10,6 +10,7 @@
 	form {
 		width: 100%;
 		display: grid;
+
 		input {
 			margin: 1rem 0 1rem 0;
 			padding: 0.8rem;
@@ -21,7 +22,7 @@
 			background: var(--bs-teal);
 			margin: 1.5rem 0 1rem;
 			border: 0px;
-			height: 4rem;
+			height: 3.2rem;
 			border-radius: 0.5rem;
 			font-size: 1.2rem;
 			color: var(--bs-white);
@@ -32,6 +33,7 @@
 				filter: brightness(0.9);
 			}
 		}
+
 		span {
 			margin: 0 0 1rem 0;
 			color: var(--bs-red);

@@ -1,10 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { isAuth, setAuth } from "../../auth/authentication";
+import { setAuth } from "../../auth/authentication";
 import Api from "../../service/Api";
 import "./style.scss";
 
@@ -16,12 +16,14 @@ type formLogin = {
 const formRules: yup.SchemaOf<formLogin> = yup.object().shape({
 	email: yup
 		.string()
-		.email("E-mail invalid!")
-		.required("Enter your best email"),
+		.trim()
+		.email()
+		.required(),
 	password: yup
 		.string()
-		.min(8, "short password, minimum 8 character")
-		.required("The password is not valid!"),
+		.trim()
+		.min(8)
+		.required(),
 });
 
 export const FormLogin = () => {
@@ -32,6 +34,9 @@ export const FormLogin = () => {
 		register,
 		formState: { errors },
 	} = useForm<formLogin>({
+		mode: "onBlur",
+		reValidateMode: "onBlur",
+		shouldFocusError: true,
 		resolver: yupResolver(formRules),
 	});
 
@@ -42,6 +47,7 @@ export const FormLogin = () => {
 			[input.name]: input.value,
 		});
 	};
+
 	const getTokenLogin = async (data: formLogin) => {
 		try {
 			const result = await Api.post("auth", data).then((res) => res);
@@ -59,39 +65,39 @@ export const FormLogin = () => {
 
 			if (resultToken) navigate("/");
 		} catch (error) {
-			toast.error("We had a problem processing your login, please try again!");
+			toast.error("we had a problem processing your login, please try again!");
 		}
 	};
-	console.log(isAuth());
 
 	return (
-		<>
+		<React.Fragment>
 			{" "}
 			<div>
 				<Toaster />
 			</div>
 			<div className="ContainerLogin">
 				<form onSubmit={handleSubmit(onSubmit)}>
-					<label htmlFor="">E-mail </label>
+					<label htmlFor="email">E-mail </label>
 					<input
-						{...register("email", { required: true })}
+						{...register("email")}
 						type="text"
 						onChange={handleInputChange}
 						placeholder="email@x.com"
+						autoFocus
 					/>
-					{errors.email && <span>{errors.email.message}</span>}
-					<label htmlFor="">Password </label>
+					{<span>{errors?.email?.message}</span>}
+					<label htmlFor="password">Password </label>
 					<input
 						type="password"
-						{...register("password", { required: true })}
-						placeholder="*****"
+						{...register("password")}
+						placeholder="********"
 						onChange={handleInputChange}
 					/>
-					{errors.password && <span>{errors.password.message}</span>}
+					{<span>{errors?.password?.message}</span>}
 
 					<button type="submit">Sign In</button>
 				</form>
 			</div>
-		</>
+		</React.Fragment>
 	);
 };
