@@ -32,7 +32,9 @@ export const ListAlbum = () => {
 					<div key={item.id} className="list-album">
 						<div className="list-album-info">
 							<span>{item.name}</span>
-							<span>length {item.length}</span>
+							<span>
+								{item.length} {item.length > 1 ? "minutes" : "minute"}
+							</span>
 						</div>
 
 						<div className="list-album-icons">
