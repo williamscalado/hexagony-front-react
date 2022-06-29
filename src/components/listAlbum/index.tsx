@@ -14,16 +14,16 @@ interface IAlbums {
 
 export const ListAlbum = () => {
 	const [albumData, setAlbumData] = useState([{} as IAlbums]);
-
 	const getAllAlbums = async () => {
 		const result = await Api.get("/album");
 		if (!result.data) return;
 		setAlbumData(result.data);
 	};
+
 	useEffect(() => {
 		getAllAlbums();
 	}, []);
-	console.log(albumData);
+
 	return (
 		<div className="container-list-album">
 			<h3>Albums</h3>

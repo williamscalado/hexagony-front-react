@@ -1,16 +1,18 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import * as yup from "yup";
+import Api from "../../service/Api";
 import "./style.scss";
 
 interface INewAlbum {
 	name: string;
-	length: string;
+	length: number;
 }
 
 const newAlbumFormRule: yup.SchemaOf<INewAlbum> = yup.object().shape({
 	name: yup.string().required().min(3),
-	length: yup.string().required().min(1),
+	length: yup.number().required().min(1),
 });
 
 export const NewAlbum = () => {
@@ -18,16 +20,32 @@ export const NewAlbum = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm<INewAlbum>({
 		mode: "onBlur",
 		reValidateMode: "onBlur",
 		shouldFocusError: true,
 		resolver: yupResolver(newAlbumFormRule),
 	});
-
+	const addNewAlbum = async (data: INewAlbum) => {
+		try {
+			await Api.post("/album", data);
+		} catch (error) {
+			toast.error("Album not created");
+		}
+	};
 	const onSubmit = async (data: INewAlbum) => {
-		console.log(data);
-		return data;
+		try {
+			const newData: INewAlbum = {
+				...data,
+				length: +data.length,
+			};
+			await addNewAlbum(newData);
+			reset();
+			toast.success("Album created success!");
+		} catch (error) {
+			toast.error("Album not created");
+		}
 	};
 	return (
 		<div className="container-new-album">

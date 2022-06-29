@@ -1,16 +1,17 @@
 .container-new-album {
 	width: 30%;
-	max-height: 400px;
-
 	background: var(--bs-dark);
 	padding: 1rem;
+	margin-bottom: auto;
 	border-radius: 0.8rem;
+	overflow: auto;
 	color: var(--bs-white);
 
 	@media (max-width: 780px) {
 		width: 92vw;
 		margin: auto;
 		height: 290px;
+		max-height: 500px;
 	}
 }
 
@@ -30,6 +31,7 @@
 			margin-bottom: 0.75rem;
 			border-radius: 0.25rem;
 			border: 0;
+			color: var(--bs-white);
 			background-color: var(--bs-gray-dark);
 			box-sizing: border-box;
 		}
