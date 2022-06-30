@@ -16,28 +16,24 @@ export const albumListState = atom<IAlbums[]>({
 export const ListAlbum = () => {
 	const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState)
 
-	const getAlbums = React.useCallback(async () => {
-		try {
-			const albumData = await AlbumUseCase.getAll();
-			setAlbumsList(albumData);
-		} catch (err) {
-
-		}
-	}, [setAlbumsList])
+	const getAlbumList = React.useCallback(async () => {
+		const res = await AlbumUseCase.getAll()
+		setAlbumsList(res);
+	}, [setAlbumsList]);
 
 	const removeAlbums = async (id: string) => {
 		try {
 			await AlbumUseCase.remove(id);
-			await getAlbums();
+			await getAlbumList();
 			toast.success("album removed");
 		} catch (err) {
 			toast.error("failed to remove album");
 		}
-	}
+	};
 
 	React.useEffect(() => {
-		getAlbums();
-	}, [getAlbums])
+		getAlbumList()
+	}, [getAlbumList]);
 
 	return (
 		<div className="container-list-album">

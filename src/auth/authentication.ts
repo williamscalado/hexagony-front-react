@@ -15,7 +15,7 @@ export const setAuth = (token: string) => {
 		return;
 	}
 
-	localStorage.setItem(localName, JSON.stringify(token))
+	localStorage.setItem(localName, token)
 };
 
 export const isAuth = () => {
