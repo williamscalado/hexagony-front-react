@@ -6,6 +6,7 @@
 	border-radius: 0.8rem;
 	overflow: auto;
 	color: var(--bs-white);
+	overflow-y: hidden;
 
 	@media (max-width: 780px) {
 		width: 92vw;

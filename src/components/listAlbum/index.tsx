@@ -21,9 +21,9 @@ export const ListAlbum = () => {
 		<div className="container-list-album">
 			<h3>Albums</h3>
 			{albumData &&
-				albumData.map((item: IAlbums) => {
+				albumData.map((item: IAlbums, index: number) => {
 					return (
-						<div key={item.id} className="list-album">
+						<div key={`${item.name}-${index}-${item.length}`} className="list-album">
 							<div className="list-album-info">
 								<span>{item.name}</span>
 								<span>
@@ -36,7 +36,11 @@ export const ListAlbum = () => {
 									<FiEdit />
 								</span>
 								<span>
+<<<<<<< HEAD
 									<AiOutlineDelete onClick={() => handleDeleteAlbum(item.id)} />
+=======
+									<AiOutlineDelete onClick={() => { }} />
+>>>>>>> b4a6de319ccc282112e792781647ec6c20c54610
 								</span>
 							</div>
 						</div>
