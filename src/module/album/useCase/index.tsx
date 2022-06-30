@@ -3,7 +3,7 @@ import Api from "../../../service/Api";
 
 export interface IAlbums {
 	created_at: string;
-	uuid: string;
+	id: string;
 	length: number;
 	name: string;
 	updated_at: string;

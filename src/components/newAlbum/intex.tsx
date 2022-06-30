@@ -43,7 +43,6 @@ export const NewAlbum = () => {
 				length: +data.length,
 			};
 			await addNewAlbum(newData);
-			GetAllAlbum();
 
 			reset();
 			toast.success("album created");
