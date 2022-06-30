@@ -10,6 +10,7 @@ export const AppRoutes = () => {
 		}
 		return <Outlet />;
 	};
+	
 	return (
 		<>
 			<Routes>

@@ -1,17 +1,40 @@
 import "react-confirm-alert/src/react-confirm-alert.css";
-
+import { atom, useRecoilState } from "recoil"
+import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { AlbumUseCase, IAlbums } from "../../module/album/useCase";
 import "./style.scss";
 
-export const ListAlbum = () => {
-	const { GetAllAlbum } = AlbumUseCase;
-	const albumsList = GetAllAlbum();
 
-	const handleDeleteAlbum = (id: string) => {
-		console.log(id);
+export const albumListState = atom<IAlbums[]>({
+	key: 'albumListState',
+	default: []
+});
+
+export const ListAlbum = () => {
+
+	const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState)
+
+	const getAlbumList = React.useCallback(async () => {
+		const res = await AlbumUseCase.getAll()
+		setAlbumsList(res);
+	}, [setAlbumsList]);
+
+	const removeAlbums = async (id: string) => {
+		try {
+			await AlbumUseCase.remove(id);
+			await getAlbumList();
+			toast.success("album removed");
+		} catch (err) {
+			toast.error("failed to remove album");
+		}
 	};
+
+	React.useEffect(() => {
+		getAlbumList()
+	}, [getAlbumList]);
+
 
 	console.log(albumsList);
 	return (
@@ -35,7 +58,8 @@ export const ListAlbum = () => {
 								<FiEdit />
 							</span>
 							<span>
-								<AiOutlineDelete onClick={() => handleDeleteAlbum(item.id)} />
+					<AiOutlineDelete onClick={() => removeAlbums(String(item.id))} />
+
 							</span>
 						</div>
 					</div>

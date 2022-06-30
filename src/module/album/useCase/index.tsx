@@ -1,19 +1,21 @@
+
 import React from "react";
+
 import Api from "../../../service/Api";
 
 export interface IAlbums {
-	created_at: string;
-	id: string;
+	id?: string;
 	length: number;
 	name: string;
-	updated_at: string;
+	created_at?: string;
+	updated_at?: string;
 }
 
 interface IAlbumUseCase {
-	getAll: () => Promise<void> | IAlbums[] | any;
-	GetAllAlbum: () => Promise<void> | IAlbums[] | any;
-	deleteAlbum: (id: string) => Promise<void>;
-	setNewAlbum: () => void;
+	getAll: () => Promise<IAlbums[]>;
+	create: (album: IAlbums) => Promise<void>;
+	update: (album: IAlbums) => Promise<void>;
+	remove: (id: string) => Promise<void>;
 }
 
 const getAll = async () => {
@@ -21,6 +23,10 @@ const getAll = async () => {
 	if (!result.data) return;
 	return result.data;
 };
+
+
+const create = async (album: IAlbums) => {
+	await Api.post("/album", album);
 
 const GetAllAlbum = () => {
 	const [albumsList, setAlbumsList] = React.useState<IAlbums[]>([]);
@@ -35,20 +41,20 @@ const GetAllAlbum = () => {
 	}, [getAlbums]);
 
 	return albumsList;
+
 };
 
-const setNewAlbum = () => {
-	return GetAllAlbum();
+const update = async (album: IAlbums) => {
+	await Api.put(`/album/${album.id}`, album);
 };
 
-const deleteAlbum = async (id: string) => {
-	const result = await Api.patch("/album", id);
-	return result.data;
+const remove = async (id: string) => {
+	await Api.delete(`/album/${id}`);
 };
 
 export const AlbumUseCase: IAlbumUseCase = {
 	getAll,
-	GetAllAlbum,
-	deleteAlbum,
-	setNewAlbum,
+	create,
+	update,
+	remove
 };

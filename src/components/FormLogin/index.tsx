@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { setAuth } from "../../auth/authentication";
-import Api from "../../service/Api";
+import { ApiAuth } from "../../service/Api";
 import "./style.scss";
 
 type formLogin = {
@@ -50,8 +50,7 @@ export const FormLogin = () => {
 
 	const getTokenLogin = async (data: formLogin) => {
 		try {
-			const result = await Api.post("auth", data).then((res) => res);
-
+			const result = await ApiAuth.post("auth", data);
 			return result.data.token;
 		} catch (error: Error | any) {
 			toast.error(error.response.data.message);
@@ -59,14 +58,10 @@ export const FormLogin = () => {
 	};
 
 	const onSubmit = async (data: formLogin) => {
-		try {
-			const resultToken = await getTokenLogin(data);
-			setAuth(resultToken);
+		const resultToken = await getTokenLogin(data);
+		setAuth(resultToken)
 
-			if (resultToken) navigate("/");
-		} catch (error) {
-			toast.error("we had a problem processing your login, please try again!");
-		}
+		if (resultToken) navigate("/");
 	};
 
 	return (

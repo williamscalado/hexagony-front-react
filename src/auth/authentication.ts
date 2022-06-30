@@ -2,11 +2,11 @@ import { isExpired } from "react-jwt";
 
 const localName = "hegaxoniAuth";
 
-export const isTokenAuth = localStorage.getItem(localName) || "";
+export const isTokenAuth = localStorage.getItem(localName);
 
-const getToken = () => localStorage.getItem(localName) || "";
+const getToken = () => localStorage.getItem(localName);
 
-export const setAuth = async (token: string) => {
+export const setAuth = (token: string) => {
 	if (!token) return;
 
 	const isExpiredToken = isExpired(token);
@@ -15,11 +15,12 @@ export const setAuth = async (token: string) => {
 		return;
 	}
 
-	localStorage.setItem(localName, token);
+	localStorage.setItem(localName, token)
 };
 
 export const isAuth = () => {
 	const token = getToken();
+
 	if (!token) return;
 
 	const isExpiredToken = isExpired(token);
