@@ -1,23 +1,22 @@
+import React from "react";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { atom, useRecoilState } from "recoil"
 import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
+import { atom, useRecoilState } from "recoil";
 import { AlbumUseCase, IAlbums } from "../../module/album/useCase";
 import "./style.scss";
 
-
 export const albumListState = atom<IAlbums[]>({
-	key: 'albumListState',
-	default: []
+	key: "albumListState",
+	default: [],
 });
 
 export const ListAlbum = () => {
-
-	const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState)
+	const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState);
 
 	const getAlbumList = React.useCallback(async () => {
-		const res = await AlbumUseCase.getAll()
+		const res = await AlbumUseCase.getAll();
 		setAlbumsList(res);
 	}, [setAlbumsList]);
 
@@ -32,14 +31,14 @@ export const ListAlbum = () => {
 	};
 
 	React.useEffect(() => {
-		getAlbumList()
+		getAlbumList();
 	}, [getAlbumList]);
-
 
 	console.log(albumsList);
 	return (
 		<div className="container-list-album">
 			<h3>Albums</h3>
+			{!albumsList && <div className="no-record">No record found</div>}
 			{albumsList?.map((item: IAlbums, index: number) => {
 				return (
 					<div
@@ -58,8 +57,9 @@ export const ListAlbum = () => {
 								<FiEdit />
 							</span>
 							<span>
-					<AiOutlineDelete onClick={() => removeAlbums(String(item.id))} />
-
+								<AiOutlineDelete
+									onClick={() => removeAlbums(String(item.id))}
+								/>
 							</span>
 						</div>
 					</div>

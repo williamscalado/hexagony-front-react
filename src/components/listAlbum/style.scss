@@ -14,6 +14,7 @@
 		margin: auto;
 		margin-top: 2rem;
 	}
+	box-sizing: border-box;
 }
 .list-album {
 	background: var(--bs-teal);
@@ -47,4 +48,15 @@
 			color: var(--bs-dark);
 		}
 	}
+}
+
+.no-record {
+	margin: auto;
+	display: flex;
+	height: 80%;
+	font-size: 1.5rem;
+	color: var(--bs-gray-dark);
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }

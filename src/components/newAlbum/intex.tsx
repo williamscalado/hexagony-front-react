@@ -1,12 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useSetRecoilState } from "recoil";
 import * as yup from "yup";
 import { AlbumUseCase, IAlbums } from "../../module/album/useCase";
-import "./style.scss";
-import { useSetRecoilState } from "recoil"
 import { albumListState } from "../listAlbum";
-
+import "./style.scss";
 
 const newAlbumFormRule: yup.SchemaOf<IAlbums> = yup.object().shape({
 	id: yup.string().notRequired(),
@@ -15,7 +14,6 @@ const newAlbumFormRule: yup.SchemaOf<IAlbums> = yup.object().shape({
 	created_at: yup.string().notRequired(),
 	updated_at: yup.string().notRequired(),
 });
-
 
 export const NewAlbum = () => {
 	const setAlbumsState = useSetRecoilState(albumListState);
@@ -32,7 +30,6 @@ export const NewAlbum = () => {
 		resolver: yupResolver(newAlbumFormRule),
 	});
 
-
 	const onSubmit = async (data: IAlbums) => {
 		try {
 			const newData: IAlbums = {
@@ -45,7 +42,7 @@ export const NewAlbum = () => {
 			setAlbumsState(res);
 
 			reset();
-			
+
 			toast.success("album created");
 		} catch (error) {
 			toast.error("failed to create album");
