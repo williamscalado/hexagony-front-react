@@ -13,6 +13,7 @@ interface IAlbumUseCase {
 	create: (album: IAlbums) => Promise<void>;
 	update: (album: IAlbums) => Promise<void>;
 	remove: (id: string) => Promise<void>;
+	getAlbumById: (id: string) => Promise<IAlbums>;
 }
 
 const getAll = async () => {
@@ -26,6 +27,7 @@ const create = async (album: IAlbums) => {
 };
 
 const update = async (album: IAlbums) => {
+	console.log(album);
 	await Api.put(`/album/${album.id}`, album);
 };
 
@@ -33,9 +35,16 @@ const remove = async (id: string) => {
 	await Api.delete(`/album/${id}`);
 };
 
+const getAlbumById = async (id: string) => {
+	const result = await Api.get(`/album/${id}`);
+	if (!result.data) return;
+	return result.data;
+};
+
 export const AlbumUseCase: IAlbumUseCase = {
 	getAll,
 	create,
 	update,
 	remove,
+	getAlbumById,
 };
