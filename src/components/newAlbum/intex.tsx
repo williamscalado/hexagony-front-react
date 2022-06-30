@@ -15,18 +15,21 @@ const newAlbumFormRule: yup.SchemaOf<IAlbums> = yup.object().shape({
 	updated_at: yup.string().notRequired(),
 });
 
+const InitialUpdate = {
+	id: "",
+	name: "",
+	length: 0,
+};
+
 export const albumUpdateState = atom<IAlbums>({
 	key: "albumUpdateState",
-	default: {
-		id: "",
-		name: "",
-		length: 0,
-	},
+	default: InitialUpdate,
 });
 
 export const NewAlbum = () => {
 	const setAlbumsState = useSetRecoilState(albumListState);
 	const updateAlbum = useRecoilState(albumUpdateState);
+	const setUpdateAlbum = useSetRecoilState(albumUpdateState);
 
 	const nameAlbum = updateAlbum[0].name;
 	const lengthAlbum = updateAlbum[0].length;
@@ -61,6 +64,8 @@ export const NewAlbum = () => {
 
 			const res = await AlbumUseCase.getAll();
 			setAlbumsState(res);
+
+			setUpdateAlbum(InitialUpdate);
 			reset();
 			toast.success("Success");
 		} catch (error) {
