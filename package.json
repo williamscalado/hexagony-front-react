@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.0.5",
     "axios": "^0.27.2",
     "react": "^18.2.0",
+    "react-confirm-alert": "^3.0.2",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.33.0",
     "react-hot-toast": "^2.2.0",
