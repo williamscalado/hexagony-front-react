@@ -1,15 +1,25 @@
+import React from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { AlbumUseCase, IAlbums } from "../../module/album/useCase";
 import "./style.scss";
 
 export const ListAlbum = () => {
-	const albumData = AlbumUseCase.GetAllAlbum();
+	const [albumsList, setAlbumsList] = React.useState<IAlbums[]>([])
+
+	const getAlbums = React.useCallback(async () => {
+		const albumData = await AlbumUseCase.getAll();
+		setAlbumsList(albumData)
+	}, [])
+
+	React.useEffect(() => {
+    getAlbums()
+	}, [getAlbums])
+
 	return (
 		<div className="container-list-album">
 			<h3>Albums</h3>
-			{albumData &&
-				albumData.map((item: IAlbums, index: number) => {
+			{albumsList?.map((item: IAlbums, index: number) => {
 					return (
 						<div key={`${item.name}-${index}-${item.length}`} className="list-album">
 							<div className="list-album-info">
