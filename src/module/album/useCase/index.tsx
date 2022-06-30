@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import Api from "../../../service/Api";
 
 export interface IAlbums {
@@ -23,17 +23,18 @@ const getAll = async () => {
 };
 
 const GetAllAlbum = () => {
-	const [albumData, setAlbumData] = useState<IAlbums[]>([{} as IAlbums]);
+	const [albumsList, setAlbumsList] = React.useState<IAlbums[]>([]);
 
-	const albumEffect = async () => {
-		const result = await getAll();
-		if (result !== albumData) setAlbumData(result);
-	};
-	useEffect(() => {
-		albumEffect();
+	const getAlbums = React.useCallback(async () => {
+		const albumData = await AlbumUseCase.getAll();
+		setAlbumsList(albumData);
 	}, []);
 
-	return albumData;
+	React.useEffect(() => {
+		getAlbums();
+	}, [getAlbums]);
+
+	return albumsList;
 };
 
 const setNewAlbum = () => {
