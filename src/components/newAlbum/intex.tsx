@@ -2,6 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as yup from "yup";
+import { AlbumUseCase } from "../../module/album/useCase";
 import Api from "../../service/Api";
 import "./style.scss";
 
@@ -12,10 +13,11 @@ interface INewAlbum {
 
 const newAlbumFormRule: yup.SchemaOf<INewAlbum> = yup.object().shape({
 	name: yup.string().required().min(3),
-	length: yup.number().typeError('length must be a number').required().min(1),
+	length: yup.number().typeError("length must be a number").required().min(1),
 });
 
 export const NewAlbum = () => {
+	const { GetAllAlbum } = AlbumUseCase;
 	const {
 		register,
 		handleSubmit,
@@ -41,9 +43,11 @@ export const NewAlbum = () => {
 				length: +data.length,
 			};
 			await addNewAlbum(newData);
+
 			reset();
 			toast.success("album created");
 		} catch (error) {
+			console.log(error);
 			toast.error("failed to create album");
 		}
 	};

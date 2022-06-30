@@ -1,10 +1,14 @@
 import React from "react";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import toast from "react-hot-toast";
+
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { AlbumUseCase, IAlbums } from "../../module/album/useCase";
 import "./style.scss";
 
 export const ListAlbum = () => {
+
 	const [albumsList, setAlbumsList] = React.useState<IAlbums[]>([])
 
 	const getAlbums = React.useCallback(async () => {
@@ -21,7 +25,10 @@ export const ListAlbum = () => {
 			<h3>Albums</h3>
 			{albumsList?.map((item: IAlbums, index: number) => {
 					return (
-						<div key={`${item.name}-${index}-${item.length}`} className="list-album">
+						<div
+							key={`${item.name}-${index}-${item.length}`}
+							className="list-album"
+						>
 							<div className="list-album-info">
 								<span>{item.name}</span>
 								<span>
@@ -34,7 +41,7 @@ export const ListAlbum = () => {
 									<FiEdit />
 								</span>
 								<span>
-									<AiOutlineDelete onClick={() => { }} />
+									<AiOutlineDelete onClick={() => handleDeleteAlbum(item.id)} />
 								</span>
 							</div>
 						</div>

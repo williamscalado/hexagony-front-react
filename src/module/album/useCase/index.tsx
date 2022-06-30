@@ -3,7 +3,7 @@ import Api from "../../../service/Api";
 
 export interface IAlbums {
 	created_at: string;
-	uuid: string;
+	id: string;
 	length: number;
 	name: string;
 	updated_at: string;
@@ -12,6 +12,8 @@ export interface IAlbums {
 interface IAlbumUseCase {
 	getAll: () => Promise<void> | IAlbums[] | any;
 	GetAllAlbum: () => Promise<void> | IAlbums[] | any;
+	deleteAlbum: (id: string) => Promise<void>;
+	setNewAlbum: () => void;
 }
 
 const getAll = async () => {
@@ -24,17 +26,28 @@ const GetAllAlbum = () => {
 	const [albumData, setAlbumData] = useState<IAlbums[]>([{} as IAlbums]);
 
 	const albumEffect = async () => {
-		const result = await AlbumUseCase.getAll();
-		setAlbumData(result);
+		const result = await getAll();
+		if (result !== albumData) setAlbumData(result);
 	};
 	useEffect(() => {
 		albumEffect();
-	}, [albumData]);
+	}, []);
 
 	return albumData;
+};
+
+const setNewAlbum = () => {
+	return GetAllAlbum();
+};
+
+const deleteAlbum = async (id: string) => {
+	const result = await Api.patch("/album", id);
+	return result.data;
 };
 
 export const AlbumUseCase: IAlbumUseCase = {
 	getAll,
 	GetAllAlbum,
+	deleteAlbum,
+	setNewAlbum,
 };
