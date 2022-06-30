@@ -12,7 +12,7 @@ interface INewAlbum {
 
 const newAlbumFormRule: yup.SchemaOf<INewAlbum> = yup.object().shape({
 	name: yup.string().required().min(3),
-	length: yup.number().required().min(1),
+	length: yup.number().typeError('length must be a number').required().min(1),
 });
 
 export const NewAlbum = () => {
