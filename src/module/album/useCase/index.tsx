@@ -1,3 +1,6 @@
+
+import React from "react";
+
 import Api from "../../../service/Api";
 
 export interface IAlbums {
@@ -21,8 +24,24 @@ const getAll = async () => {
 	return result.data;
 };
 
+
 const create = async (album: IAlbums) => {
 	await Api.post("/album", album);
+
+const GetAllAlbum = () => {
+	const [albumsList, setAlbumsList] = React.useState<IAlbums[]>([]);
+
+	const getAlbums = React.useCallback(async () => {
+		const albumData = await AlbumUseCase.getAll();
+		setAlbumsList(albumData);
+	}, []);
+
+	React.useEffect(() => {
+		getAlbums();
+	}, [getAlbums]);
+
+	return albumsList;
+
 };
 
 const update = async (album: IAlbums) => {
