@@ -27,7 +27,6 @@ const create = async (album: IAlbums) => {
 };
 
 const update = async (album: IAlbums) => {
-	console.log(album);
 	await Api.put(`/album/${album.id}`, album);
 };
 
