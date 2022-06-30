@@ -31,7 +31,7 @@ export const NewAlbum = () => {
 		try {
 			await Api.post("/album", data);
 		} catch (error) {
-			toast.error("Album not created");
+			toast.error("failed to create album");
 		}
 	};
 	const onSubmit = async (data: INewAlbum) => {
@@ -42,9 +42,9 @@ export const NewAlbum = () => {
 			};
 			await addNewAlbum(newData);
 			reset();
-			toast.success("Album created success!");
+			toast.success("album created");
 		} catch (error) {
-			toast.error("Album not created");
+			toast.error("failed to create album");
 		}
 	};
 	return (
