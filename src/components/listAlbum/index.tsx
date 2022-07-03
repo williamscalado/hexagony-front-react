@@ -3,15 +3,10 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
-import { atom, useRecoilState, useSetRecoilState } from "recoil";
-import { AlbumUseCase, IAlbums } from "../../module/album/useCase";
-import { albumUpdateState } from "../newAlbum/intex";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { AlbumUseCase, IAlbums } from "../../modules/album/useCase";
+import { albumListState, albumUpdateState } from "../../states/globalState";
 import "./style.scss";
-
-export const albumListState = atom<IAlbums[]>({
-	key: "albumListState",
-	default: [],
-});
 
 export const ListAlbum = () => {
 	const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState);

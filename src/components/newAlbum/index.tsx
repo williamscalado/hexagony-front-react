@@ -1,10 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { atom, useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import * as yup from "yup";
-import { AlbumUseCase, IAlbums } from "../../module/album/useCase";
-import { albumListState } from "../listAlbum";
+import { AlbumUseCase, IAlbums } from "../../modules/album/useCase";
+import { albumListState, albumUpdateState } from "../../states/globalState";
 import "./style.scss";
 
 const newAlbumFormRule: yup.SchemaOf<IAlbums> = yup.object().shape({
@@ -20,11 +20,6 @@ const InitialUpdate = {
 	name: "",
 	length: 0,
 };
-
-export const albumUpdateState = atom<IAlbums>({
-	key: "albumUpdateState",
-	default: InitialUpdate,
-});
 
 export const NewAlbum = () => {
 	const setAlbumsState = useSetRecoilState(albumListState);
@@ -67,9 +62,11 @@ export const NewAlbum = () => {
 
 			setUpdateAlbum(InitialUpdate);
 			reset();
-			toast.success("Success");
+			toast.success(updateStatus ? "update album" : "create album");
 		} catch (error) {
-			toast.error("failed to create album");
+			toast.error(
+				updateAlbum[0]?.id ? "failed to update album" : "failed to create album"
+			);
 		}
 	};
 
