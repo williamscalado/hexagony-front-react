@@ -7,6 +7,7 @@ import { userUseCase } from "../../modules/users/usecase";
 import { userFormValidation } from "../../modules/users/validation";
 import { userState } from "../../state/userState";
 import "./style.scss";
+
 export const NewUserForm = () => {
 	const setUserAllUser = useSetRecoilState<IUser[]>(userState);
 	const {
@@ -50,7 +51,7 @@ export const NewUserForm = () => {
 				<label htmlFor="password">Password</label>
 				<input type="password" {...register("password")} />
 				<span>{errors?.password && errors.password.message}</span>
-				<label htmlFor="passwordConfirmation">Repeat Password</label>
+				<label htmlFor="passwordConfirmation">Confirm Password</label>
 				<input type="password" {...register("passwordConfirmation")} />
 				<span>
 					{errors.passwordConfirmation && errors.passwordConfirmation.message}

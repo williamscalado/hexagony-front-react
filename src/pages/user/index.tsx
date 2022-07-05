@@ -4,6 +4,7 @@ import { Header } from "../../components/header";
 import { ListUser } from "../../components/listUser";
 import { NewUserForm } from "../../components/newUser";
 import "./style.scss";
+
 export const UserPage = () => {
 	return (
 		<React.Fragment>

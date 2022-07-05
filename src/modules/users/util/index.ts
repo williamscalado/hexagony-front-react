@@ -13,7 +13,7 @@ const getAvatar = (gender: string) => {
 };
 
 const getFirstName = (fullName: string) => {
-	const firstName = fullName.split(" ").slice(0, 2)[0]
+	const firstName = fullName.split(" ").slice(0, 2)[0];
 	return firstName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 };
 
