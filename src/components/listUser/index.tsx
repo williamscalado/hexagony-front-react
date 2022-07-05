@@ -35,7 +35,7 @@ export const ListUser = () => {
 	return (
 		<>
 			<div className="container-user-list">
-				<h1>Users List</h1>
+				<h1>Users</h1>
 				<div className="content-user-list">
 					{userList &&
 						userList.map((item) => {
