@@ -2,6 +2,7 @@
 	width: 65vw;
 	display: flex;
 	margin: auto;
+
 	@media (max-width: 780px) {
 		padding: 1rem;
 		width: 98vw;
@@ -19,5 +20,6 @@
 		flex-direction: column-reverse;
 		display: flex;
 		justify-content: space-around;
+		margin-top: 0rem;
 	}
 }
