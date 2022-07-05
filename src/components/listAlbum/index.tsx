@@ -11,6 +11,7 @@ import "./style.scss";
 export const ListAlbum = () => {
 	const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState);
 	const setAlbumUpdate = useSetRecoilState(albumUpdateState);
+	const setUpdateAlbum = useSetRecoilState(albumUpdateState);
 
 	const getAlbumList = React.useCallback(async () => {
 		const res = await AlbumUseCase.getAll();
@@ -21,6 +22,11 @@ export const ListAlbum = () => {
 		try {
 			await AlbumUseCase.remove(id);
 			await getAlbumList();
+			setUpdateAlbum({
+				id: "",
+				name: "",
+				length: 1,
+			});
 			toast.success("album removed");
 		} catch (err) {
 			toast.error("failed to remove album");
@@ -28,7 +34,7 @@ export const ListAlbum = () => {
 	};
 
 	const updateAlbums = async (id: string) => {
-		const resultData = albumsList.find(album => album.id === id);
+		const resultData = albumsList.find((album) => album.id === id);
 		if (!resultData) return;
 
 		const data = {
