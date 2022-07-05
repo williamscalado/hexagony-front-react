@@ -56,7 +56,7 @@ export const NewUserForm = () => {
 				<span>
 					{errors.passwordConfirmation && errors.passwordConfirmation.message}
 				</span>
-				<button>Add</button>
+				<button>Save</button>
 			</form>
 		</div>
 	);

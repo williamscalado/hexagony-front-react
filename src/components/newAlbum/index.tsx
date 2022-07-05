@@ -1,3 +1,4 @@
+import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -26,9 +27,6 @@ export const NewAlbum = () => {
 	const updateAlbum = useRecoilState(albumUpdateState);
 	const setUpdateAlbum = useSetRecoilState(albumUpdateState);
 
-	const nameAlbum = updateAlbum[0].name;
-	const lengthAlbum = updateAlbum[0].length;
-
 	const {
 		register,
 		handleSubmit,
@@ -38,8 +36,24 @@ export const NewAlbum = () => {
 		mode: "onBlur",
 		reValidateMode: "onBlur",
 		shouldFocusError: true,
-		resolver: yupResolver(newAlbumFormRule),
+		resolver: yupResolver(newAlbumFormRule)
 	});
+
+	const isEdition = React.useMemo(() => ({
+		id: updateAlbum[0].id,
+		name: updateAlbum[0].name || "",
+		length: updateAlbum[0].length || 1
+	}), [updateAlbum]);
+
+	const setFields = React.useCallback(() => {
+		if (isEdition?.id) {
+			reset({ name: isEdition.name, length: isEdition.length })
+		}
+	}, [isEdition.id, isEdition.name, isEdition.length, reset]);
+
+	React.useEffect(() => {
+		setFields();
+	}, [setFields]);
 
 	const onSubmit = async (data: IAlbums) => {
 		try {
@@ -75,16 +89,15 @@ export const NewAlbum = () => {
 			<div className="content-new-album">
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<label htmlFor="">Name</label>
-					<input {...register("name")} type="text" defaultValue={nameAlbum} />
+					<input {...register("name")} type="text" />
 					{errors?.name && <span>{errors?.name?.message} </span>}
 					<label htmlFor="">Length</label>
 					<input
 						{...register("length")}
 						type="number"
-						defaultValue={lengthAlbum}
 					/>
 					{errors?.length && <span>{errors.length.message}</span>}
-					<button>Add</button>
+					<button>Save</button>
 				</form>
 			</div>
 		</div>
