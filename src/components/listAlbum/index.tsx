@@ -23,9 +23,9 @@ export const ListAlbum = () => {
 			await AlbumUseCase.remove(id);
 			await getAlbumList();
 			setAlbumUpdate({
-				id: "",
+				id: undefined,
 				name: "",
-				length: 0,
+				length: 1,
 			});
 			toast.success("album removed");
 		} catch (err) {

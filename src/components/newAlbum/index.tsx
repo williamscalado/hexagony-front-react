@@ -51,7 +51,9 @@ export const NewAlbum = () => {
 	const setFields = React.useCallback(() => {
 		if (isEdition?.id) {
 			reset({ name: isEdition.name, length: isEdition.length });
+			return;
 		}
+		reset({ name: "", length: 1 });
 	}, [isEdition.id, isEdition.name, isEdition.length, reset]);
 
 	React.useEffect(() => {
