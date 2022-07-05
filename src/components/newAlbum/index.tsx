@@ -18,7 +18,7 @@ const newAlbumFormRule: yup.SchemaOf<IAlbums> = yup.object().shape({
 const InitialUpdate = {
 	id: "",
 	name: "",
-	length: 0,
+	length: 1,
 };
 
 export const NewAlbum = () => {
@@ -73,7 +73,6 @@ export const NewAlbum = () => {
 	return (
 		<div className="container-new-album">
 			<div className="content-new-album">
-				<h3>New Album</h3>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<label htmlFor="">Name</label>
 					<input {...register("name")} type="text" defaultValue={nameAlbum} />

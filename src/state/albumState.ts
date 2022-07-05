@@ -11,6 +11,6 @@ export const albumUpdateState = atom<IAlbums>({
 	default: {
 		id: "",
 		name: "",
-		length: 0,
+		length: 1,
 	},
 });

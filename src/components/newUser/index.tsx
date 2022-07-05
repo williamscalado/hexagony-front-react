@@ -47,15 +47,15 @@ export const NewUserForm = () => {
 				<label htmlFor="email">Email</label>
 				<input type="text" {...register("email")} />
 				<span>{errors?.email && errors.email.message}</span>
-				<label htmlFor="name">Password</label>
+				<label htmlFor="password">Password</label>
 				<input type="password" {...register("password")} />
 				<span>{errors?.password && errors.password.message}</span>
-				<label htmlFor="name">repeat the password</label>
+				<label htmlFor="passwordConfirmation">Repeat Password</label>
 				<input type="password" {...register("passwordConfirmation")} />
 				<span>
 					{errors.passwordConfirmation && errors.passwordConfirmation.message}
 				</span>
-				<button>New user</button>
+				<button>Add</button>
 			</form>
 		</div>
 	);
