@@ -28,7 +28,7 @@ export const ListAlbum = () => {
 	};
 
 	const updateAlbums = async (id: string) => {
-		const resultData = await AlbumUseCase.getAlbumById(String(id));
+		const resultData = albumsList.find(album => album.id === id);
 		if (!resultData) return;
 
 		const data = {
@@ -36,6 +36,7 @@ export const ListAlbum = () => {
 			name: resultData?.name,
 			length: resultData?.length,
 		};
+
 		setAlbumUpdate(data);
 	};
 
