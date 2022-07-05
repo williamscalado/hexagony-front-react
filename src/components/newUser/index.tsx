@@ -29,7 +29,7 @@ export const NewUserForm = () => {
 			const res = await userUseCase.getAll();
 			setUserAllUser(res);
 			reset();
-			toast.success("Create user");
+			toast.success("user created");
 		} catch (error) {
 			toast.error("failed to create user");
 		}

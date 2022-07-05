@@ -80,7 +80,7 @@ export const NewAlbum = () => {
 			setAlbumsState(res);
 			setUpdateAlbum(InitialUpdate);
 			reset({ name: "", length: 1 });
-			toast.success(updateStatus ? "update album" : "create album");
+			toast.success(updateStatus ? "album updated" : "album created");
 		} catch (error) {
 			toast.error(
 				updateAlbum[0]?.id ? "failed to update album" : "failed to create album"
