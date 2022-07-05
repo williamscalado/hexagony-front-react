@@ -2,17 +2,35 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { BsEyeSlash } from "react-icons/bs";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useSetRecoilState } from "recoil";
 import { IUser } from "../../modules/users/domain";
 import { userUseCase } from "../../modules/users/usecase";
 import { userFormValidation } from "../../modules/users/validation";
 import { userState } from "../../state/userState";
 import "./style.scss";
+
+interface IPassword {
+	[key: string]: boolean;
+}
 export const NewUserForm = () => {
 	const setUserAllUser = useSetRecoilState<IUser[]>(userState);
-	const [showPassword, setShowPassword] = useState(false);
+	const [showPassword, setShowPassword] = useState<IPassword>({
+		password: false,
+		passwordConfirm: false,
+	});
 
+	const handleVisiblePassword = (inputName: string) => {
+		showPassword[`${inputName}`]
+			? setShowPassword({
+					...showPassword,
+					[`${inputName}`]: false,
+			  })
+			: setShowPassword({
+					...showPassword,
+					[`${inputName}`]: true,
+			  });
+	};
 	const {
 		register,
 		handleSubmit,
@@ -44,7 +62,7 @@ export const NewUserForm = () => {
 				<img src="../../assets/image/user-avatar.png" alt="User Avatar" />
 			</div>
 
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form id="hook-form" onSubmit={handleSubmit(onSubmit)}>
 				<label htmlFor="name">Full Name</label>
 				<input {...register("name")} type="text" />
 				<span>{errors?.name && errors.name.message}</span>
@@ -54,26 +72,35 @@ export const NewUserForm = () => {
 
 				<label htmlFor="password">Password</label>
 				<span className="user-password">
-					<input type="password" {...register("password")} />
-					<button>{showPassword ? <BsEyeSlash /> : <BsEyeSlash />}</button>
+					<input
+						type={showPassword.password ? "text" : "password"}
+						{...register("password")}
+					/>
+					<button
+						type="button"
+						onClick={() => handleVisiblePassword("password")}
+					>
+						{showPassword.password ? <BsEye /> : <BsEyeSlash />}
+					</button>
 				</span>
 				<span>{errors?.password && errors.password.message}</span>
 				<label htmlFor="passwordConfirmation">Confirm Password</label>
 				<span className="user-password">
-					<input type="password" {...register("passwordConfirmation")} />
+					<input
+						type={showPassword.passwordConfirm ? "text" : "password"}
+						{...register("passwordConfirmation")}
+					/>
 					<button
 						type="button"
-						onClick={() => {
-							console.log("ok");
-						}}
+						onClick={() => handleVisiblePassword("passwordConfirm")}
 					>
-						{showPassword ? <BsEyeSlash /> : <BsEyeSlash />}
+						{showPassword.passwordConfirm ? <BsEye /> : <BsEyeSlash />}
 					</button>
 				</span>
 				<span>
 					{errors.passwordConfirmation && errors.passwordConfirmation.message}
 				</span>
-				<button type="submit" className="buttonSend">
+				<button type="submit" form="hook-form" className="buttonSend">
 					Save
 				</button>
 			</form>
