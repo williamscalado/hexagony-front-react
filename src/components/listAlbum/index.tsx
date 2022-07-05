@@ -22,6 +22,11 @@ export const ListAlbum = () => {
 		try {
 			await AlbumUseCase.remove(id);
 			await getAlbumList();
+			setAlbumUpdate({
+				id: "",
+				name: "",
+				length: 0,
+			});
 			toast.success("album removed");
 		} catch (err) {
 			toast.error("failed to remove album");

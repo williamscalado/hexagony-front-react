@@ -1,5 +1,5 @@
-import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
+import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -36,18 +36,21 @@ export const NewAlbum = () => {
 		mode: "onBlur",
 		reValidateMode: "onBlur",
 		shouldFocusError: true,
-		resolver: yupResolver(newAlbumFormRule)
+		resolver: yupResolver(newAlbumFormRule),
 	});
 
-	const isEdition = React.useMemo(() => ({
-		id: updateAlbum[0].id,
-		name: updateAlbum[0].name || "",
-		length: updateAlbum[0].length || 1
-	}), [updateAlbum]);
+	const isEdition = React.useMemo(
+		() => ({
+			id: updateAlbum[0].id,
+			name: updateAlbum[0].name || "",
+			length: updateAlbum[0].length || 1,
+		}),
+		[updateAlbum]
+	);
 
 	const setFields = React.useCallback(() => {
 		if (isEdition?.id) {
-			reset({ name: isEdition.name, length: isEdition.length })
+			reset({ name: isEdition.name, length: isEdition.length });
 		}
 	}, [isEdition.id, isEdition.name, isEdition.length, reset]);
 
@@ -73,9 +76,8 @@ export const NewAlbum = () => {
 
 			const res = await AlbumUseCase.getAll();
 			setAlbumsState(res);
-
 			setUpdateAlbum(InitialUpdate);
-			reset({ name: "", length: 1});
+			reset({ name: "", length: 1 });
 			toast.success(updateStatus ? "update album" : "create album");
 		} catch (error) {
 			toast.error(
@@ -92,10 +94,7 @@ export const NewAlbum = () => {
 					<input {...register("name")} type="text" />
 					{errors?.name && <span>{errors?.name?.message} </span>}
 					<label htmlFor="">Length</label>
-					<input
-						{...register("length")}
-						type="number"
-					/>
+					<input {...register("length")} type="number" />
 					{errors?.length && <span>{errors.length.message}</span>}
 					<button>Save</button>
 				</form>

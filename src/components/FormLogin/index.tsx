@@ -14,16 +14,8 @@ type formLogin = {
 };
 
 const formRules: yup.SchemaOf<formLogin> = yup.object().shape({
-	email: yup
-		.string()
-		.trim()
-		.email()
-		.required(),
-	password: yup
-		.string()
-		.trim()
-		.min(8)
-		.required(),
+	email: yup.string().trim().email().required(),
+	password: yup.string().trim().min(8).required(),
 });
 
 export const FormLogin = () => {
@@ -59,7 +51,7 @@ export const FormLogin = () => {
 
 	const onSubmit = async (data: formLogin) => {
 		const resultToken = await getTokenLogin(data);
-		setAuth(resultToken)
+		setAuth(resultToken);
 
 		if (resultToken) navigate("/");
 	};
