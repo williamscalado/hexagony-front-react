@@ -4480,6 +4480,11 @@ functions-have-names@^1.2.2:
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.3.tgz#0404fe4ee2ba2f607f0e0ec3c80bae994133b834"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
 
+gender-detection-from-name@^1.7.3:
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/gender-detection-from-name/-/gender-detection-from-name-1.7.3.tgz#7bf5527454027ea2d8ed2bed1b07930fcc360828"
+  integrity sha512-JEHqAph8D+uP4NHK7DvKxmFpgGBGg6welz7fa3e9LqoVZNc0l0v14p308P1m/yls9WaH20CuVgxVZ9Z7zmfVzg==
+
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
