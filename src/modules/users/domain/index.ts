@@ -4,7 +4,9 @@ export interface IUser {
 	id?: string;
 	name: string;
 	password: string;
+	passwordConfirmation?: string;
 	update_at?: string;
+	isEdition?: boolean;
 }
 
 export interface IUserUseCase {

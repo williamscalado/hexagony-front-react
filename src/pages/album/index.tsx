@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "../../components/header";
 import { ListAlbum } from "../../components/listAlbum";
-import { NewAlbum } from "../../components/newAlbum/intex";
+import { NewAlbum } from "../../components/newAlbum";
 import "./style.scss";
 
 export const PageAlbum = () => {

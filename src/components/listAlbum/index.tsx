@@ -5,7 +5,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { AlbumUseCase, IAlbums } from "../../modules/album/useCase";
-import { albumListState, albumUpdateState } from "../../states/globalState";
+import { albumListState, albumUpdateState } from "../../state/albumState";
 import "./style.scss";
 
 export const ListAlbum = () => {

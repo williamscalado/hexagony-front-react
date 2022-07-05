@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import * as yup from "yup";
 import { AlbumUseCase, IAlbums } from "../../modules/album/useCase";
-import { albumListState, albumUpdateState } from "../../states/globalState";
+import { albumListState, albumUpdateState } from "../../state/albumState";
 import "./style.scss";
 
 const newAlbumFormRule: yup.SchemaOf<IAlbums> = yup.object().shape({
