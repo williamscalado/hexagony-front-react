@@ -1,6 +1,66 @@
 .container-user-list {
 	padding: 1rem;
 	border-radius: 0.5rem;
+	background: var(--bs-dark);
+	width: 100%;
+}
+
+.content-user-list {
+	padding: 1rem;
+	border-radius: 0.5rem;
 	background-color: var(--bs-dark);
 	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.user-list {
+	padding: 1rem;
+	display: grid;
+	width: 230px;
+	border-radius: 0.5rem;
+	background-color: var(--bs-gray-dark);
+	margin-bottom: 1rem;
+	transition: filter 0.5s;
+
+	&:hover {
+		filter: brightness(0.8);
+	}
+
+	span {
+		font-weight: 700;
+	}
+
+	.user-email {
+		color: var(--bs-teal);
+		font-weight: 400;
+		font-size: 0.8rem;
+	}
+
+	img {
+		margin: auto;
+		margin-bottom: 1rem;
+		width: 80px;
+	}
+
+	.user-icon-tools {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 1rem;
+		font-size: 1.1rem;
+
+		button {
+			padding: 0.4rem;
+			border: 0px;
+			border-radius: 0.1rem;
+			background: none;
+			font-size: 1.1rem;
+			color: var(--bs-white);
+			&:hover {
+				color: var(--bs-teal);
+			}
+		}
+	}
 }

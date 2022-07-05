@@ -2,6 +2,11 @@
 	width: 65vw;
 	display: flex;
 	margin: auto;
+	@media (max-width: 780px) {
+		padding: 1rem;
+		width: 98vw;
+		overflow-x: hidden;
+	}
 }
 
 .container-content-user {
@@ -9,4 +14,10 @@
 	margin-top: 5rem;
 	justify-content: space-between;
 	width: 100%;
+
+	@media (max-width: 780px) {
+		flex-direction: column-reverse;
+		display: flex;
+		justify-content: space-around;
+	}
 }
