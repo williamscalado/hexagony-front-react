@@ -27,6 +27,27 @@
 			font-size: 0.8rem;
 		}
 
+		.user-password {
+			display: flex;
+			align-items: center;
+			padding-right: 1rem;
+			justify-content: space-between;
+
+			background-color: var(--bs-gray-dark);
+			margin-top: 0.75rem;
+			border-radius: 0.25rem;
+
+			input {
+				margin: 0;
+			}
+			button {
+				color: var(--bs-white);
+				font-size: 1.5rem;
+				background: none;
+				border: 0;
+			}
+		}
+
 		input {
 			width: 100%;
 			padding: 1rem 1rem;
@@ -39,7 +60,7 @@
 			box-sizing: border-box;
 		}
 
-		button {
+		.buttonSend {
 			margin-top: 0.75rem;
 
 			font-size: 1rem;
