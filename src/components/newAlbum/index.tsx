@@ -27,15 +27,9 @@ export const NewAlbum = () => {
 	const updateAlbum = useRecoilState(albumUpdateState);
 	const setUpdateAlbum = useSetRecoilState(albumUpdateState);
 
-	const isEditon = React.useMemo(() => ({
-		name: updateAlbum[0].name || "",
-		length: updateAlbum[0].length || 1
-	}), [updateAlbum]);
-
 	const {
 		register,
 		handleSubmit,
-		setValue,
 		formState: { errors },
 		reset,
 	} = useForm<IAlbums>({
@@ -45,12 +39,21 @@ export const NewAlbum = () => {
 		resolver: yupResolver(newAlbumFormRule)
 	});
 
-	React.useEffect(() => {
-		if (isEditon) {
-			setValue('name', isEditon.name);
-			setValue('length', isEditon.length);
+	const isEdition = React.useMemo(() => ({
+		id: updateAlbum[0].id,
+		name: updateAlbum[0].name || "",
+		length: updateAlbum[0].length || 1
+	}), [updateAlbum]);
+
+	const setFields = React.useCallback(() => {
+		if (isEdition?.id) {
+			reset({ name: isEdition.name, length: isEdition.length })
 		}
-	}, [isEditon, setValue]);
+	}, [isEdition.id, isEdition.name, isEdition.length, reset]);
+
+	React.useEffect(() => {
+		setFields();
+	}, [setFields]);
 
 	const onSubmit = async (data: IAlbums) => {
 		try {
