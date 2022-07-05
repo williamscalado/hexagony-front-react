@@ -1,3 +1,8 @@
+import "./style.scss";
 export const Footer = () => {
-	return <h1>Footer</h1>;
+	return (
+		<div className="container-footer">
+			<h1>Todos os direitos reservados</h1>
+		</div>
+	);
 };

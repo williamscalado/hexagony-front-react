@@ -1,4 +1,5 @@
 import React from "react";
+import { Footer } from "../../components/footer";
 import { Header } from "../../components/header";
 import { ListUser } from "../../components/listUser";
 import { NewUserForm } from "../../components/newUser";
@@ -13,6 +14,7 @@ export const UserPage = () => {
 					<NewUserForm />
 				</div>
 			</div>
+			<Footer />
 		</React.Fragment>
 	);
 };

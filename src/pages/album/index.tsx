@@ -1,4 +1,5 @@
 import React from "react";
+import { Footer } from "../../components/footer";
 import { Header } from "../../components/header";
 import { ListAlbum } from "../../components/listAlbum";
 import { NewAlbum } from "../../components/newAlbum";
@@ -14,6 +15,7 @@ export const PageAlbum = () => {
 					<ListAlbum />
 				</section>
 			</div>
+			<Footer />
 		</React.Fragment>
 	);
 };
