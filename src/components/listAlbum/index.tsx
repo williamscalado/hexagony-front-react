@@ -11,7 +11,6 @@ import "./style.scss";
 export const ListAlbum = () => {
 	const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState);
 	const setAlbumUpdate = useSetRecoilState(albumUpdateState);
-	const setUpdateAlbum = useSetRecoilState(albumUpdateState);
 
 	const getAlbumList = React.useCallback(async () => {
 		const res = await AlbumUseCase.getAll();

@@ -43,12 +43,11 @@
 
 body {
 	background-image: url("../../public/assets/image/bg_band.jpg");
-	background-repeat: no-repeat;
+	background-size: cover;
 	font-size: 16;
 	color: var(--bs-white);
-	@media (min-width: 800px) {
-		background-size: cover;
-	}
+	background-attachment: fixed;
+	background-position: center center;
 }
 
 body,
