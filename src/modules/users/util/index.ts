@@ -5,9 +5,9 @@ interface AvatarKeys {
 const getAvatar = (gender: string) => {
 	const urlAvatar: AvatarKeys = {
 		male: "avatar-male.png",
-		female: "avatar-fale.png",
-		unknown: "user-avatar.png"
-	}
+		female: "avatar-female.png",
+		unknown: "user-avatar.png",
+	};
 
 	return urlAvatar[gender];
 };
