@@ -48,9 +48,7 @@ export const ListUser = () => {
 										<img src={`../../assets/image/${urlAvatar}`} alt="" />
 										<span>{item.name}</span>
 										<span></span>
-										<span className="user-email">
-											{item.email} - {gender}
-										</span>
+										<span className="user-email">{item.email}</span>
 										<div className="user-icon-tools">
 											<button>
 												<FiEdit />
