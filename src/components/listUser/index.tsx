@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useRecoilState } from "recoil";
@@ -17,6 +18,16 @@ export const ListUser = () => {
 		getAllUser();
 	}, [getAllUser]);
 
+	const removeUsers = async (id: string) => {
+		try {
+			await userUseCase.remove(id);
+			await getAllUser();
+			toast.success("User removed");
+		} catch (err) {
+			toast.error("failed to remove user");
+		}
+	};
+
 	return (
 		<>
 			<div className="container-user-list">
@@ -29,12 +40,17 @@ export const ListUser = () => {
 									<div className="user-list">
 										<img src="../../assets/image/user-avatar.png" alt="" />
 										<span>{item.name}</span>
+										<span></span>
 										<span className="user-email">{item.email}</span>
 										<div className="user-icon-tools">
 											<button>
 												<FiEdit />
 											</button>
-											<button>
+											<button
+												onClick={() => {
+													removeUsers(String(item.id));
+												}}
+											>
 												<AiOutlineDelete />
 											</button>
 										</div>
