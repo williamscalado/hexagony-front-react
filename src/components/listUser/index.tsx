@@ -4,16 +4,19 @@ import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { getIdIsAuth } from "../../auth/authentication";
+import { IUserUpdate } from "../../modules/users/domain";
 import { userUseCase } from "../../modules/users/usecase";
 import { userUtil } from "../../modules/users/util";
-import { userState } from "../../state/userState";
+import { userState, userUpdateState } from "../../state/userState";
 import "./style.scss";
 
 export const ListUser = () => {
 	const confirmDialog = useConfirm();
 	const [userList, setUserList] = useRecoilState(userState);
+	const setDataUserUpdate = useSetRecoilState(userUpdateState);
+
 	const getAllUser = React.useCallback(async () => {
 		const result = await userUseCase.getAll();
 		setUserList(result);
@@ -32,10 +35,26 @@ export const ListUser = () => {
 			});
 			await userUseCase.remove(id);
 			await getAllUser();
+			setDataUserUpdate({
+				isEdition: false,
+			} as IUserUpdate);
 			toast.success("User removed");
 		} catch (err) {
 			toast.error("failed to remove user");
 		}
+	};
+
+	const handleUpdateUser = async (id: string) => {
+		try {
+			if (!id) throw new Error();
+			const resUser = await userUseCase.getById(id);
+
+			const newData = {
+				...resUser,
+				isEdition: true,
+			};
+			setDataUserUpdate(newData as IUserUpdate);
+		} catch (err) {}
 	};
 
 	return (
@@ -56,7 +75,11 @@ export const ListUser = () => {
 										<span></span>
 										<span className="user-email">{item.email}</span>
 										<div className="user-icon-tools">
-											<button>
+											<button
+												onClick={() => {
+													handleUpdateUser(String(item.id));
+												}}
+											>
 												<FiEdit />
 											</button>
 											<button

@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { IUser } from "../domain";
+import { IUser, IUserUpdate } from "../domain";
 
 export const userFormValidation: yup.SchemaOf<IUser> = yup.object().shape({
 	create_at: yup.string().notRequired(),
@@ -12,7 +12,9 @@ export const userFormValidation: yup.SchemaOf<IUser> = yup.object().shape({
 		.when("isEdition", {
 			is: (isEdition: boolean | undefined) =>
 				isEdition === undefined ? true : false,
-			then: yup.string().required("confirm password is a required field")
+			then: yup
+				.string()
+				.required("confirm password is a required field")
 				.min(8, "confirm password must be at least 8 characters")
 				.max(100, "confirm password must be at most 100 characters"),
 		})
@@ -20,3 +22,16 @@ export const userFormValidation: yup.SchemaOf<IUser> = yup.object().shape({
 	update_at: yup.string().notRequired(),
 	isEdition: yup.boolean().notRequired(),
 });
+
+export const userFormValidationUpdate: yup.SchemaOf<IUserUpdate> = yup
+	.object()
+	.shape({
+		create_at: yup.string().notRequired(),
+		id: yup.string().notRequired(),
+		email: yup.string().email().required(),
+		name: yup.string().required(),
+		password: yup.string().notRequired().min(8).max(100),
+		passwordConfirmation: yup.string().notRequired().min(8).max(100),
+		update_at: yup.string().notRequired(),
+		isEdition: yup.boolean().notRequired(),
+	});

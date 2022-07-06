@@ -1,5 +1,5 @@
 import Api from "../../../service/Api";
-import { IUser, IUserUseCase } from "../domain";
+import { IUser, IUserUpdate, IUserUseCase } from "../domain";
 
 const getAll = async () => {
 	const result = await Api.get("/user");
@@ -17,7 +17,7 @@ const create = async (data: IUser) => {
 	await Api.post("/user", data);
 };
 
-const update = async (data: IUser) => {
+const update = async (data: IUserUpdate) => {
 	await Api.put(`/user/${data?.id}`, data);
 };
 
