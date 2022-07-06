@@ -1,4 +1,5 @@
 import { getGender } from "gender-detection-from-name";
+import { useConfirm } from "material-ui-confirm";
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -11,6 +12,7 @@ import { userState } from "../../state/userState";
 import "./style.scss";
 
 export const ListUser = () => {
+	const confirmDialog = useConfirm();
 	const [userList, setUserList] = useRecoilState(userState);
 	const getAllUser = React.useCallback(async () => {
 		const result = await userUseCase.getAll();
@@ -24,6 +26,10 @@ export const ListUser = () => {
 	const removeUsers = async (id: string) => {
 		try {
 			if (id === getIdIsAuth()) throw new Error();
+			await confirmDialog({
+				description: "This will permanently delete",
+				confirmationButtonProps: { autoFocus: true },
+			});
 			await userUseCase.remove(id);
 			await getAllUser();
 			toast.success("User removed");

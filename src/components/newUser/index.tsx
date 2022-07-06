@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
@@ -13,12 +13,15 @@ import "./style.scss";
 interface IPassword {
 	[key: string]: boolean;
 }
+const InitialStatusPassword = {
+	password: false,
+	passwordConfirm: false,
+};
 export const NewUserForm = () => {
 	const setUserAllUser = useSetRecoilState<IUser[]>(userState);
-	const [showPassword, setShowPassword] = useState<IPassword>({
-		password: false,
-		passwordConfirm: false,
-	});
+	const [showPassword, setShowPassword] = useState<IPassword>(
+		InitialStatusPassword
+	);
 
 	const handleVisiblePassword = (inputName: string) => {
 		showPassword[`${inputName}`]
@@ -31,6 +34,15 @@ export const NewUserForm = () => {
 					[`${inputName}`]: true,
 			  });
 	};
+
+	useEffect(() => {
+		const timer = setTimeout(
+			() => setShowPassword(InitialStatusPassword),
+			5000
+		);
+		return () => clearInterval(timer);
+	}, [showPassword]);
+
 	const {
 		register,
 		handleSubmit,
