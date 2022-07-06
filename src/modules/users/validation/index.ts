@@ -5,7 +5,7 @@ export const userFormValidation: yup.SchemaOf<IUser> = yup.object().shape({
 	create_at: yup.string().notRequired(),
 	id: yup.string().notRequired(),
 	email: yup.string().email().required(),
-	name: yup.string().required(),
+	name: yup.string().required("full name is a required field"),
 	password: yup.string().required().min(8).max(100),
 	passwordConfirmation: yup
 		.string()
