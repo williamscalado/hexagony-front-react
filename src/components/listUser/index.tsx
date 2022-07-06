@@ -89,7 +89,7 @@ export const ListUser = () => {
 												<FiEdit />
 											</button>
 
-											{userList.length > 1 && (
+											{item.id !== getIdIsAuth() && (
 												<button
 													onClick={() => {
 														removeUsers(String(item.id));
