@@ -30,7 +30,7 @@ export const ListUser = () => {
 		try {
 			if (id === getIdIsAuth()) throw new Error();
 			await confirmDialog({
-				description: "This will permanently delete user.",
+				description: "This will permanently delete this user.",
 				confirmationButtonProps: { autoFocus: true },
 			});
 			await userUseCase.remove(id);

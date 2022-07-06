@@ -22,7 +22,7 @@ export const ListAlbum = () => {
 	const removeAlbums = async (id: string) => {
 		try {
 			await confirmDialog({
-				description: "This will permanently delete Album!",
+				description: "This will permanently delete this album.",
 				confirmationButtonProps: { autoFocus: true },
 			});
 			await AlbumUseCase.remove(id);
