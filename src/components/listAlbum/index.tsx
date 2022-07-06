@@ -1,3 +1,4 @@
+import { useConfirm } from "material-ui-confirm";
 import React from "react";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import toast from "react-hot-toast";
@@ -9,6 +10,7 @@ import { albumListState, albumUpdateState } from "../../state/albumState";
 import "./style.scss";
 
 export const ListAlbum = () => {
+	const confirmDialog = useConfirm();
 	const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState);
 	const setAlbumUpdate = useSetRecoilState(albumUpdateState);
 
@@ -19,6 +21,10 @@ export const ListAlbum = () => {
 
 	const removeAlbums = async (id: string) => {
 		try {
+			await confirmDialog({
+				description: "This will permanently delete Album!",
+				confirmationButtonProps: { autoFocus: true },
+			});
 			await AlbumUseCase.remove(id);
 			await getAlbumList();
 			setAlbumUpdate({
