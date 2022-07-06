@@ -88,7 +88,8 @@ export const ListUser = () => {
 											>
 												<FiEdit />
 											</button>
-											{item.id !== getIdIsAuth() ? (
+
+											{userList.length > 1 && (
 												<button
 													onClick={() => {
 														removeUsers(String(item.id));
@@ -96,8 +97,6 @@ export const ListUser = () => {
 												>
 													<AiOutlineDelete />
 												</button>
-											) : (
-												""
 											)}
 										</div>
 									</div>
