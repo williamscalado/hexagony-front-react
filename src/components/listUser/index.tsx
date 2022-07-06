@@ -60,7 +60,7 @@ export const ListUser = () => {
 				isEdition: true,
 			};
 			setDataUserUpdate(newData as IUserUpdate);
-		} catch (err) { }
+		} catch (err) {}
 	};
 
 	return (
@@ -88,13 +88,17 @@ export const ListUser = () => {
 											>
 												<FiEdit />
 											</button>
-											<button
-												onClick={() => {
-													removeUsers(String(item.id));
-												}}
-											>
-												<AiOutlineDelete />
-											</button>
+											{item.id !== getIdIsAuth() ? (
+												<button
+													onClick={() => {
+														removeUsers(String(item.id));
+													}}
+												>
+													<AiOutlineDelete />
+												</button>
+											) : (
+												""
+											)}
 										</div>
 									</div>
 								</div>
