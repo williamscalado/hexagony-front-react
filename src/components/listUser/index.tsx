@@ -88,13 +88,13 @@ export const ListUser = () => {
 											>
 												<FiEdit />
 											</button>
-											<button
+											{userList.length > 1 && <button
 												onClick={() => {
 													removeUsers(String(item.id));
 												}}
 											>
 												<AiOutlineDelete />
-											</button>
+											</button>}
 										</div>
 									</div>
 								</div>
