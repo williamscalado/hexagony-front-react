@@ -21,18 +21,25 @@ export const ListAlbum = () => {
 
 	const removeAlbums = async (id: string) => {
 		try {
-			await confirmDialog({
-				description: "This will permanently delete this album.",
-				confirmationButtonProps: { autoFocus: true },
-			});
-			await AlbumUseCase.remove(id);
-			await getAlbumList();
-			setAlbumUpdate({
-				id: undefined,
-				name: "",
-				length: 1,
-			});
-			toast.success("album removed");
+			(async () => {
+				try {
+					await confirmDialog({
+						description: "This will permanently delete this album.",
+						confirmationButtonProps: { autoFocus: true },
+					});
+
+					await AlbumUseCase.remove(id);
+					await getAlbumList();
+					setAlbumUpdate({
+						id: undefined,
+						name: "",
+						length: 1,
+					});
+					toast.success("album removed");
+				} catch (err) {
+					return;
+				}
+			})();
 		} catch (err) {
 			toast.error("failed to remove album");
 		}

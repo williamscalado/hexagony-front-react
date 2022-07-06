@@ -29,16 +29,22 @@ export const ListUser = () => {
 	const removeUsers = async (id: string) => {
 		try {
 			if (id === getIdIsAuth()) throw new Error();
-			await confirmDialog({
-				description: "This will permanently delete this user.",
-				confirmationButtonProps: { autoFocus: true },
-			});
-			await userUseCase.remove(id);
-			await getAllUser();
-			setDataUserUpdate({
-				isEdition: false,
-			} as IUserUpdate);
-			toast.success("User removed");
+			(async () => {
+				try {
+					await confirmDialog({
+						description: "This will permanently delete this user.",
+						confirmationButtonProps: { autoFocus: true },
+					});
+					await userUseCase.remove(id);
+					await getAllUser();
+					setDataUserUpdate({
+						isEdition: false,
+					} as IUserUpdate);
+					toast.success("user removed");
+				} catch (err) {
+					return;
+				}
+			})();
 		} catch (err) {
 			toast.error("failed to remove user");
 		}
@@ -54,7 +60,7 @@ export const ListUser = () => {
 				isEdition: true,
 			};
 			setDataUserUpdate(newData as IUserUpdate);
-		} catch (err) {}
+		} catch (err) { }
 	};
 
 	return (
