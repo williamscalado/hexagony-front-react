@@ -13,12 +13,16 @@ type formLogin = {
 	password: string;
 };
 
+type formCall = {
+	onSubmit?: () => void;
+}
+
 const formRules: yup.SchemaOf<formLogin> = yup.object().shape({
 	email: yup.string().trim().email().required(),
 	password: yup.string().trim().min(8).required(),
 });
 
-export const FormLogin = () => {
+export const FormLogin = (props: formCall) => {
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({});
 	const {
@@ -50,6 +54,8 @@ export const FormLogin = () => {
 	};
 
 	const onSubmit = async (data: formLogin) => {
+    if (props.onSubmit) return props.onSubmit();
+
 		const resultToken = await getTokenLogin(data);
 		setAuth(resultToken);
 
@@ -68,6 +74,7 @@ export const FormLogin = () => {
 					<input
 						{...register("email")}
 						type="text"
+						data-testid="email"
 						onChange={handleInputChange}
 						placeholder="email@x.com"
 						autoFocus
@@ -76,6 +83,7 @@ export const FormLogin = () => {
 					<label htmlFor="password">Password </label>
 					<input
 						type="password"
+						data-testid="password"
 						{...register("password")}
 						placeholder="********"
 						onChange={handleInputChange}

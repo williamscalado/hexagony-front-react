@@ -1,6 +1,7 @@
 {
 	"name": "hexagony-front-react",
 	"version": "1.0.0",
+	"license": "MIT",
 	"private": false,
 	"dependencies": {
 		"@emotion/react": "^11.9.3",
