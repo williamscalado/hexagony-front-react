@@ -12,7 +12,9 @@ export const Header = () => {
 	return (
 		<div className="container-header">
 			<div className="content-header">
-				<img src="../../assets/image/logo_hexagony.png" alt="Hexagony" />
+				<Link to="/album">
+					<img src="../../assets/image/logo_hexagony.png" alt="Hexagony" />
+				</Link>
 				<div className="content-menu">
 					<nav>
 						<ul>
