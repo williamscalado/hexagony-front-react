@@ -6,9 +6,12 @@ I'm using the API developed in Go created by my friend Cyro, now I'm creating th
 
 let's code!
 
-API Link: https://github.com/cyruzin/hexagony
+## Back-End Application
 
-First run the API...
+Check the Hexagony front-back: https://github.com/cyruzin/hexagony
+
+There's a online version running on Heroku: https://hexagony.herokuapp.com
+
 
 ### `npm start` or `yarn start`
 
@@ -26,4 +29,5 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ### `npm run build` or `yarn build`
 
 Builds the app for production to the `build` folder.\
+
 It correctly bundles React in production mode and optimizes the build for the best performance.
