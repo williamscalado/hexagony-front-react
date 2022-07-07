@@ -88,8 +88,14 @@ export const NewAlbum = () => {
 		}
 	};
 
+	const handleCancelUpdate = () => {
+		setUpdateAlbum(InitialUpdate);
+		reset({ name: "", length: 1 });
+	};
+
 	return (
 		<div className="container-new-album">
+			<h3>{updateAlbum[0]?.id ? "Update" : "New"} Album</h3>
 			<div className="content-new-album">
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<label htmlFor="">Name</label>
@@ -99,6 +105,11 @@ export const NewAlbum = () => {
 					<input {...register("length")} type="number" />
 					{errors?.length && <span>{errors.length.message}</span>}
 					<button>Save</button>
+					{updateAlbum[0]?.id && (
+						<button className="btn-cancel" onClick={() => handleCancelUpdate()}>
+							Cancel
+						</button>
+					)}
 				</form>
 			</div>
 		</div>
