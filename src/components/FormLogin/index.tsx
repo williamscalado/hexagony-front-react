@@ -68,6 +68,7 @@ export const FormLogin = () => {
 					<input
 						{...register("email")}
 						type="text"
+						data-testid="email"
 						onChange={handleInputChange}
 						placeholder="email@x.com"
 						autoFocus
@@ -76,6 +77,7 @@ export const FormLogin = () => {
 					<label htmlFor="password">Password </label>
 					<input
 						type="password"
+						data-testid="password"
 						{...register("password")}
 						placeholder="********"
 						onChange={handleInputChange}
