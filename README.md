@@ -8,7 +8,7 @@ let's code!
 
 ## Back-End Application
 
-Check the Hexagony front-back: https://github.com/cyruzin/hexagony
+Check the Hexagony Back-end: https://github.com/cyruzin/hexagony
 
 There's a online version running on Heroku: https://hexagony.herokuapp.com
 
