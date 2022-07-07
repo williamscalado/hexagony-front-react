@@ -84,7 +84,7 @@
 		}
 		.buttonCancel {
 			@extend .buttonSend;
-			background: var(--bs-danger);
+			background: var(--bs-gray-dark);
 
 			&:hover {
 				filter: brightness(0.8);
