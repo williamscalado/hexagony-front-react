@@ -76,7 +76,7 @@ export const ListUser = () => {
 							return (
 								<div key={item.id}>
 									<div className="user-list">
-										<img src={`../../assets/image/${urlAvatar}`} alt="" />
+										<img src={`../../assets/image/${urlAvatar}`} alt="avatar" />
 										<span>{item.name}</span>
 										<span></span>
 										<span className="user-email">{item.email}</span>

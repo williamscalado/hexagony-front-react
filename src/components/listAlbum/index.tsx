@@ -73,7 +73,7 @@ export const ListAlbum = () => {
 						className="list-album"
 					>
 						<div className="list-album-icon">
-							<img src="../../assets/image/disc-icon.png" alt="" />
+							<img src="../../assets/image/disc-icon.png" alt="album" />
 						</div>
 						<div className="list-album-info">
 							<span>{item.name}</span>
