@@ -12,6 +12,11 @@ Check the Hexagony front-back: https://github.com/cyruzin/hexagony
 
 There's a online version running on Heroku: https://hexagony.herokuapp.com
 
+## Running
+
+There's a online version running on Vercel: https://hexagony.vercel.app/
+
+or
 
 ### `npm start` or `yarn start`
 
