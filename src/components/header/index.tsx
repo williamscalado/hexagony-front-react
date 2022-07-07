@@ -1,3 +1,4 @@
+import { GiExitDoor } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../auth/authentication";
 import "./style.scss";
@@ -23,7 +24,10 @@ export const Header = () => {
 							</li>
 						</ul>
 					</nav>
-					<button onClick={handleLogout}>Logout</button>
+					<button onClick={handleLogout}>
+						<GiExitDoor className="btn-icon" />
+						Logout
+					</button>
 				</div>
 			</div>
 		</div>
