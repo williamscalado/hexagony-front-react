@@ -22,11 +22,20 @@
 	padding: 1rem 1rem;
 	display: flex;
 	margin-bottom: 0.5rem;
-	justify-content: space-between;
 	align-items: center;
+}
+
+.list-album-icon {
+	width: 50px;
+	margin-right: 1rem;
+	img {
+		width: 50px;
+		opacity: 0.1;
+	}
 }
 .list-album-info {
 	display: grid;
+	width: 100%;
 
 	span:first-child {
 		margin-bottom: 0.1rem;
@@ -39,11 +48,19 @@
 }
 
 .list-album-icons {
+	display: flex;
 	span {
 		cursor: pointer;
 		margin-right: 0.8rem;
 		font-size: 1.2rem;
 
+		&:hover {
+			color: var(--bs-dark);
+		}
+	}
+	span:last-child {
+		color: var(--bs-red);
+		font-size: 1.2rem;
 		&:hover {
 			color: var(--bs-dark);
 		}

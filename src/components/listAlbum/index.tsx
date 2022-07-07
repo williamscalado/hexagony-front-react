@@ -72,13 +72,15 @@ export const ListAlbum = () => {
 						key={`${item.name}-${index}-${item.length}`}
 						className="list-album"
 					>
+						<div className="list-album-icon">
+							<img src="../../assets/image/disc-icon.png" alt="" />
+						</div>
 						<div className="list-album-info">
 							<span>{item.name}</span>
 							<span>
 								{item.length} {item.length > 1 ? "minutes" : "minute"}
 							</span>
 						</div>
-
 						<div className="list-album-icons">
 							<span>
 								<FiEdit onClick={() => updateAlbums(String(item.id))} />
