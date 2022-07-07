@@ -64,11 +64,12 @@
 				filter: brightness(0.8);
 			}
 			.btn-icon {
-				margin-right: 0.2rem;
+				font-size: 1.2em;
+				margin-right: 0.3rem;
 			}
 		}
 		.btn-cancel {
-			background: var(--bs-danger);
+			background: var(--bs-gray-dark);
 		}
 	}
 }

@@ -2,6 +2,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { BsCheckAll } from "react-icons/bs";
+import { MdCancel } from "react-icons/md";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { IUser, IUserUpdate } from "../../modules/users/domain";
 import { userUseCase } from "../../modules/users/usecase";
@@ -70,6 +72,7 @@ export const FormUserUpdate = () => {
 	console.log(stateUpdate);
 	return (
 		<div className="container-new-form-user">
+			<h3>Update user</h3>
 			<div className="avatar-user">
 				<img src="../../assets/image/user-avatar.png" alt="User Avatar" />
 			</div>
@@ -85,7 +88,8 @@ export const FormUserUpdate = () => {
 					{errors.passwordConfirmation && errors.passwordConfirmation.message}
 				</span>
 				<button type="submit" form="hook-form" className="buttonSend">
-					Update
+					<BsCheckAll className="btn-icon" />
+					Save
 				</button>
 				<button
 					type="button"
@@ -94,6 +98,7 @@ export const FormUserUpdate = () => {
 						handleCancelUpdate();
 					}}
 				>
+					<MdCancel className="btn-icon" />
 					Cancel
 				</button>
 			</form>

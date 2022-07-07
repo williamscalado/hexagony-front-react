@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { BsCheckAll, BsEye, BsEyeSlash } from "react-icons/bs";
 import { useSetRecoilState } from "recoil";
 import { IUser } from "../../modules/users/domain";
 import { userUseCase } from "../../modules/users/usecase";
@@ -113,6 +113,7 @@ export const NewUserForm = () => {
 					{errors.passwordConfirmation && errors.passwordConfirmation.message}
 				</span>
 				<button type="submit" form="hook-form" className="buttonSend">
+					<BsCheckAll className="btn-icon" />
 					Save
 				</button>
 			</form>

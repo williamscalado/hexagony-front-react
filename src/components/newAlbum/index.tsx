@@ -95,7 +95,7 @@ export const NewAlbum = () => {
 		setUpdateAlbum(InitialUpdate);
 		reset({ name: "", length: 1 });
 	};
-	let iconStyles = { color: "white", fontSize: "1.2em", marginLeft: "0.2rem" };
+
 	return (
 		<div className="container-new-album">
 			<h3>{updateAlbum[0]?.id ? "Update" : "New"} Album</h3>
@@ -108,12 +108,12 @@ export const NewAlbum = () => {
 					<input {...register("length")} type="number" />
 					{errors?.length && <span>{errors.length.message}</span>}
 					<button>
-						<BsCheckAll className="btn-icon" style={iconStyles} />
+						<BsCheckAll className="btn-icon" />
 						Save
 					</button>
 					{updateAlbum[0]?.id && (
 						<button className="btn-cancel" onClick={() => handleCancelUpdate()}>
-							<MdCancel style={iconStyles} className="btn-icon" />
+							<MdCancel className="btn-icon" />
 							Cancel
 						</button>
 					)}
