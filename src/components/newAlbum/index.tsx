@@ -2,10 +2,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { BsCheckAll } from "react-icons/bs";
+import { MdCancel } from "react-icons/md";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import * as yup from "yup";
 import { AlbumUseCase, IAlbums } from "../../modules/album/useCase";
 import { albumListState, albumUpdateState } from "../../state/albumState";
+
 import "./style.scss";
 
 const newAlbumFormRule: yup.SchemaOf<IAlbums> = yup.object().shape({
@@ -92,7 +95,7 @@ export const NewAlbum = () => {
 		setUpdateAlbum(InitialUpdate);
 		reset({ name: "", length: 1 });
 	};
-
+	let iconStyles = { color: "white", fontSize: "1.2em", marginLeft: "0.2rem" };
 	return (
 		<div className="container-new-album">
 			<h3>{updateAlbum[0]?.id ? "Update" : "New"} Album</h3>
@@ -104,9 +107,13 @@ export const NewAlbum = () => {
 					<label htmlFor="">Length</label>
 					<input {...register("length")} type="number" />
 					{errors?.length && <span>{errors.length.message}</span>}
-					<button>Save</button>
+					<button>
+						<BsCheckAll className="btn-icon" style={iconStyles} />
+						Save
+					</button>
 					{updateAlbum[0]?.id && (
 						<button className="btn-cancel" onClick={() => handleCancelUpdate()}>
+							<MdCancel style={iconStyles} className="btn-icon" />
 							Cancel
 						</button>
 					)}

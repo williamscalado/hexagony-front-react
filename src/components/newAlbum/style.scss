@@ -47,19 +47,24 @@
 		}
 
 		button {
+			display: flex;
 			margin-top: 0.75rem;
-
 			font-size: 1rem;
 			border: 0px;
-			border-radius: 0.5rem;
 			height: 3rem;
+			border-radius: 0.5rem;
 			color: var(--bs-white);
 			background: var(--bs-teal);
 			transition: filter 0.5s;
 			font-weight: 500;
+			align-items: center;
+			justify-content: center;
 
 			&:hover {
 				filter: brightness(0.8);
+			}
+			.btn-icon {
+				margin-right: 0.2rem;
 			}
 		}
 		.btn-cancel {

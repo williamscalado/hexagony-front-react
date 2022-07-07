@@ -23,6 +23,10 @@
 	display: flex;
 	margin-bottom: 0.5rem;
 	align-items: center;
+	transition: filter 0.2s;
+	&:hover {
+		filter: brightness(0.9);
+	}
 }
 
 .list-album-icon {
