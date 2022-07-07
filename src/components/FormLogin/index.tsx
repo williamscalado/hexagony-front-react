@@ -13,16 +13,12 @@ type formLogin = {
 	password: string;
 };
 
-type formCall = {
-	onSubmit?: () => void;
-}
-
 const formRules: yup.SchemaOf<formLogin> = yup.object().shape({
 	email: yup.string().trim().email().required(),
 	password: yup.string().trim().min(8).required(),
 });
 
-export const FormLogin = (props: formCall) => {
+export const FormLogin = () => {
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({});
 	const {
@@ -54,8 +50,6 @@ export const FormLogin = (props: formCall) => {
 	};
 
 	const onSubmit = async (data: formLogin) => {
-    if (props.onSubmit) return props.onSubmit();
-
 		const resultToken = await getTokenLogin(data);
 		setAuth(resultToken);
 
