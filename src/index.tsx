@@ -25,6 +25,7 @@ root.render(
 				<ConfirmProvider>
 					<React.StrictMode>
 						<Toaster />
+
 						<AppRoutes />
 					</React.StrictMode>
 				</ConfirmProvider>
