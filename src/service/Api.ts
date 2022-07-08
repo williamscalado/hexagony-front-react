@@ -1,5 +1,5 @@
 import axios from "axios";
-import { isAuth } from "../auth/authentication";
+import { isAuth, verifyTokenValidate } from "../helpers/authentication";
 
 export const ApiAuth = axios.create({
 	baseURL: "https://hexagony.herokuapp.com",
@@ -11,6 +11,7 @@ const Api = axios.create({
 
 Api.interceptors.request.use((req) => {
 	if (isAuth()) {
+		verifyTokenValidate();
 		const token = localStorage.getItem("hegaxoniAuth") as string;
 		req.headers = {
 			...req.headers,

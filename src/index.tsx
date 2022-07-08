@@ -6,9 +6,9 @@ import ReactDOM from "react-dom/client";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
+import "./assets/style/global.scss";
 import reportWebVitals from "./reportWebVitals";
 import { AppRoutes } from "./router";
-import "./style/global.scss";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement

@@ -35,6 +35,18 @@ export const isAuth = () => {
 	return true;
 };
 
+export const verifyTokenValidate = () => {
+	const token = getToken();
+
+	if (!token) return;
+
+	const isExpiredToken = isExpired(token);
+	if (isExpiredToken) {
+		logout();
+		return;
+	}
+};
+
 export const getIdIsAuth = () => {
 	const token = getToken();
 
