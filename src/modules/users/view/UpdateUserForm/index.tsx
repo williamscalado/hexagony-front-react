@@ -5,9 +5,10 @@ import toast from "react-hot-toast";
 import { BsCheckAll } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import { loadingState } from "../../../../state/sharedState";
 import { userState, userUpdateState } from "../../../../state/userState";
 import { IUser, IUserUpdate } from "../../domain";
-import { userUseCase } from "../../useCase";
+import { userUseCase } from "../../usecase";
 import { userFormValidationUpdate } from "../../validation";
 import "./style.scss";
 
@@ -15,6 +16,7 @@ export const FormUserUpdate = () => {
 	const stateUpdate = useRecoilState(userUpdateState);
 	const setStateUpdate = useSetRecoilState(userUpdateState);
 	const setUserList = useSetRecoilState(userState);
+	const setLoading = useSetRecoilState(loadingState);
 	const {
 		register,
 		handleSubmit,
@@ -52,8 +54,10 @@ export const FormUserUpdate = () => {
 			isEdition: false,
 		} as IUserUpdate);
 	};
+
 	const onSubmit = async (data: IUserUpdate) => {
 		try {
+			setLoading(true);
 			const newDataUpdate = {
 				...data,
 				id: isEdition.id,
@@ -67,9 +71,11 @@ export const FormUserUpdate = () => {
 			toast.success("User update");
 		} catch (error) {
 			toast.error("failed to update user");
+		} finally {
+			setLoading(false);
 		}
 	};
-	console.log(stateUpdate);
+	
 	return (
 		<div className="container-new-form-user">
 			<h3>Update user</h3>
