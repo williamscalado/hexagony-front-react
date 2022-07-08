@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { setAuth } from "../../../../auth/authentication";
-import { ApiAuth } from "../../../../service/Api";
+import { ApiAuth } from "../../../../adapter/http/axios";
+import { setAuth } from "../../../../helpers/authentication";
 import "./style.scss";
 
 type formLogin = {

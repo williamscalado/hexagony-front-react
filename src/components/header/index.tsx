@@ -1,6 +1,6 @@
 import { GiExitDoor } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../auth/authentication";
+import { logout } from "../../helpers/authentication";
 import "./style.scss";
 
 export const Header = () => {

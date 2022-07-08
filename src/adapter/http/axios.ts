@@ -1,5 +1,5 @@
 import axios from "axios";
-import { isAuth, verifyTokenValidate } from "../helpers/authentication";
+import { isAuth, verifyTokenValidate } from "../../helpers/authentication";
 
 export const ApiAuth = axios.create({
 	baseURL: "https://hexagony.herokuapp.com",

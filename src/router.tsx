@@ -1,5 +1,5 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { isAuth } from "./auth/authentication";
+import { isAuth } from "./helpers/authentication";
 import { PageAlbum } from "./modules/album/view";
 import { PageLogin } from "./modules/auth/view";
 import { UserPage } from "./modules/users/view";

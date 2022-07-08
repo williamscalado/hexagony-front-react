@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { getIdIsAuth } from "../../../../auth/authentication";
+import { getIdIsAuth } from "../../../../helpers/authentication";
 import { userState, userUpdateState } from "../../../../state/userState";
 import { IUserUpdate } from "../../domain";
 import { userUseCase } from "../../useCase";
