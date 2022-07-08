@@ -6,24 +6,34 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { albumListState, albumUpdateState } from "../../../../state/albumState";
+import { loadingState } from "../../../../state/sharedState";
 import { IAlbums } from "../../domain";
-import { AlbumUseCase } from "../../useCase";
+import { AlbumUseCase } from "../../usecase";
 import "./style.scss";
 
 export const ListAlbum = () => {
 	const confirmDialog = useConfirm();
 	const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState);
+	const setLoading = useSetRecoilState(loadingState);
 	const setAlbumUpdate = useSetRecoilState(albumUpdateState);
 
 	const getAlbumList = React.useCallback(async () => {
-		const res = await AlbumUseCase.getAll();
-		setAlbumsList(res);
-	}, [setAlbumsList]);
+		try {
+			setLoading(true);
+			const res = await AlbumUseCase.getAll();
+			setAlbumsList(res);
+		} catch (err) {
+			toast.error("failed to list albums");
+		} finally {
+			setLoading(false);
+		}
+	}, [setAlbumsList, setLoading]);
 
 	const removeAlbums = async (id: string) => {
 		try {
 			(async () => {
 				try {
+					setLoading(true);
 					await confirmDialog({
 						description: "This will permanently delete this album.",
 						confirmationButtonProps: { autoFocus: true },
@@ -39,6 +49,8 @@ export const ListAlbum = () => {
 					toast.success("album removed");
 				} catch (err) {
 					return;
+				} finally {
+					setLoading(false);
 				}
 			})();
 		} catch (err) {

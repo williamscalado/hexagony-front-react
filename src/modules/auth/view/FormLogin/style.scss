@@ -35,6 +35,10 @@
 			&:hover {
 				filter: brightness(0.9);
 			}
+
+			&:disabled {
+				opacity: 0.4;
+			}
 		}
 
 		span {

@@ -10,8 +10,9 @@ import {
 	albumUpdateState,
 	InitialUpdateAlbum,
 } from "../../../../state/albumState";
+import { loadingState } from "../../../../state/sharedState";
 import { IAlbums } from "../../domain";
-import { AlbumUseCase } from "../../useCase";
+import { AlbumUseCase } from "../../usecase";
 import { newAlbumFormRule } from "../../validation";
 import "./style.scss";
 
@@ -19,6 +20,7 @@ export const NewAlbum = () => {
 	const setAlbumsState = useSetRecoilState(albumListState);
 	const updateAlbum = useRecoilState(albumUpdateState);
 	const setUpdateAlbum = useSetRecoilState(albumUpdateState);
+	const setLoading = useSetRecoilState(loadingState);
 
 	const {
 		register,
@@ -55,6 +57,7 @@ export const NewAlbum = () => {
 
 	const onSubmit = async (data: IAlbums) => {
 		try {
+			setLoading(true);
 			const newData: IAlbums = {
 				...data,
 				length: +data.length,
@@ -78,6 +81,8 @@ export const NewAlbum = () => {
 			toast.error(
 				updateAlbum[0]?.id ? "failed to update album" : "failed to create album"
 			);
+		} finally {
+			setLoading(false);
 		}
 	};
 

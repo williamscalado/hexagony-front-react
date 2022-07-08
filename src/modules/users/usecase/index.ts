@@ -1,4 +1,4 @@
-import Api from "../../../adapter/http/axios";
+import Api from "../../../adapters/http/axios";
 import { IUser, IUserUpdate, IUserUseCase } from "../domain";
 
 const getAll = async () => {
