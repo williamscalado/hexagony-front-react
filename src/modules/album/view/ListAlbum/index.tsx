@@ -5,8 +5,9 @@ import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { AlbumUseCase, IAlbums } from "../../modules/album/useCase";
-import { albumListState, albumUpdateState } from "../../state/albumState";
+import { albumListState, albumUpdateState } from "../../../../state/albumState";
+import { IAlbums } from "../../domain";
+import { AlbumUseCase } from "../../useCase";
 import "./style.scss";
 
 export const ListAlbum = () => {

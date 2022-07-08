@@ -1,11 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { FormEvent, useState } from "react";
 import { useForm } from "react-hook-form";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { setAuth } from "../../auth/authentication";
-import { ApiAuth } from "../../service/Api";
+import { setAuth } from "../../../../auth/authentication";
+import { ApiAuth } from "../../../../service/Api";
 import "./style.scss";
 
 type formLogin = {
@@ -58,12 +58,8 @@ export const FormLogin = () => {
 
 	return (
 		<React.Fragment>
-			{" "}
-			<div>
-				<Toaster />
-			</div>
 			<div className="ContainerLogin">
-				<form onSubmit={handleSubmit(onSubmit)}>
+				<form onSubmit={handleSubmit(onSubmit)} id="formLogin">
 					<label htmlFor="email">E-mail </label>
 					<input
 						{...register("email")}

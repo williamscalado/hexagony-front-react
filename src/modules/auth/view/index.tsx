@@ -1,4 +1,4 @@
-import { FormLogin } from "../../components/FormLogin";
+import { FormLogin } from "./FormLogin";
 import "./style.scss";
 
 export const PageLogin = () => {

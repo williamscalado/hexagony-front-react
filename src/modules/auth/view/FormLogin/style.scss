@@ -1,11 +1,14 @@
 .ContainerLogin {
 	width: 400px;
-
 	background: var(--bs-dark-full);
 	border-radius: 0.7rem;
 	padding: 1rem 2rem;
 	display: flex;
 	align-items: center;
+
+	@media (max-width: 580px) {
+		width: 92vw;
+	}
 
 	form {
 		width: 100%;

@@ -5,25 +5,15 @@ import toast from "react-hot-toast";
 import { BsCheckAll } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import * as yup from "yup";
-import { AlbumUseCase, IAlbums } from "../../modules/album/useCase";
-import { albumListState, albumUpdateState } from "../../state/albumState";
-
+import {
+	albumListState,
+	albumUpdateState,
+	InitialUpdateAlbum,
+} from "../../../../state/albumState";
+import { IAlbums } from "../../domain";
+import { AlbumUseCase } from "../../useCase";
+import { newAlbumFormRule } from "../../validation";
 import "./style.scss";
-
-const newAlbumFormRule: yup.SchemaOf<IAlbums> = yup.object().shape({
-	id: yup.string().notRequired(),
-	name: yup.string().required().min(3),
-	length: yup.number().typeError("length must be a number").required().min(1),
-	created_at: yup.string().notRequired(),
-	updated_at: yup.string().notRequired(),
-});
-
-const InitialUpdate = {
-	id: "",
-	name: "",
-	length: 1,
-};
 
 export const NewAlbum = () => {
 	const setAlbumsState = useSetRecoilState(albumListState);
@@ -81,7 +71,7 @@ export const NewAlbum = () => {
 
 			const res = await AlbumUseCase.getAll();
 			setAlbumsState(res);
-			setUpdateAlbum(InitialUpdate);
+			setUpdateAlbum(InitialUpdateAlbum);
 			reset({ name: "", length: 1 });
 			toast.success(updateStatus ? "album updated" : "album created");
 		} catch (error) {
@@ -92,7 +82,7 @@ export const NewAlbum = () => {
 	};
 
 	const handleCancelUpdate = () => {
-		setUpdateAlbum(InitialUpdate);
+		setUpdateAlbum(InitialUpdateAlbum);
 		reset({ name: "", length: 1 });
 	};
 

@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { getIdIsAuth } from "../../auth/authentication";
-import { IUserUpdate } from "../../modules/users/domain";
-import { userUseCase } from "../../modules/users/usecase";
-import { userUtil } from "../../modules/users/util";
-import { userState, userUpdateState } from "../../state/userState";
+import { getIdIsAuth } from "../../../../auth/authentication";
+import { userState, userUpdateState } from "../../../../state/userState";
+import { IUserUpdate } from "../../domain";
+import { userUseCase } from "../../useCase";
+import { userUtil } from "../../util";
 import "./style.scss";
 
 export const ListUser = () => {

@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { BsCheckAll, BsEye, BsEyeSlash } from "react-icons/bs";
 import { useSetRecoilState } from "recoil";
-import { IUser } from "../../modules/users/domain";
-import { userUseCase } from "../../modules/users/usecase";
-import { userFormValidation } from "../../modules/users/validation";
-import { userState } from "../../state/userState";
+import { userState } from "../../../../state/userState";
+import { IUser } from "../../domain";
+import { userUseCase } from "../../useCase";
+import { userFormValidation } from "../../validation";
 import "./style.scss";
 
 interface IPassword {

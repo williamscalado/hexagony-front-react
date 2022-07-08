@@ -1,8 +1,8 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { isAuth } from "./auth/authentication";
-import { PageAlbum } from "./pages/album";
-import { PageLogin } from "./pages/login";
-import { UserPage } from "./pages/user";
+import { PageAlbum } from "./modules/album/view";
+import { PageLogin } from "./modules/auth/view";
+import { UserPage } from "./modules/users/view";
 
 export const AppRoutes = () => {
 	const ProtectRouter = () => {

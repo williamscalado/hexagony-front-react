@@ -5,10 +5,10 @@ import toast from "react-hot-toast";
 import { BsCheckAll } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { IUser, IUserUpdate } from "../../modules/users/domain";
-import { userUseCase } from "../../modules/users/usecase";
-import { userFormValidationUpdate } from "../../modules/users/validation";
-import { userState, userUpdateState } from "../../state/userState";
+import { userState, userUpdateState } from "../../../../state/userState";
+import { IUser, IUserUpdate } from "../../domain";
+import { userUseCase } from "../../useCase";
+import { userFormValidationUpdate } from "../../validation";
 import "./style.scss";
 
 export const FormUserUpdate = () => {

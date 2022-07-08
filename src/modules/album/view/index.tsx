@@ -1,8 +1,8 @@
 import React from "react";
-import { Footer } from "../../components/footer";
-import { Header } from "../../components/header";
-import { ListAlbum } from "../../components/listAlbum";
-import { NewAlbum } from "../../components/newAlbum";
+import { Footer } from "../../../components/Footer";
+import { Header } from "../../../components/Header";
+import { ListAlbum } from "./ListAlbum";
+import { NewAlbum } from "./NewAlbum";
 import "./style.scss";
 
 export const PageAlbum = () => {

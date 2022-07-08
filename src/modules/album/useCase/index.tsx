@@ -1,20 +1,5 @@
 import Api from "../../../service/Api";
-
-export interface IAlbums {
-	id?: string;
-	length: number;
-	name: string;
-	created_at?: string;
-	updated_at?: string;
-}
-
-interface IAlbumUseCase {
-	getAll: () => Promise<IAlbums[]>;
-	create: (album: IAlbums) => Promise<void>;
-	update: (album: IAlbums) => Promise<void>;
-	remove: (id: string) => Promise<void>;
-	getAlbumById: (id: string) => Promise<IAlbums>;
-}
+import { IAlbums, IAlbumUseCase } from "../domain";
 
 const getAll = async () => {
 	const result = await Api.get("/album");
