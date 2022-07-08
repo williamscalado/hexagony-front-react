@@ -1,4 +1,4 @@
-import Api from "../../../adapter/http/axios";
+import Api from "../../../adapters/http/axios";
 import { IAlbums, IAlbumUseCase } from "../domain";
 
 const getAll = async () => {

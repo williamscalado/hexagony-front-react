@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { BsCheckAll, BsEye, BsEyeSlash } from "react-icons/bs";
 import { useSetRecoilState } from "recoil";
+import { loadingState } from "../../../../state/sharedState";
 import { userState } from "../../../../state/userState";
 import { IUser } from "../../domain";
-import { userUseCase } from "../../useCase";
+import { userUseCase } from "../../usecase";
 import { userFormValidation } from "../../validation";
 import "./style.scss";
 
@@ -22,17 +23,18 @@ export const NewUserForm = () => {
 	const [showPassword, setShowPassword] = useState<IPassword>(
 		InitialStatusPassword
 	);
+	const setLoading = useSetRecoilState(loadingState);
 
 	const handleVisiblePassword = (inputName: string) => {
 		showPassword[`${inputName}`]
 			? setShowPassword({
-					...showPassword,
-					[`${inputName}`]: false,
-			  })
+				...showPassword,
+				[`${inputName}`]: false,
+			})
 			: setShowPassword({
-					...showPassword,
-					[`${inputName}`]: true,
-			  });
+				...showPassword,
+				[`${inputName}`]: true,
+			});
 	};
 
 	useEffect(() => {
@@ -57,6 +59,7 @@ export const NewUserForm = () => {
 
 	const onSubmit = async (data: IUser) => {
 		try {
+			setLoading(true);
 			delete data.passwordConfirmation;
 			await userUseCase.create(data);
 			const res = await userUseCase.getAll();
@@ -65,6 +68,8 @@ export const NewUserForm = () => {
 			toast.success("user created");
 		} catch (error) {
 			toast.error("failed to create user");
+		} finally {
+			setLoading(false);
 		}
 	};
 

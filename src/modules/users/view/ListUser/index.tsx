@@ -8,19 +8,28 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { getIdIsAuth } from "../../../../helpers/authentication";
 import { userState, userUpdateState } from "../../../../state/userState";
 import { IUserUpdate } from "../../domain";
-import { userUseCase } from "../../useCase";
-import { userUtil } from "../../util";
+import { userUseCase } from "../../usecase";
+import { userUtil } from "../../../../helpers/users";
 import "./style.scss";
+import { loadingState } from "../../../../state/sharedState";
 
 export const ListUser = () => {
 	const confirmDialog = useConfirm();
 	const [userList, setUserList] = useRecoilState(userState);
 	const setDataUserUpdate = useSetRecoilState(userUpdateState);
+	const setLoading = useSetRecoilState(loadingState);
 
 	const getAllUser = React.useCallback(async () => {
-		const result = await userUseCase.getAll();
-		setUserList(result);
-	}, [setUserList]);
+		try {
+			setLoading(true);
+			const result = await userUseCase.getAll();
+			setUserList(result);
+		} catch (err) {
+			toast.error("failed to list users");
+		} finally {
+			setLoading(false);
+		}
+	}, [setUserList, setLoading]);
 
 	useEffect(() => {
 		getAllUser();
@@ -30,6 +39,7 @@ export const ListUser = () => {
 		try {
 			if (id === getIdIsAuth()) throw new Error();
 			(async () => {
+				setLoading(true);
 				try {
 					await confirmDialog({
 						description: "This will permanently delete this user.",
@@ -43,6 +53,8 @@ export const ListUser = () => {
 					toast.success("user removed");
 				} catch (err) {
 					return;
+				} finally {
+					setLoading(false);
 				}
 			})();
 		} catch (err) {
@@ -53,6 +65,7 @@ export const ListUser = () => {
 	const handleUpdateUser = async (id: string) => {
 		try {
 			if (!id) throw new Error();
+			setLoading(true);
 			const resUser = await userUseCase.getById(id);
 
 			const newData = {
@@ -60,7 +73,11 @@ export const ListUser = () => {
 				isEdition: true,
 			};
 			setDataUserUpdate(newData as IUserUpdate);
-		} catch (err) {}
+		} catch (err) {
+			toast.error("something went wrong");
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	return (
