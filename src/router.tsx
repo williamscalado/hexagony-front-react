@@ -18,9 +18,18 @@ export const AppRoutes = () => {
 			<Routes>
 				<Route path="/login" element={<PageLogin />}></Route>
 				<Route element={<ProtectRouter />}>
-					<Route path="/" element={<PageAlbum />}></Route>
-					<Route path="/album" element={<PageAlbum />}></Route>
-					<Route path="/users" element={<UserPage />}></Route>
+					<Route
+						path="/"
+						element={(verifyTokenValidate(), (<PageAlbum />))}
+					></Route>
+					<Route
+						path="/album"
+						element={(verifyTokenValidate(), (<PageAlbum />))}
+					></Route>
+					<Route
+						path="/users"
+						element={(verifyTokenValidate(), (<UserPage />))}
+					></Route>
 				</Route>
 				<Route path="*" element={<PageLogin />}></Route>
 			</Routes>
