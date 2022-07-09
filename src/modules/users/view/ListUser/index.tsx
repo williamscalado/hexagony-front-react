@@ -62,11 +62,10 @@ export const ListUser = () => {
 		}
 	};
 
-	const handleUpdateUser = async (id: string) => {
+	const handleUpdateUser = (id: string) => {
 		try {
 			if (!id) throw new Error();
-			setLoading(true);
-			const resUser = await userUseCase.getById(id);
+			const resUser = userList.find((user) => user.id === id);
 
 			const newData = {
 				...resUser,
@@ -75,8 +74,6 @@ export const ListUser = () => {
 			setDataUserUpdate(newData as IUserUpdate);
 		} catch (err) {
 			toast.error("something went wrong");
-		} finally {
-			setLoading(false);
 		}
 	};
 
