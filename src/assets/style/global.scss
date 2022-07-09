@@ -39,6 +39,19 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+
+	/* Hide vertical scrollbar */
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 3px;
+	background: black;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #6c757d;
+	border-radius: 10px;
 }
 
 body {
@@ -48,6 +61,7 @@ body {
 	color: var(--bs-white);
 	background-attachment: fixed;
 	background-position: center center;
+	-ms-overflow-style: none;
 }
 
 body,

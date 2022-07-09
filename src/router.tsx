@@ -1,5 +1,6 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { isAuth, verifyTokenValidate } from "./helpers/authentication";
+import { PageAbout } from "./modules/about/view";
 import { PageAlbum } from "./modules/album/view";
 import { PageLogin } from "./modules/auth/view";
 import { UserPage } from "./modules/users/view";
@@ -29,6 +30,10 @@ export const AppRoutes = () => {
 					<Route
 						path="/users"
 						element={(verifyTokenValidate(), (<UserPage />))}
+					></Route>
+					<Route
+						path="/about"
+						element={(verifyTokenValidate(), (<PageAbout />))}
 					></Route>
 				</Route>
 				<Route path="*" element={<PageLogin />}></Route>
