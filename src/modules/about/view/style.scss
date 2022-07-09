@@ -57,6 +57,9 @@
 		color: var(--bs-gray-dark);
 		font-size: 2.2rem;
 		justify-content: space-between;
+		a {
+			color: var(--bs-gray-dark);
+		}
 		:hover {
 			cursor: pointer;
 			color: var(--bs-teal);

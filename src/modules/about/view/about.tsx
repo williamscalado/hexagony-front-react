@@ -15,10 +15,36 @@ export const About = () => {
 						<span> Software Engineer</span>
 					</div>
 					<div className="icon-social">
-						<GrLinkedin />
-						<BsGithub />
-						<AiOutlineMail />
-						<BsTwitter />
+						<a
+							href="https://www.linkedin.com/in/cyro-dubeux-45085b155/?locale=en_US"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<GrLinkedin />
+						</a>
+
+						<a
+							href="https://github.com/cyruzin"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<BsGithub />
+						</a>
+						<a
+							href="mailto:mailto:mailto:yourmail@domain.com"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<AiOutlineMail />
+						</a>
+
+						<a
+							href="https://twitter.com/beerinjection"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<BsTwitter />
+						</a>
 					</div>
 				</div>
 
@@ -34,10 +60,36 @@ export const About = () => {
 					</div>
 
 					<div className="icon-social">
-						<GrLinkedin />
-						<BsGithub />
-						<AiOutlineMail />
-						<BsTwitter />
+						<a
+							href="https://www.linkedin.com/in/williams-calado-46125b111/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<GrLinkedin />
+						</a>
+						<a
+							href="https://github.com/williamscalado/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<BsGithub />
+						</a>
+
+						<a
+							href="mailto:mailto:williamscalado@gmail.com"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<AiOutlineMail />
+						</a>
+
+						<a
+							href="https://twitter.com/williamscalado"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<BsTwitter />
+						</a>
 					</div>
 				</div>
 			</div>
