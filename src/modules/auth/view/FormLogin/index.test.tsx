@@ -34,17 +34,3 @@ it("should change e-mail and password input values", () => {
 	fireEvent.change(passwordInput, { target: { value: "12345678" } });
 	expect(passwordInput).toHaveValue("12345678");
 });
-
-it("Event click send login form", async () => {
-	render(<FormLogin />);
-
-	const button = screen.getByRole("button", { name: "Sign In" });
-
-	const emailInput = screen.getByTestId("email");
-	fireEvent.change(emailInput, { target: { value: "john@doe.com" } });
-
-	const passwordInput = screen.getByTestId("password");
-	fireEvent.change(passwordInput, { target: { value: "12345678" } });
-
-	fireEvent.click(button);
-});

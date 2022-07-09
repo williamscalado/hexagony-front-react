@@ -58,7 +58,7 @@ export const ListAlbum = () => {
 		}
 	};
 
-	const updateAlbums = async (id: string) => {
+	const updateAlbums = (id: string) => {
 		const resultData = albumsList.find((album) => album.id === id);
 		if (!resultData) return;
 
