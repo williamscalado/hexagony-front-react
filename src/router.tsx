@@ -7,8 +7,7 @@ import { UserPage } from "./modules/users/view";
 
 export const AppRoutes = () => {
 	const ProtectRouter = () => {
-		verifyTokenValidate();
-		if (!isAuth()) {
+		if (!isAuth() || verifyTokenValidate()) {
 			return <Navigate to="/login" replace />;
 		}
 		return <Outlet />;
@@ -18,23 +17,11 @@ export const AppRoutes = () => {
 		<>
 			<Routes>
 				<Route path="/login" element={<PageLogin />}></Route>
-				<Route element={<ProtectRouter />}>
-					<Route
-						path="/"
-						element={(verifyTokenValidate(), (<PageAlbum />))}
-					></Route>
-					<Route
-						path="/album"
-						element={(verifyTokenValidate(), (<PageAlbum />))}
-					></Route>
-					<Route
-						path="/users"
-						element={(verifyTokenValidate(), (<UserPage />))}
-					></Route>
-					<Route
-						path="/about"
-						element={(verifyTokenValidate(), (<PageAbout />))}
-					></Route>
+				<Route element={(verifyTokenValidate(), (<ProtectRouter />))}>
+					<Route path="/" element={<PageAlbum />}></Route>
+					<Route path="/album" element={<PageAlbum />}></Route>
+					<Route path="/users" element={<UserPage />}></Route>
+					<Route path="/about" element={<PageAbout />}></Route>
 				</Route>
 				<Route path="*" element={<PageLogin />}></Route>
 			</Routes>

@@ -22,4 +22,13 @@ Api.interceptors.request.use((req) => {
 	return req;
 });
 
+Api.interceptors.response.use(
+	(response) => response,
+	(error) => {
+		if (error.response.status === 401) {
+			verifyTokenValidate();
+		}
+	}
+);
+
 export default Api;
