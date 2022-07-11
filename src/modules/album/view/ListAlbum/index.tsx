@@ -17,7 +17,7 @@ export const ListAlbum = () => {
 	const setLoading = useSetRecoilState(loadingState);
 	const setAlbumUpdate = useSetRecoilState(albumUpdateState);
 
-	const getAlbumList = React.useCallback(async () => {
+	const getAllAlbums = React.useCallback(async () => {
 		try {
 			setLoading(true);
 			const res = await AlbumUseCase.getAll();
@@ -40,7 +40,7 @@ export const ListAlbum = () => {
 					});
 
 					await AlbumUseCase.remove(id);
-					await getAlbumList();
+					await getAllAlbums();
 					setAlbumUpdate({
 						id: undefined,
 						name: "",
@@ -72,8 +72,8 @@ export const ListAlbum = () => {
 	};
 
 	React.useEffect(() => {
-		getAlbumList();
-	}, [getAlbumList]);
+		getAllAlbums();
+	}, [getAllAlbums]);
 
 	return (
 		<div className="container-list-album">

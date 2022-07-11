@@ -68,7 +68,7 @@ export const FormUserUpdate = () => {
 			setStateUpdate({
 				isEdition: false,
 			} as IUserUpdate);
-			toast.success("User update");
+			toast.success("user updated");
 		} catch (error) {
 			toast.error("failed to update user");
 		} finally {
