@@ -1,19 +1,18 @@
 
-import React, { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { ApiAuth } from "../../../../adapters/http/axios";
-import { setAuth } from "../../../../helpers/authentication";
 import { IFormLogin } from "../../domain";
 import { formRules } from "../../validation";
+import { FormUseCase } from "../../usecase";
 import "./style.scss";
 
 export const FormLogin = () => {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
-	const [formData, setFormData] = useState({});
+
 	const {
 		handleSubmit,
 		register,
@@ -23,33 +22,19 @@ export const FormLogin = () => {
 		reValidateMode: "onBlur",
 		shouldFocusError: true,
 		resolver: yupResolver(formRules),
+		defaultValues: { email: '', password: '' },
 	});
 
-	const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
-		const input = e.target as HTMLInputElement;
-		setFormData({
-			...formData,
-			[input.name]: input.value,
-		});
-	};
-
-	const getTokenLogin = async (data: IFormLogin) => {
+	const onSubmit = async (credentials: IFormLogin) => {
 		try {
 			setLoading(true);
-			const result = await ApiAuth.post("auth", data);
-			return result.data.token;
+			await FormUseCase.authenticate(credentials);
+			navigate("/");
 		} catch (error: Error | any) {
-			toast.error(error.response.data.message);
+			toast.error(error.response.data.message || error.response.data.errors[0].message);
 		} finally {
 			setLoading(false);
 		}
-	};
-
-	const onSubmit = async (data: IFormLogin) => {
-		const resultToken = await getTokenLogin(data);
-		setAuth(resultToken);
-
-		if (resultToken) navigate("/");
 	};
 
 	return (
@@ -61,9 +46,7 @@ export const FormLogin = () => {
 						{...register("email")}
 						type="text"
 						data-testid="email"
-						onChange={handleInputChange}
 						placeholder="email@x.com"
-						autoFocus
 					/>
 					{<span>{errors?.email?.message}</span>}
 					<label htmlFor="password">Password </label>
@@ -72,11 +55,10 @@ export const FormLogin = () => {
 						data-testid="password"
 						{...register("password")}
 						placeholder="********"
-						onChange={handleInputChange}
 					/>
 					{<span>{errors?.password?.message}</span>}
 
-					<button type="submit" disabled={loading}>
+					<button id="formLogin" type="submit" disabled={loading}>
 						{loading ? 'Loading...' : 'Sign In'}
 					</button>
 				</form>
