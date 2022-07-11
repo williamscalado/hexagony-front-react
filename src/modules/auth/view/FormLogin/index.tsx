@@ -1,12 +1,11 @@
-
-import React, { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { IFormLogin } from "../../domain";
-import { formRules } from "../../validation";
 import { FormUseCase } from "../../usecase";
+import { formRules } from "../../validation";
 import "./style.scss";
 
 export const FormLogin = () => {
@@ -22,7 +21,7 @@ export const FormLogin = () => {
 		reValidateMode: "onBlur",
 		shouldFocusError: true,
 		resolver: yupResolver(formRules),
-		defaultValues: { email: '', password: '' },
+		defaultValues: { email: "", password: "" },
 	});
 
 	const onSubmit = async (credentials: IFormLogin) => {
@@ -31,7 +30,9 @@ export const FormLogin = () => {
 			await FormUseCase.authenticate(credentials);
 			navigate("/");
 		} catch (error: Error | any) {
-			toast.error(error.response.data.message || error.response.data.errors[0].message);
+			toast.error(
+				error.response.data.message || error.response.data.errors[0].message
+			);
 		} finally {
 			setLoading(false);
 		}
@@ -59,7 +60,7 @@ export const FormLogin = () => {
 					{<span>{errors?.password?.message}</span>}
 
 					<button id="formLogin" type="submit" disabled={loading}>
-						{loading ? 'Loading...' : 'Sign In'}
+						{loading ? "Loading..." : "Sign In"}
 					</button>
 				</form>
 			</div>
