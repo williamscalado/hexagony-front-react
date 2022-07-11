@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import "./assets/style/global.scss";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Loading from "./components/Loading";
 import reportWebVitals from "./reportWebVitals";
 import { AppRoutes } from "./router";
@@ -22,20 +23,21 @@ const darkTheme = createTheme({
 });
 
 root.render(
-	<RecoilRoot>
-		<BrowserRouter>
-			<ThemeProvider theme={darkTheme}>
-				<ConfirmProvider>
-					<React.StrictMode>
-						<Loading />
-						<Toaster />
-
-						<AppRoutes />
-					</React.StrictMode>
-				</ConfirmProvider>
-			</ThemeProvider>
-		</BrowserRouter>
-	</RecoilRoot>
+	<ErrorBoundary>
+		<RecoilRoot>
+			<BrowserRouter>
+				<ThemeProvider theme={darkTheme}>
+					<ConfirmProvider>
+						<React.StrictMode>
+							<Loading />
+							<Toaster />
+							<AppRoutes />
+						</React.StrictMode>
+					</ConfirmProvider>
+				</ThemeProvider>
+			</BrowserRouter>
+		</RecoilRoot>
+	</ErrorBoundary>
 );
 
 reportWebVitals();
