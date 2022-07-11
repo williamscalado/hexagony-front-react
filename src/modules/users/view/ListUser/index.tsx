@@ -19,7 +19,7 @@ export const ListUser = () => {
 	const setDataUserUpdate = useSetRecoilState(userUpdateState);
 	const setLoading = useSetRecoilState(loadingState);
 
-	const getAllUser = React.useCallback(async () => {
+	const getAllUsers = React.useCallback(async () => {
 		try {
 			setLoading(true);
 			const result = await userUseCase.getAll();
@@ -32,8 +32,8 @@ export const ListUser = () => {
 	}, [setUserList, setLoading]);
 
 	useEffect(() => {
-		getAllUser();
-	}, [getAllUser]);
+		getAllUsers();
+	}, [getAllUsers]);
 
 	const removeUsers = async (id: string) => {
 		try {
@@ -46,7 +46,7 @@ export const ListUser = () => {
 						confirmationButtonProps: { autoFocus: true },
 					});
 					await userUseCase.remove(id);
-					await getAllUser();
+					await getAllUsers();
 					setDataUserUpdate({
 						isEdition: false,
 					} as IUserUpdate);
