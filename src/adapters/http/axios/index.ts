@@ -54,7 +54,7 @@ async function fetch({
 	external = false,
 }: IHTTPRequest): Promise<any> {
 	try {
-		const urlPath = external ? url : `${API_ENDPOINT}${url}`;
+		const urlPath = `${API_ENDPOINT}`;
 
 		const response = await genericRequest({
 			url: urlPath,
