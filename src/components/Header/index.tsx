@@ -1,14 +1,16 @@
 import { GiExitDoor } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../helpers/authentication";
+import { FormUseCase } from "../../modules/auth/usecase";
 import "./style.scss";
 
 export const Header = () => {
 	const navigate = useNavigate();
+	
 	function handleLogout() {
-		logout();
+	  FormUseCase.logout();
 		navigate("/login");
 	}
+
 	return (
 		<div className="container-header">
 			<div className="content-header">

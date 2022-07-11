@@ -2,6 +2,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { BsGithub, BsTwitter } from "react-icons/bs";
 import { GrLinkedin } from "react-icons/gr";
 import "./style.scss";
+
 export const About = () => {
 	return (
 		<div className="container-about">

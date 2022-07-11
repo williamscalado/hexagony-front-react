@@ -1,5 +1,7 @@
 import { decodeToken, isExpired } from "react-jwt";
+
 const localName = "hegaxoniAuth";
+
 interface IToken {
 	id: string;
 }
