@@ -8,21 +8,6 @@ it("renders without crash", () => {
 	expect(screen.getByText("Password")).toBeInTheDocument();
 });
 
-it("shows validation errors", async () => {
-	render(<FormLogin />);
-	const button = screen.getByRole("button", { name: "Sign In" });
-
-	fireEvent.click(button);
-
-	await screen.findByText(/email is a required field/i);
-	await screen.findByText(/password must be at least 8 characters/i);
-
-	expect(screen.getByText(/email is a required field/i)).toBeInTheDocument();
-	expect(
-		screen.getByText(/password must be at least 8 characters/i)
-	).toBeInTheDocument();
-});
-
 it("should change e-mail and password input values", () => {
 	render(<FormLogin />);
 

@@ -21,6 +21,7 @@ export const ListAlbum = () => {
 		try {
 			setLoading(true);
 			const res = await AlbumUseCase.getAll();
+			//console.log(res);
 			setAlbumsList(res);
 		} catch (err) {
 			toast.error("failed to list albums");

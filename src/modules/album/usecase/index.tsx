@@ -1,28 +1,45 @@
-import Api from "../../../adapters/http/axios";
+import { HttpAdapter } from "../../../adapters/http/axios";
 import { IAlbums, IAlbumUseCase } from "../domain";
 
 const getAll = async () => {
-	const result = await Api.get("/album");
-	if (!result.data) return;
-	return result.data;
+	try {
+		return await HttpAdapter.fetch({
+			method: "GET",
+			url: "/album",
+		});
+	} catch (err: Error | any) {
+		throw err;
+	}
 };
 
 const create = async (album: IAlbums) => {
-	await Api.post("/album", album);
+	await HttpAdapter.fetch({
+		url: "/album",
+		method: "POST",
+		data: album,
+	});
 };
 
 const update = async (album: IAlbums) => {
-	await Api.put(`/album/${album.id}`, album);
+	await HttpAdapter.fetch({
+		method: "PUT",
+		url: `/album/${album.id}`,
+		data: album,
+	});
 };
 
 const remove = async (id: string) => {
-	await Api.delete(`/album/${id}`);
+	await HttpAdapter.fetch({
+		url: `/album/${id}`,
+		method: "DELETE",
+	});
 };
 
 const getAlbumById = async (id: string) => {
-	const result = await Api.get(`/album/${id}`);
-	if (!result.data) return;
-	return result.data;
+	return await HttpAdapter.fetch({
+		method: "GET",
+		url: `/album/${id}`,
+	});
 };
 
 export const AlbumUseCase: IAlbumUseCase = {

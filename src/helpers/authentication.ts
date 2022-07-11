@@ -8,7 +8,7 @@ interface IToken {
 
 export const isTokenAuth = localStorage.getItem(localName);
 
-const getToken = () => localStorage.getItem(localName);
+export const getToken = () => localStorage.getItem(localName);
 
 export const setAuth = (token: string) => {
 	if (!token) return;

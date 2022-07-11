@@ -29,10 +29,8 @@ export const FormLogin = () => {
 			setLoading(true);
 			await FormUseCase.authenticate(credentials);
 			navigate("/");
-		} catch (error: Error | any) {
-			toast.error(
-				error.response.data.message || error.response.data.errors[0].message
-			);
+		} catch (err: Error | any) {
+			toast.error(err);
 		} finally {
 			setLoading(false);
 		}

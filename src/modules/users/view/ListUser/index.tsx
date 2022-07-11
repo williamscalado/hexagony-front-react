@@ -6,12 +6,12 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { getIdIsAuth } from "../../../../helpers/authentication";
+import { userUtil } from "../../../../helpers/users";
+import { loadingState } from "../../../../state/sharedState";
 import { userState, userUpdateState } from "../../../../state/userState";
 import { IUserUpdate } from "../../domain";
 import { userUseCase } from "../../usecase";
-import { userUtil } from "../../../../helpers/users";
 import "./style.scss";
-import { loadingState } from "../../../../state/sharedState";
 
 export const ListUser = () => {
 	const confirmDialog = useConfirm();

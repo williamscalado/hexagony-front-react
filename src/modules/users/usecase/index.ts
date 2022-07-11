@@ -1,28 +1,58 @@
-import Api from "../../../adapters/http/axios";
+import { HttpAdapter } from "../../../adapters/http/axios";
 import { IUser, IUserUpdate, IUserUseCase } from "../domain";
 
 const getAll = async () => {
-	const result = await Api.get("/user");
-	if (!result.data) return;
-	return result.data;
+	try {
+		return await HttpAdapter.fetch({ method: "GET", url: "/user" });
+	} catch (err: Error | any) {
+		throw err;
+	}
 };
 
 const getById = async (id: string) => {
-	const result = await Api.get(`/user/${id}`);
-	if (!result.data) return;
-	return result.data;
+	try {
+		return await HttpAdapter.fetch({
+			method: "GET",
+			url: `/user/${id}`,
+		});
+	} catch (err: Error | any) {
+		throw err;
+	}
 };
 
 const create = async (data: IUser) => {
-	await Api.post("/user", data);
+	try {
+		await HttpAdapter.fetch({
+			method: "POST",
+			url: "/user",
+			data: data,
+		});
+	} catch (err: Error | any) {
+		throw err;
+	}
 };
 
 const update = async (data: IUserUpdate) => {
-	await Api.put(`/user/${data?.id}`, data);
+	try {
+		await HttpAdapter.fetch({
+			method: "PUT",
+			url: `/user/${data?.id}`,
+			data: data,
+		});
+	} catch (err: Error | any) {
+		throw err;
+	}
 };
 
 const remove = async (id: string) => {
-	await Api.delete(`/user/${id}`);
+	try {
+		await HttpAdapter.fetch({
+			method: "DELETE",
+			url: `/user/${id}`,
+		});
+	} catch (err: Error | any) {
+		throw err;
+	}
 };
 
 export const userUseCase: IUserUseCase = {
