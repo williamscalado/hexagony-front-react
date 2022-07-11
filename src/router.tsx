@@ -1,6 +1,6 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { isAuth, verifyTokenValidate } from "./helpers/authentication";
-import { PageAbout } from "./modules/about/view";
+import { PageAbout } from "./components/About";
 import { PageAlbum } from "./modules/album/view";
 import { PageLogin } from "./modules/auth/view";
 import { UserPage } from "./modules/users/view";
