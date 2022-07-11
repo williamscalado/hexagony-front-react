@@ -3,7 +3,7 @@ import { getToken } from "../../../helpers/authentication";
 
 import { IHTTP, IHTTPRequest, IHTTPRequestError } from "../types";
 
-const API_ENDPOINT = process.env.APP_API_ENDPOINT;
+const API_ENDPOINT = "https://hexagony.herokuapp.com";
 
 /* Default error messages for failing requests. */
 const errorMessages: IHTTPRequestError = {
@@ -54,7 +54,7 @@ async function fetch({
 	external = false,
 }: IHTTPRequest): Promise<any> {
 	try {
-		const urlPath = external ? url : `${API_ENDPOINT}${url}`;
+		const urlPath = `${API_ENDPOINT}`;
 
 		const response = await genericRequest({
 			url: urlPath,
