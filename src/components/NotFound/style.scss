@@ -1,0 +1,36 @@
+.container-not-found {
+	margin: auto;
+	display: grid;
+	text-align: center;
+	justify-items: center;
+	justify-content: center;
+	align-content: center;
+	height: 90vh;
+	padding: 2rem;
+	img {
+		margin-top: 2rem;
+		width: 200px;
+
+		@media (max-width: 780px) {
+			width: 80vw;
+		}
+	}
+
+	h1 {
+		display: grid;
+		margin-top: 2rem;
+		font-size: 1.5rem;
+	}
+	span {
+		margin-top: 2rem;
+	}
+
+	a {
+		text-decoration: none;
+		margin-top: 2rem;
+		color: var(--bs-white);
+		&:hover {
+			color: var(--bs-gray);
+		}
+	}
+}
