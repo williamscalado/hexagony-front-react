@@ -7,9 +7,9 @@ const API_ENDPOINT = "https://hexagony.herokuapp.com";
 
 /* Default error messages for failing requests. */
 const errorMessages: IHTTPRequestError = {
-	default: "Algo deu errado",
-	noResponse: "Sem resposta do servidor",
-	network: "Erro de rede",
+	default: "something went wrong",
+	noResponse: "no response from server",
+	network: "network error",
 };
 
 /* This function handles three types of errors relation  to requests. */
