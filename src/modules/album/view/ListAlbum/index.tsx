@@ -21,7 +21,6 @@ export const ListAlbum = () => {
 		try {
 			setLoading(true);
 			const res = await AlbumUseCase.getAll();
-			//console.log(res);
 			setAlbumsList(res);
 		} catch (err) {
 			toast.error("failed to list albums");
@@ -34,11 +33,11 @@ export const ListAlbum = () => {
 		try {
 			(async () => {
 				try {
-					setLoading(true);
 					await confirmDialog({
 						description: "This will permanently delete this album.",
 						confirmationButtonProps: { autoFocus: true },
 					});
+					setLoading(true);
 
 					await AlbumUseCase.remove(id);
 					await getAllAlbums();

@@ -50,8 +50,7 @@ async function fetch({
 	method,
 	headers,
 	data,
-	params,
-	external = false,
+	params
 }: IHTTPRequest): Promise<any> {
 	try {
 		const response = await genericRequest({
