@@ -39,12 +39,12 @@ export const ListUser = () => {
 		try {
 			if (id === getIdIsAuth()) throw new Error();
 			(async () => {
-				setLoading(true);
 				try {
 					await confirmDialog({
 						description: "This will permanently delete this user.",
 						confirmationButtonProps: { autoFocus: true },
 					});
+					setLoading(true);
 					await userUseCase.remove(id);
 					await getAllUsers();
 					setDataUserUpdate({
