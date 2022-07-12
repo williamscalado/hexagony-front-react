@@ -4,6 +4,7 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { loadingState } from "../../state/sharedState";
 import "./style.scss";
+
 export default function Loading() {
 	const loading = useRecoilValue(loadingState);
 
