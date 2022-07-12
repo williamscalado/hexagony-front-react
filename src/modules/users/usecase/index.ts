@@ -1,4 +1,4 @@
-import { HttpAdapter } from "../../../adapters/http/axios";
+import { HttpAdapter } from "../../../adapters/http/axios/index";
 import { IUser, IUserUpdate, IUserUseCase } from "../domain";
 
 const getAll = async () => {

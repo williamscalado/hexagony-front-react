@@ -1,0 +1,34 @@
+.container-error {
+	margin: auto;
+	display: grid;
+	text-align: center;
+	justify-items: center;
+	justify-content: center;
+	align-content: center;
+	height: 90vh;
+
+	h1 {
+		font-size: 1.5rem;
+	}
+	span {
+		margin-top: 2rem;
+	}
+
+	img {
+		margin-top: 2rem;
+		width: 200px;
+
+		@media (max-width: 780px) {
+			width: 80vw;
+		}
+	}
+
+	a {
+		text-decoration: none;
+		margin-top: 2rem;
+		color: var(--bs-white);
+		&:hover {
+			color: var(--bs-gray);
+		}
+	}
+}

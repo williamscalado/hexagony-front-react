@@ -1,4 +1,4 @@
-import { HttpAdapter } from "../../../adapters/http/axios";
+import { HttpAdapter } from "../../../adapters/http/axios/index";
 import { IAlbums, IAlbumUseCase } from "../domain";
 
 const getAll = async () => {

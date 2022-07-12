@@ -1,4 +1,4 @@
-import { HttpAdapter } from "../../../adapters/http/axios";
+import { HttpAdapter } from "../../../adapters/http/axios/index";
 import { logout as destroy, setAuth } from "../../../helpers/authentication";
 import { IFormLogin, IFormUseCase } from "../domain";
 
