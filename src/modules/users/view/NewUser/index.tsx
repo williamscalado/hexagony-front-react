@@ -28,13 +28,13 @@ export const NewUserForm = () => {
 	const handleVisiblePassword = (inputName: string) => {
 		showPassword[`${inputName}`]
 			? setShowPassword({
-				...showPassword,
-				[`${inputName}`]: false,
-			})
+					...showPassword,
+					[`${inputName}`]: false,
+			  })
 			: setShowPassword({
-				...showPassword,
-				[`${inputName}`]: true,
-			});
+					...showPassword,
+					[`${inputName}`]: true,
+			  });
 	};
 
 	useEffect(() => {
@@ -66,8 +66,8 @@ export const NewUserForm = () => {
 			setUserAllUser(res);
 			reset();
 			toast.success("user created");
-		} catch (error) {
-			toast.error("failed to create user");
+		} catch (err: Error | any) {
+			toast.error(err);
 		} finally {
 			setLoading(false);
 		}

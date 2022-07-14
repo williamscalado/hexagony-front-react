@@ -69,13 +69,13 @@ export const FormUserUpdate = () => {
 				isEdition: false,
 			} as IUserUpdate);
 			toast.success("user updated");
-		} catch (error) {
-			toast.error("failed to update user");
+		} catch (err: Error | any) {
+			toast.error(err);
 		} finally {
 			setLoading(false);
 		}
 	};
-	
+
 	return (
 		<div className="container-new-form-user">
 			<h3>Update user</h3>
