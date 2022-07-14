@@ -1,7 +1,7 @@
-import { render, screen } from "../../test-utils";
 import { Header } from ".";
+import { render, screen } from "../../test-utils";
 
 it("renders without crash", () => {
 	render(<Header />);
-	expect(screen.getByText("Albums")).toBeInTheDocument();
+	expect(screen.getAllByDisplayValue("menuMock").length > 1);
 });

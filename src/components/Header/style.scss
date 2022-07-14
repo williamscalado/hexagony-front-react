@@ -1,5 +1,5 @@
 .container-header {
-	width: 60vw;
+	width: 70vw;
 	margin: auto;
 
 	.content-header {
@@ -9,24 +9,91 @@
 
 		img {
 			width: 130px;
+			@media (max-width: 400px) {
+				width: 100px;
+			}
+		}
+	}
+
+	@media (max-width: 400px) {
+		margin: auto;
+		width: 98vw;
+		display: flex;
+		justify-content: right;
+		justify-items: right;
+		align-items: flex-end;
+	}
+}
+.content-menu {
+	display: flex;
+	width: 100%;
+	margin-bottom: 2rem;
+	justify-content: space-between;
+
+	.menu-navigate {
+		margin-left: 2rem;
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+
+		@media (max-width: 400px) {
+			display: none;
 		}
 
-		@media (max-width: 780px) {
+		ul {
+			list-style: none;
 			display: flex;
-			flex-direction: column;
+
+			li {
+				margin: 1rem 2rem;
+			}
+		}
+
+		a {
+			text-decoration: none;
+			color: var(--bs-white);
+			font-size: 1rem;
+
+			&:hover {
+				color: var(--bs-cyan);
+			}
+		}
+
+		button {
+			display: flex;
+			right: 0;
+			padding: 1rem;
+			border: 0px;
+			border-radius: 0.5rem;
+			height: 3rem;
+			background: #23323c;
+			color: var(--bs-white);
+
+			transition: filter 0.5s;
+			font-weight: 500;
+			font-weight: 500;
+			align-items: center;
+			justify-content: center;
+
+			.btn-icon {
+				font-size: 1.2em;
+				margin-right: 0.3rem;
+			}
+
+			&:hover {
+				filter: brightness(0.8);
+			}
 		}
 	}
 }
 
-.content-menu {
-	display: flex;
-	width: 100%;
-	margin: 1rem 2rem;
-	justify-content: space-between;
+.menu-navigate-mobile {
+	@extend .menu-navigate;
+	display: none;
 
-	@media (max-width: 780px) {
-		margin-top: 3rem;
-		justify-content: space-around;
+	@media (max-width: 480px) {
+		visibility: visible;
+		display: flex;
 	}
 
 	ul {
@@ -42,34 +109,86 @@
 		text-decoration: none;
 		color: var(--bs-white);
 		font-size: 1rem;
+		letter-spacing: 2px;
+		span {
+			margin-left: 0.5rem;
+		}
 
 		&:hover {
 			color: var(--bs-cyan);
 		}
 	}
 
-	button {
-		display: flex;
-		padding: 1rem;
-		border: 0px;
-		border-radius: 0.5rem;
-		height: 3rem;
+	/* Position and sizing of burger button */
+	.bm-burger-button {
+		position: absolute;
+		width: 30px;
+		height: 25px;
+		left: 36px;
+		top: 36px;
+	}
+
+	/* Color/shape of burger icon bars */
+	.bm-burger-bars {
 		background: #23323c;
-		color: var(--bs-white);
+	}
 
-		transition: filter 0.5s;
-		font-weight: 500;
-		font-weight: 500;
-		align-items: center;
-		justify-content: center;
+	/* Color/shape of burger icon bars on hover*/
+	.bm-burger-bars-hover {
+		background: #ccc;
+	}
 
-		.btn-icon {
-			font-size: 1.2em;
-			margin-right: 0.3rem;
-		}
+	/* Position and sizing of clickable cross button */
+	.bm-cross-button {
+		height: 24px;
+		width: 24px;
+	}
 
-		&:hover {
-			filter: brightness(0.8);
-		}
+	/* Color/shape of close button cross */
+	.bm-cross {
+		background: #bdc3c7;
+	}
+
+	/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+	.bm-menu-wrap {
+		position: fixed;
+		height: 80%;
+
+		top: 0;
+		left: 0;
+	}
+
+	/* General sidebar styles */
+	.bm-menu {
+		background: rgba(35, 50, 60, 0.95);
+		padding-top: 2em;
+
+		font-size: 1.15em;
+	}
+
+	/* Morph shape necessary with bubble or elastic */
+	.bm-morph-shape {
+		fill: #23323c;
+	}
+
+	/* Wrapper for item list */
+	.bm-item-list {
+		padding: 1rem;
+		color: #b8b7ad;
+	}
+
+	/* Individual item */
+	.bm-item {
+		display: inline-block;
+	}
+
+	/* Styling of overlay */
+	.bm-overlay {
+		background: rgba(0, 0, 0, 0.3);
+		top: 0px;
+		left: 0px;
 	}
 }
