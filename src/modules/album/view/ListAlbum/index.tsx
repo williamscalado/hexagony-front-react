@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import { globalUtil } from "../../../../helpers/globalUtil";
 import { albumListState, albumUpdateState } from "../../../../state/albumState";
 import { loadingState } from "../../../../state/sharedState";
 import { IAlbums } from "../../domain";
@@ -59,6 +60,7 @@ export const ListAlbum = () => {
 	};
 
 	const updateAlbums = (id: string) => {
+		globalUtil.scrollToTop();
 		const resultData = albumsList.find((album) => album.id === id);
 		if (!resultData) return;
 

@@ -103,7 +103,6 @@ export const Header = () => {
 										<li>
 											<Link to={item.link}>
 												{item.icon && getIconMenu(item.icon)}
-
 												<span>{item.name}</span>
 											</Link>
 										</li>

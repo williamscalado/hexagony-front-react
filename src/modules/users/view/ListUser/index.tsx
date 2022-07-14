@@ -6,6 +6,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { getIdIsAuth } from "../../../../helpers/authentication";
+import { globalUtil } from "../../../../helpers/globalUtil";
 import { userUtil } from "../../../../helpers/users";
 import { loadingState } from "../../../../state/sharedState";
 import { userState, userUpdateState } from "../../../../state/userState";
@@ -63,6 +64,7 @@ export const ListUser = () => {
 	};
 
 	const handleUpdateUser = (id: string) => {
+		globalUtil.scrollToTop();
 		try {
 			if (!id) throw new Error();
 			const resUser = userList.find((user) => user.id === id);
