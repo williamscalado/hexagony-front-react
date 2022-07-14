@@ -41,7 +41,7 @@ const menuMock: IMenuMock[] = [
 	},
 	{
 		name: "Logout",
-		link: "/about",
+		link: "/logout",
 		icon: "iconLogout",
 		desktop: false,
 	},
