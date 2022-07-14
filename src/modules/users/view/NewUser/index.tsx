@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { BsCheckAll, BsEye, BsEyeSlash } from "react-icons/bs";
@@ -36,14 +36,6 @@ export const NewUserForm = () => {
 					[`${inputName}`]: true,
 			  });
 	};
-
-	useEffect(() => {
-		const timer = setTimeout(
-			() => setShowPassword(InitialStatusPassword),
-			5000
-		);
-		return () => clearInterval(timer);
-	}, [showPassword]);
 
 	const {
 		register,

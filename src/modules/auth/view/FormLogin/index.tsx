@@ -2,6 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { IFormLogin } from "../../domain";
 import { FormUseCase } from "../../usecase";
@@ -11,6 +12,10 @@ import "./style.scss";
 export const FormLogin = () => {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
+
+	const handleVisiblePassword = (inputName: string) =>
+		showPassword ? setShowPassword(false) : setShowPassword(true);
 
 	const {
 		handleSubmit,
@@ -49,12 +54,20 @@ export const FormLogin = () => {
 					/>
 					{<span>{errors?.email?.message}</span>}
 					<label htmlFor="password">Password </label>
-					<input
-						type="password"
-						data-testid="password"
-						{...register("password")}
-						placeholder="********"
-					/>
+					<span className="user-password">
+						<input
+							type={showPassword ? "text" : "password"}
+							data-testid="password"
+							{...register("password")}
+							placeholder="********"
+						/>
+						<button
+							type="button"
+							onClick={() => handleVisiblePassword("password")}
+						>
+							{showPassword ? <BsEye /> : <BsEyeSlash />}
+						</button>
+					</span>
 					{<span>{errors?.password?.message}</span>}
 
 					<button id="formLogin" type="submit" disabled={loading}>

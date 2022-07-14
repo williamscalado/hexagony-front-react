@@ -46,5 +46,34 @@
 			color: var(--bs-red);
 			font-size: 0.8rem;
 		}
+
+		.user-password {
+			display: flex;
+			align-items: center;
+			padding-right: 1rem;
+			justify-content: space-between;
+			background-color: var(--bs-white);
+			margin-top: 0.75rem;
+			border-radius: 0.25rem;
+			height: 3.2rem;
+
+			input {
+				width: 100%;
+				padding: 1rem 1rem;
+				margin-top: 0.75rem;
+				margin-bottom: 0.75rem;
+				border-radius: 0.25rem;
+				border: 0;
+				color: var(--bs-gray-dark);
+				background-color: var(--bs-white);
+				box-sizing: border-box;
+			}
+			button {
+				color: var(--bs-dark-full);
+				font-size: 1.5rem;
+				background: none;
+				border: 0;
+			}
+		}
 	}
 }
