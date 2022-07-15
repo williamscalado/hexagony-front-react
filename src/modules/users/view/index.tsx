@@ -12,13 +12,14 @@ import "./style.scss";
 
 export const UserPage = () => {
 	const stateUpdateUser = useRecoilState<IUserUpdate>(userUpdateState);
+	const ref = React.useRef<HTMLDivElement>(null);
 
 	return (
 		<React.Fragment>
 			<Header />
-			<div className="container-user">
+			<div className="container-user" ref={ref}>
 				<div className="container-content-user">
-					<ListUser />
+					<ListUser ref={ref} />
 					{stateUpdateUser[0].isEdition ? <FormUserUpdate /> : <NewUserForm />}
 				</div>
 			</div>

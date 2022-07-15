@@ -6,7 +6,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { getIdIsAuth } from "../../../../helpers/authentication";
-import { globalUtil } from "../../../../helpers/globalUtil";
+import { utils } from "../../../../helpers/utils";
 import { userUtil } from "../../../../helpers/users";
 import { loadingState } from "../../../../state/sharedState";
 import { userState, userUpdateState } from "../../../../state/userState";
@@ -14,7 +14,8 @@ import { IUserUpdate } from "../../domain";
 import { userUseCase } from "../../usecase";
 import "./style.scss";
 
-export const ListUser = () => {
+
+export const ListUser = React.forwardRef((_, ref: any) => {
 	const confirmDialog = useConfirm();
 	const [userList, setUserList] = useRecoilState(userState);
 	const setDataUserUpdate = useSetRecoilState(userUpdateState);
@@ -64,8 +65,8 @@ export const ListUser = () => {
 	};
 
 	const handleUpdateUser = (id: string) => {
-		globalUtil.scrollToTop();
 		try {
+			utils.scrollToTop(ref);
 			if (!id) throw new Error();
 			const resUser = userList.find((user) => user.id === id);
 
@@ -123,4 +124,4 @@ export const ListUser = () => {
 			</div>
 		</>
 	);
-};
+});
