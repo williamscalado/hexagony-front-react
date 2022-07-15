@@ -6,13 +6,15 @@ import { NewAlbum } from "./NewAlbum";
 import "./style.scss";
 
 export const PageAlbum = () => {
+	const ref = React.useRef<HTMLDivElement>(null);
+
 	return (
 		<React.Fragment>
 			<Header />
-			<div className="container-albums">
+			<div className="container-albums" ref={ref}>
 				<section className="content-album">
 					<NewAlbum />
-					<ListAlbum />
+					<ListAlbum ref={ref} />
 				</section>
 			</div>
 			<Footer />

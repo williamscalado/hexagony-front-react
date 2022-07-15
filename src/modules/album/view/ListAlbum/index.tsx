@@ -5,14 +5,14 @@ import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { globalUtil } from "../../../../helpers/globalUtil";
+import { utils } from "../../../../helpers/utils";
 import { albumListState, albumUpdateState } from "../../../../state/albumState";
 import { loadingState } from "../../../../state/sharedState";
 import { IAlbums } from "../../domain";
 import { AlbumUseCase } from "../../usecase";
 import "./style.scss";
 
-export const ListAlbum = () => {
+export const ListAlbum = React.forwardRef((_, ref: any) => {
 	const confirmDialog = useConfirm();
 	const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState);
 	const setLoading = useSetRecoilState(loadingState);
@@ -60,7 +60,7 @@ export const ListAlbum = () => {
 	};
 
 	const updateAlbums = (id: string) => {
-		globalUtil.scrollToTop();
+		utils.scrollToTop(ref);
 		const resultData = albumsList.find((album) => album.id === id);
 		if (!resultData) return;
 
@@ -111,4 +111,4 @@ export const ListAlbum = () => {
 			})}
 		</div>
 	);
-};
+});

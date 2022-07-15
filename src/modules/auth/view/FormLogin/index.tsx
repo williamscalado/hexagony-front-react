@@ -70,7 +70,7 @@ export const FormLogin = () => {
 					</span>
 					{<span>{errors?.password?.message}</span>}
 
-					<button id="formLogin" type="submit" disabled={loading}>
+					<button type="submit" disabled={loading}>
 						{loading ? "Loading..." : "Sign In"}
 					</button>
 				</form>

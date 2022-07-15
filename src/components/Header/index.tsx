@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FormUseCase } from "../../modules/auth/usecase";
 import "./style.scss";
 
-interface IMenuMock {
+interface IMenu {
 	name: string;
 	link: string;
 	icon?: string;
@@ -20,7 +20,7 @@ interface IconsKeys {
 	[key: string]: string | any;
 }
 
-const menuMock: IMenuMock[] = [
+const menu: IMenu[] = [
 	{
 		name: "Albums",
 		link: "/album",
@@ -41,13 +41,13 @@ const menuMock: IMenuMock[] = [
 	},
 	{
 		name: "Logout",
-		link: "/logout",
+		link: "/login",
 		icon: "iconLogout",
 		desktop: false,
 	},
 ];
 
-const getIconMenu = (icon: string) => {
+const getMenuIcon = (icon: string) => {
 	const iconOpc: IconsKeys = {
 		iconUser: <BiUser />,
 		iconAlbums: <IoAlbumsOutline />,
@@ -61,9 +61,9 @@ const getIconMenu = (icon: string) => {
 export const Header = () => {
 	const navigate = useNavigate();
 
-	function handleLogout() {
+	function handleLogout(path: string) {
 		FormUseCase.logout();
-		navigate("/login");
+		navigate(path);
 	}
 
 	return (
@@ -76,18 +76,18 @@ export const Header = () => {
 					<div className="content-menu">
 						<nav className="menu-navigate">
 							<ul>
-								{menuMock &&
-									menuMock
+								{menu &&
+									menu
 										.filter((item) => item.desktop === true)
 										.map((item) => {
 											return (
-												<li>
+												<li key={item.name}>
 													<Link to={item.link}>{item.name}</Link>
 												</li>
 											);
 										})}
 							</ul>
-							<button onClick={handleLogout}>
+							<button onClick={() => handleLogout("/login")}>
 								<GiExitDoor className="btn-icon" />
 								Logout
 							</button>
@@ -97,14 +97,14 @@ export const Header = () => {
 				<nav className="menu-navigate-mobile">
 					<Menu width={"60%"}>
 						<ul>
-							{menuMock &&
-								menuMock.map((item) => {
+							{menu &&
+								menu.map((item) => {
 									return (
-										<li>
-											<Link to={item.link}>
-												{item.icon && getIconMenu(item.icon)}
-												<span>{item.name}</span>
-											</Link>
+										<li
+											key={item.name}
+											onClick={item.name === 'Logout' ? () => handleLogout("/login") : () => navigate(item.link)}
+										>
+											<span>{item.icon && getMenuIcon(item.icon)} {item.name}</span>
 										</li>
 									);
 								})}
@@ -112,6 +112,6 @@ export const Header = () => {
 					</Menu>
 				</nav>
 			</div>
-		</React.Fragment>
+		</React.Fragment >
 	);
 };
