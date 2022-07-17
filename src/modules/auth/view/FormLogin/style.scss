@@ -1,81 +1,81 @@
 .ContainerLogin {
-	width: 400px;
-	background: var(--bs-dark-full);
-	border-radius: 0.7rem;
-	padding: 1rem 2rem;
-	display: flex;
-	align-items: center;
+  width: 400px;
+  background: var(--bs-dark-full);
+  border-radius: 0.7rem;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
 
-	@media (max-width: 580px) {
-		width: 92vw;
-	}
+  @media (max-width: 580px) {
+    width: 92vw;
+  }
 
-	form {
-		width: 100%;
-		display: grid;
+  form {
+    width: 100%;
+    display: grid;
 
-		input {
-			margin: 1rem 0 1rem 0;
-			padding: 0.8rem;
-			border: 0px;
-			border-radius: 0.3em;
-			height: 3.2rem;
-		}
+    input {
+      margin: 1rem 0 1rem 0;
+      padding: 0.8rem;
+      border: 0px;
+      border-radius: 0.3em;
+      height: 3.2rem;
+    }
 
-		button {
-			background: var(--bs-teal);
-			margin: 1.5rem 0 1rem;
-			border: 0px;
-			height: 3.2rem;
-			border-radius: 0.5rem;
-			font-size: 1.2rem;
-			color: var(--bs-white);
-			font-weight: 600;
-			transition: filter 0.3s;
+    button {
+      background: var(--bs-teal);
+      margin: 1.5rem 0 1rem;
+      border: 0px;
+      height: 3.2rem;
+      border-radius: 0.5rem;
+      font-size: 1.2rem;
+      color: var(--bs-white);
+      font-weight: 600;
+      transition: filter 0.3s;
 
-			&:hover {
-				filter: brightness(0.9);
-			}
+      &:hover {
+        filter: brightness(0.9);
+      }
 
-			&:disabled {
-				opacity: 0.4;
-			}
-		}
+      &:disabled {
+        opacity: 0.4;
+      }
+    }
 
-		span {
-			margin: 0 0 1rem 0;
-			color: var(--bs-red);
-			font-size: 0.8rem;
-		}
+    span {
+      margin: 0 0 1rem 0;
+      color: var(--bs-red);
+      font-size: 0.8rem;
+    }
 
-		.user-password {
-			display: flex;
-			align-items: center;
-			padding-right: 1rem;
-			justify-content: space-between;
-			background-color: var(--bs-white);
-			margin-top: 0.75rem;
-			border-radius: 0.25rem;
-			height: 3.2rem;
+    .user-password {
+      display: flex;
+      align-items: center;
+      padding-right: 1rem;
+      justify-content: space-between;
+      background-color: var(--bs-white);
+      margin-top: 0.75rem;
+      border-radius: 0.25rem;
+      height: 3.2rem;
 
-			input {
-				width: 100%;
-				padding: 1rem 1rem;
-				margin-top: 0.75rem;
-				margin-bottom: 0.75rem;
-				border-radius: 0.25rem;
-				border: 0;
-				color: var(--bs-gray-dark);
-				background-color: var(--bs-white);
-				box-sizing: border-box;
-			}
+      input {
+        width: 100%;
+        padding: 1rem 1rem;
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+        border-radius: 0.25rem;
+        border: 0;
+        color: var(--bs-gray-dark);
+        background-color: var(--bs-white);
+        box-sizing: border-box;
+      }
 
-			button {
-				color: var(--bs-dark-full);
-				font-size: 1.5rem;
-				background: none;
-				border: 0;
-			}
-		}
-	}
+      button {
+        color: var(--bs-dark-full);
+        font-size: 1.5rem;
+        background: none;
+        border: 0;
+      }
+    }
+  }
 }
