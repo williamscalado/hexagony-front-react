@@ -1,75 +1,75 @@
 .container-new-album {
-	width: 30%;
-	background: var(--bs-dark);
-	padding: 1rem;
-	margin-bottom: auto;
-	border-radius: 0.8rem;
-	overflow: auto;
-	color: var(--bs-white);
-	overflow-y: hidden;
+  width: 30%;
+  background: var(--bs-dark);
+  padding: 1rem;
+  margin-bottom: auto;
+  border-radius: 0.8rem;
+  overflow: auto;
+  color: var(--bs-white);
+  overflow-y: hidden;
 
-	@media (max-width: 780px) {
-		width: 92vw;
-		margin: auto;
+  @media (max-width: 780px) {
+    width: 92vw;
+    margin: auto;
 
-		max-height: 500px;
-	}
+    max-height: 500px;
+  }
 }
 
 .content-new-album {
-	h3 {
-		font-weight: 700;
-		color: var(--bs-white);
-		padding-bottom: 0.5rem;
-	}
+  h3 {
+    font-weight: 700;
+    color: var(--bs-white);
+    padding-bottom: 0.5rem;
+  }
 
-	form {
-		display: grid;
-		input {
-			width: 100%;
-			padding: 1rem 1rem;
-			margin-top: 0.75rem;
-			margin-bottom: 0.75rem;
-			border-radius: 0.25rem;
-			border: 0;
-			color: var(--bs-white);
-			background-color: var(--bs-gray-dark);
-			box-sizing: border-box;
-		}
+  form {
+    display: grid;
+    input {
+      width: 100%;
+      padding: 1rem 1rem;
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+      border-radius: 0.25rem;
+      border: 0;
+      color: var(--bs-white);
+      background-color: var(--bs-gray-dark);
+      box-sizing: border-box;
+    }
 
-		label {
-			margin-top: 0.5rem;
-		}
-		span {
-			margin: 0 0 1rem 0;
-			color: var(--bs-red);
-			font-size: 0.8rem;
-		}
+    label {
+      margin-top: 0.5rem;
+    }
+    span {
+      margin: 0 0 1rem 0;
+      color: var(--bs-red);
+      font-size: 0.8rem;
+    }
 
-		button {
-			display: flex;
-			margin-top: 0.75rem;
-			font-size: 1rem;
-			border: 0px;
-			height: 3rem;
-			border-radius: 0.5rem;
-			color: var(--bs-white);
-			background: var(--bs-teal);
-			transition: filter 0.5s;
-			font-weight: 500;
-			align-items: center;
-			justify-content: center;
+    button {
+      display: flex;
+      margin-top: 0.75rem;
+      font-size: 1rem;
+      border: 0px;
+      height: 3rem;
+      border-radius: 0.5rem;
+      color: var(--bs-white);
+      background: var(--bs-teal);
+      transition: filter 0.5s;
+      font-weight: 500;
+      align-items: center;
+      justify-content: center;
 
-			&:hover {
-				filter: brightness(0.8);
-			}
-			.btn-icon {
-				font-size: 1.2em;
-				margin-right: 0.3rem;
-			}
-		}
-		.btn-cancel {
-			background: var(--bs-gray-dark);
-		}
-	}
+      &:hover {
+        filter: brightness(0.8);
+      }
+      .btn-icon {
+        font-size: 1.2em;
+        margin-right: 0.3rem;
+      }
+    }
+    .btn-cancel {
+      background: var(--bs-gray-dark);
+    }
+  }
 }
