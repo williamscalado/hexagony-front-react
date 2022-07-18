@@ -1,64 +1,64 @@
-import { decodeToken, isExpired } from "react-jwt";
+import { decodeToken, isExpired } from 'react-jwt'
 
-const localName = "hegaxoniAuth";
+const localName = 'hegaxoniAuth'
 
 interface IToken {
-	id: string;
+  id: string
 }
 
-export const isTokenAuth = localStorage.getItem(localName);
+export const isTokenAuth = localStorage.getItem(localName)
 
-export const getToken = () => localStorage.getItem(localName);
+export const getToken = () => localStorage.getItem(localName)
 
 export const setAuth = (token: string) => {
-	if (!token) return;
+  if (!token) return
 
-	const isExpiredToken = isExpired(token);
-	if (isExpiredToken) {
-		logout();
-		return;
-	}
+  const isExpiredToken = isExpired(token)
+  if (isExpiredToken) {
+    logout()
+    return
+  }
 
-	localStorage.setItem(localName, token);
-};
+  localStorage.setItem(localName, token)
+}
 
 export const isAuth = () => {
-	const token = getToken();
+  const token = getToken()
 
-	if (!token) return;
+  if (!token) return
 
-	const isExpiredToken = isExpired(token);
-	if (isExpiredToken) {
-		logout();
-		return;
-	}
+  const isExpiredToken = isExpired(token)
+  if (isExpiredToken) {
+    logout()
+    return
+  }
 
-	return true;
-};
+  return true
+}
 
 export const verifyTokenValidate = () => {
-	const token = getToken();
-	if (!token) return;
-	const isExpiredToken = isExpired(token);
-	if (isExpiredToken) return true;
+  const token = getToken()
+  if (!token) return
+  const isExpiredToken = isExpired(token)
+  if (isExpiredToken) return true
 
-	return false;
-};
+  return false
+}
 
 export const getIdIsAuth = () => {
-	const token = getToken();
+  const token = getToken()
 
-	if (!token) return;
+  if (!token) return
 
-	const isExpiredToken = isExpired(token);
-	if (isExpiredToken) {
-		logout();
-		return;
-	}
+  const isExpiredToken = isExpired(token)
+  if (isExpiredToken) {
+    logout()
+    return
+  }
 
-	const tokenData = decodeToken<IToken>(token);
+  const tokenData = decodeToken<IToken>(token)
 
-	return tokenData?.id;
-};
+  return tokenData?.id
+}
 
-export const logout = () => localStorage.removeItem(localName);
+export const logout = () => localStorage.removeItem(localName)

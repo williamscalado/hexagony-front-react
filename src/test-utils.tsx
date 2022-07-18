@@ -1,10 +1,10 @@
 import React, { FC, ReactElement } from 'react'
 import { render, RenderOptions } from '@testing-library/react'
 
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot } from 'recoil'
 import { BrowserRouter } from 'react-router-dom'
-import { Toaster } from "react-hot-toast";
-import Loading from './components/Loading';
+import { Toaster } from 'react-hot-toast'
+import Loading from './components/Loading'
 
 const AllTheProviders: FC = ({ children }: any) => {
   return (
@@ -20,10 +20,8 @@ const AllTheProviders: FC = ({ children }: any) => {
   )
 }
 
-const customRender = (
-  ui: ReactElement,
-  options?: Omit<RenderOptions, 'wrapper'>,
-) => render(ui, { wrapper: AllTheProviders, ...options })
+const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
+  render(ui, { wrapper: AllTheProviders, ...options })
 
 export * from '@testing-library/react'
 
