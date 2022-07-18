@@ -7,23 +7,23 @@ export type methods =
   | 'CONNECT'
   | 'OPTIONS'
   | 'TRACE'
-  | 'PATCH'
+  | 'PATCH';
 
 export interface IHTTPRequest {
-  url?: string
-  method?: methods
-  headers?: any
-  params?: any
-  data?: any
-  external?: boolean
+  url?: string;
+  method?: methods;
+  headers?: any;
+  params?: any;
+  data?: any;
+  external?: boolean;
 }
 
 export interface IHTTPRequestError {
-  default?: string
-  noResponse?: string
-  network?: string
+  default?: string;
+  noResponse?: string;
+  network?: string;
 }
 
 export interface IHTTP {
-  fetch({ url, method, headers, data, params, external }: IHTTPRequest): Promise<any>
+  fetch({ url, method, headers, data, params, external }: IHTTPRequest): Promise<any>;
 }

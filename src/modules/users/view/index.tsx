@@ -1,18 +1,18 @@
-import React from 'react'
-import { useRecoilState } from 'recoil'
-import { Footer } from '../../../components/Footer'
-import { Header } from '../../../components/Header'
-import { userUpdateState } from '../../../state/userState'
-import { IUserUpdate } from '../domain'
-import { ListUser } from './ListUser'
-import { NewUserForm } from './NewUser'
-import { FormUserUpdate } from './UpdateUserForm'
+import React from 'react';
+import { useRecoilState } from 'recoil';
+import { Footer } from '../../../components/Footer';
+import { Header } from '../../../components/Header';
+import { userUpdateState } from '../../../state/userState';
+import { IUserUpdate } from '../domain';
+import { ListUser } from './ListUser';
+import { NewUserForm } from './NewUser';
+import { FormUserUpdate } from './UpdateUserForm';
 
-import './style.scss'
+import './style.scss';
 
 export const UserPage = () => {
-  const stateUpdateUser = useRecoilState<IUserUpdate>(userUpdateState)
-  const ref = React.useRef<HTMLDivElement>(null)
+  const stateUpdateUser = useRecoilState<IUserUpdate>(userUpdateState);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   return (
     <React.Fragment>
@@ -25,5 +25,5 @@ export const UserPage = () => {
       </div>
       <Footer />
     </React.Fragment>
-  )
-}
+  );
+};

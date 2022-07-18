@@ -1,18 +1,18 @@
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
-import { PageAbout } from './components/About'
-import { PageNotFound } from './components/NotFound'
-import { isAuth, verifyTokenValidate } from './helpers/authentication'
-import { PageAlbum } from './modules/album/view'
-import { PageLogin } from './modules/auth/view'
-import { UserPage } from './modules/users/view'
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { PageAbout } from './components/About';
+import { PageNotFound } from './components/NotFound';
+import { isAuth, verifyTokenValidate } from './helpers/authentication';
+import { PageAlbum } from './modules/album/view';
+import { PageLogin } from './modules/auth/view';
+import { UserPage } from './modules/users/view';
 
 export const AppRoutes = () => {
   const ProtectRouter = () => {
     if (!isAuth() || verifyTokenValidate()) {
-      return <Navigate to="/login" replace />
+      return <Navigate to="/login" replace />;
     }
-    return <Outlet />
-  }
+    return <Outlet />;
+  };
 
   return (
     <>
@@ -27,5 +27,5 @@ export const AppRoutes = () => {
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
     </>
-  )
-}
+  );
+};

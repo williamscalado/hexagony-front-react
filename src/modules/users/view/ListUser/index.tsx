@@ -1,83 +1,83 @@
-import { getGender } from 'gender-detection-from-name'
-import { useConfirm } from 'material-ui-confirm'
-import React, { useEffect } from 'react'
-import toast from 'react-hot-toast'
-import { AiOutlineDelete } from 'react-icons/ai'
-import { FiEdit } from 'react-icons/fi'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import { getIdIsAuth } from '../../../../helpers/authentication'
-import { utils } from '../../../../helpers/utils'
-import { userUtil } from '../../../../helpers/users'
-import { loadingState } from '../../../../state/sharedState'
-import { userState, userUpdateState } from '../../../../state/userState'
-import { IUserUpdate } from '../../domain'
-import { userUseCase } from '../../usecase'
-import './style.scss'
+import { getGender } from 'gender-detection-from-name';
+import { useConfirm } from 'material-ui-confirm';
+import React, { useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { FiEdit } from 'react-icons/fi';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { getIdIsAuth } from '../../../../helpers/authentication';
+import { utils } from '../../../../helpers/utils';
+import { userUtil } from '../../../../helpers/users';
+import { loadingState } from '../../../../state/sharedState';
+import { userState, userUpdateState } from '../../../../state/userState';
+import { IUserUpdate } from '../../domain';
+import { userUseCase } from '../../usecase';
+import './style.scss';
 
 export const ListUser = React.forwardRef((_, ref: any) => {
-  const confirmDialog = useConfirm()
-  const [userList, setUserList] = useRecoilState(userState)
-  const setDataUserUpdate = useSetRecoilState(userUpdateState)
-  const setLoading = useSetRecoilState(loadingState)
+  const confirmDialog = useConfirm();
+  const [userList, setUserList] = useRecoilState(userState);
+  const setDataUserUpdate = useSetRecoilState(userUpdateState);
+  const setLoading = useSetRecoilState(loadingState);
 
   const getAllUsers = React.useCallback(async () => {
     try {
-      setLoading(true)
-      const result = await userUseCase.getAll()
-      setUserList(result)
+      setLoading(true);
+      const result = await userUseCase.getAll();
+      setUserList(result);
     } catch (err) {
-      toast.error('failed to list users')
+      toast.error('failed to list users');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }, [setUserList, setLoading])
+  }, [setUserList, setLoading]);
 
   useEffect(() => {
-    getAllUsers()
-  }, [getAllUsers])
+    getAllUsers();
+  }, [getAllUsers]);
 
   const removeUsers = async (id: string) => {
     try {
-      if (id === getIdIsAuth()) throw new Error()
-      ;(async () => {
+      if (id === getIdIsAuth()) throw new Error();
+      (async () => {
         try {
           await confirmDialog({
             description: 'This will permanently delete this user.',
             confirmationButtonProps: { autoFocus: true },
-          })
-          setLoading(true)
-          await userUseCase.remove(id)
-          await getAllUsers()
+          });
+          setLoading(true);
+          await userUseCase.remove(id);
+          await getAllUsers();
           setDataUserUpdate({
             isEdition: false,
-          } as IUserUpdate)
-          toast.success('user removed')
+          } as IUserUpdate);
+          toast.success('user removed');
         } catch (err) {
-          return
+          return;
         } finally {
-          setLoading(false)
+          setLoading(false);
         }
-      })()
+      })();
     } catch (err) {
-      toast.error('failed to remove user')
+      toast.error('failed to remove user');
     }
-  }
+  };
 
   const handleUpdateUser = (id: string) => {
     try {
-      utils.scrollToTop(ref)
-      if (!id) throw new Error()
-      const resUser = userList.find((user) => user.id === id)
+      utils.scrollToTop(ref);
+      if (!id) throw new Error();
+      const resUser = userList.find((user) => user.id === id);
 
       const newData = {
         ...resUser,
         isEdition: true,
-      }
-      setDataUserUpdate(newData as IUserUpdate)
+      };
+      setDataUserUpdate(newData as IUserUpdate);
     } catch (err) {
-      toast.error('something went wrong')
+      toast.error('something went wrong');
     }
-  }
+  };
 
   return (
     <>
@@ -86,9 +86,9 @@ export const ListUser = React.forwardRef((_, ref: any) => {
         <div className="content-user-list">
           {userList &&
             userList.map((item) => {
-              const firstName = userUtil.getFirstName(item.name)
-              const gender = getGender(`${firstName}`)
-              const urlAvatar = userUtil.getAvatar(gender)
+              const firstName = userUtil.getFirstName(item.name);
+              const gender = getGender(`${firstName}`);
+              const urlAvatar = userUtil.getAvatar(gender);
               return (
                 <div key={item.id}>
                   <div className="user-list">
@@ -99,7 +99,7 @@ export const ListUser = React.forwardRef((_, ref: any) => {
                     <div className="user-icon-tools">
                       <button
                         onClick={() => {
-                          handleUpdateUser(String(item.id))
+                          handleUpdateUser(String(item.id));
                         }}
                       >
                         <FiEdit />
@@ -108,7 +108,7 @@ export const ListUser = React.forwardRef((_, ref: any) => {
                       {item.id !== getIdIsAuth() && (
                         <button
                           onClick={() => {
-                            removeUsers(String(item.id))
+                            removeUsers(String(item.id));
                           }}
                         >
                           <AiOutlineDelete />
@@ -117,10 +117,10 @@ export const ListUser = React.forwardRef((_, ref: any) => {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
         </div>
       </div>
     </>
-  )
-})
+  );
+});

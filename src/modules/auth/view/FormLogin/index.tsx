@@ -1,21 +1,21 @@
-import { yupResolver } from '@hookform/resolvers/yup'
-import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
-import { BsEye, BsEyeSlash } from 'react-icons/bs'
-import { useNavigate } from 'react-router-dom'
-import { IFormLogin } from '../../domain'
-import { FormUseCase } from '../../usecase'
-import { formRules } from '../../validation'
-import './style.scss'
+import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
+import { IFormLogin } from '../../domain';
+import { FormUseCase } from '../../usecase';
+import { formRules } from '../../validation';
+import './style.scss';
 
 export const FormLogin = () => {
-  const navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleVisiblePassword = (inputName: string) =>
-    showPassword ? setShowPassword(false) : setShowPassword(true)
+    showPassword ? setShowPassword(false) : setShowPassword(true);
 
   const {
     handleSubmit,
@@ -27,19 +27,19 @@ export const FormLogin = () => {
     shouldFocusError: true,
     resolver: yupResolver(formRules),
     defaultValues: { email: '', password: '' },
-  })
+  });
 
   const onSubmit = async (credentials: IFormLogin) => {
     try {
-      setLoading(true)
-      await FormUseCase.authenticate(credentials)
-      navigate('/')
+      setLoading(true);
+      await FormUseCase.authenticate(credentials);
+      navigate('/');
     } catch (err: Error | any) {
-      toast.error(err)
+      toast.error(err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <React.Fragment>
@@ -73,5 +73,5 @@ export const FormLogin = () => {
         </form>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};

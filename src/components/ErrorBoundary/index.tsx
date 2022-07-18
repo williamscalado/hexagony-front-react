@@ -1,32 +1,32 @@
-import React, { Component } from 'react'
-import './style.scss'
+import React, { Component } from 'react';
+import './style.scss';
 interface IState {
-  hasError: boolean
+  hasError: boolean;
 }
 
 interface IProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 interface IError {
-  stack?: string
+  stack?: string;
 }
 
 export default class ErrorBoundary extends Component<IProps, IState> {
   constructor(props: IProps) {
-    super(props)
+    super(props);
 
     this.state = {
       hasError: false,
-    }
+    };
   }
 
   static getDerivedStateFromError(error: IError) {
-    return { hasError: true }
+    return { hasError: true };
   }
 
   componentDidCatch(error: IError, errorInfo: React.ErrorInfo) {
-    console.error({ error, errorInfo })
+    console.error({ error, errorInfo });
   }
 
   render() {
@@ -41,9 +41,9 @@ export default class ErrorBoundary extends Component<IProps, IState> {
           </span>
           <a href="/login">Try in a few moments</a>
         </div>
-      )
+      );
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }

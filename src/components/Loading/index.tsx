@@ -1,12 +1,12 @@
-import Box from '@mui/material/Box'
-import LinearProgress from '@mui/material/LinearProgress'
-import React from 'react'
-import { useRecoilValue } from 'recoil'
-import { loadingState } from '../../state/sharedState'
-import './style.scss'
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { loadingState } from '../../state/sharedState';
+import './style.scss';
 
 export default function Loading() {
-  const loading = useRecoilValue(loadingState)
+  const loading = useRecoilValue(loadingState);
 
   return (
     <React.Fragment>
@@ -16,5 +16,5 @@ export default function Loading() {
         </Box>
       ) : null}
     </React.Fragment>
-  )
+  );
 }

@@ -1,81 +1,81 @@
-import { useConfirm } from 'material-ui-confirm'
-import React from 'react'
-import 'react-confirm-alert/src/react-confirm-alert.css'
-import toast from 'react-hot-toast'
-import { AiOutlineDelete } from 'react-icons/ai'
-import { FiEdit } from 'react-icons/fi'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import { utils } from '../../../../helpers/utils'
-import { albumListState, albumUpdateState } from '../../../../state/albumState'
-import { loadingState } from '../../../../state/sharedState'
-import { IAlbums } from '../../domain'
-import { AlbumUseCase } from '../../usecase'
-import './style.scss'
+import { useConfirm } from 'material-ui-confirm';
+import React from 'react';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import toast from 'react-hot-toast';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { FiEdit } from 'react-icons/fi';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { utils } from '../../../../helpers/utils';
+import { albumListState, albumUpdateState } from '../../../../state/albumState';
+import { loadingState } from '../../../../state/sharedState';
+import { IAlbums } from '../../domain';
+import { AlbumUseCase } from '../../usecase';
+import './style.scss';
 
 export const ListAlbum = React.forwardRef((_, ref: any) => {
-  const confirmDialog = useConfirm()
-  const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState)
-  const setLoading = useSetRecoilState(loadingState)
-  const setAlbumUpdate = useSetRecoilState(albumUpdateState)
+  const confirmDialog = useConfirm();
+  const [albumsList, setAlbumsList] = useRecoilState<IAlbums[]>(albumListState);
+  const setLoading = useSetRecoilState(loadingState);
+  const setAlbumUpdate = useSetRecoilState(albumUpdateState);
 
   const getAllAlbums = React.useCallback(async () => {
     try {
-      setLoading(true)
-      const res = await AlbumUseCase.getAll()
-      setAlbumsList(res)
+      setLoading(true);
+      const res = await AlbumUseCase.getAll();
+      setAlbumsList(res);
     } catch (err) {
-      toast.error('failed to list albums')
+      toast.error('failed to list albums');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }, [setAlbumsList, setLoading])
+  }, [setAlbumsList, setLoading]);
 
   const removeAlbums = async (id: string) => {
     try {
-      ;(async () => {
+      (async () => {
         try {
           await confirmDialog({
             description: 'This will permanently delete this album.',
             confirmationButtonProps: { autoFocus: true },
-          })
-          setLoading(true)
+          });
+          setLoading(true);
 
-          await AlbumUseCase.remove(id)
-          await getAllAlbums()
+          await AlbumUseCase.remove(id);
+          await getAllAlbums();
           setAlbumUpdate({
             id: undefined,
             name: '',
             length: 1,
-          })
-          toast.success('album removed')
+          });
+          toast.success('album removed');
         } catch (err) {
-          return
+          return;
         } finally {
-          setLoading(false)
+          setLoading(false);
         }
-      })()
+      })();
     } catch (err) {
-      toast.error('failed to remove album')
+      toast.error('failed to remove album');
     }
-  }
+  };
 
   const updateAlbums = (id: string) => {
-    utils.scrollToTop(ref)
-    const resultData = albumsList.find((album) => album.id === id)
-    if (!resultData) return
+    utils.scrollToTop(ref);
+    const resultData = albumsList.find((album) => album.id === id);
+    if (!resultData) return;
 
     const data = {
       id: resultData?.id,
       name: resultData?.name,
       length: resultData?.length,
-    }
+    };
 
-    setAlbumUpdate(data)
-  }
+    setAlbumUpdate(data);
+  };
 
   React.useEffect(() => {
-    getAllAlbums()
-  }, [getAllAlbums])
+    getAllAlbums();
+  }, [getAllAlbums]);
 
   return (
     <div className="container-list-album">
@@ -102,8 +102,8 @@ export const ListAlbum = React.forwardRef((_, ref: any) => {
               </span>
             </div>
           </div>
-        )
+        );
       })}
     </div>
-  )
-})
+  );
+});

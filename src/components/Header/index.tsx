@@ -1,23 +1,23 @@
-import React from 'react'
-import { slide as Menu } from 'react-burger-menu'
-import { AiOutlineIdcard } from 'react-icons/ai'
-import { BiUser } from 'react-icons/bi'
-import { GiExitDoor } from 'react-icons/gi'
-import { IoAlbumsOutline } from 'react-icons/io5'
-import { MdOutlineLogout } from 'react-icons/md'
-import { Link, useNavigate } from 'react-router-dom'
-import { FormUseCase } from '../../modules/auth/usecase'
-import './style.scss'
+import React from 'react';
+import { slide as Menu } from 'react-burger-menu';
+import { AiOutlineIdcard } from 'react-icons/ai';
+import { BiUser } from 'react-icons/bi';
+import { GiExitDoor } from 'react-icons/gi';
+import { IoAlbumsOutline } from 'react-icons/io5';
+import { MdOutlineLogout } from 'react-icons/md';
+import { Link, useNavigate } from 'react-router-dom';
+import { FormUseCase } from '../../modules/auth/usecase';
+import './style.scss';
 
 interface IMenu {
-  name: string
-  link: string
-  icon?: string
-  desktop?: boolean
+  name: string;
+  link: string;
+  icon?: string;
+  desktop?: boolean;
 }
 
 interface IconsKeys {
-  [key: string]: string | any
+  [key: string]: string | any;
 }
 
 const menu: IMenu[] = [
@@ -45,7 +45,7 @@ const menu: IMenu[] = [
     icon: 'iconLogout',
     desktop: false,
   },
-]
+];
 
 const getMenuIcon = (icon: string) => {
   const iconOpc: IconsKeys = {
@@ -53,17 +53,17 @@ const getMenuIcon = (icon: string) => {
     iconAlbums: <IoAlbumsOutline />,
     iconAbout: <AiOutlineIdcard />,
     iconLogout: <MdOutlineLogout />,
-  }
+  };
 
-  return iconOpc[icon]
-}
+  return iconOpc[icon];
+};
 
 export const Header = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function handleLogout(path: string) {
-    FormUseCase.logout()
-    navigate(path)
+    FormUseCase.logout();
+    navigate(path);
   }
 
   return (
@@ -84,7 +84,7 @@ export const Header = () => {
                         <li key={item.name}>
                           <Link to={item.link}>{item.name}</Link>
                         </li>
-                      )
+                      );
                     })}
               </ul>
               <button onClick={() => handleLogout('/login')}>
@@ -112,12 +112,12 @@ export const Header = () => {
                         {item.icon && getMenuIcon(item.icon)} {item.name}
                       </span>
                     </li>
-                  )
+                  );
                 })}
             </ul>
           </Menu>
         </nav>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};

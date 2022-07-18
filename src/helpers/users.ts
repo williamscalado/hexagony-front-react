@@ -1,5 +1,5 @@
 interface AvatarKeys {
-  [key: string]: string
+  [key: string]: string;
 }
 
 const getAvatar = (gender: string) => {
@@ -7,17 +7,17 @@ const getAvatar = (gender: string) => {
     male: 'avatar-male.png',
     female: 'avatar-female.png',
     unknown: 'user-avatar.png',
-  }
+  };
 
-  return urlAvatar[gender]
-}
+  return urlAvatar[gender];
+};
 
 const getFirstName = (fullName: string) => {
-  const firstName = fullName.split(' ').slice(0, 2)[0]
-  return firstName.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-}
+  const firstName = fullName.split(' ').slice(0, 2)[0];
+  return firstName.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+};
 
 export const userUtil = {
   getAvatar,
   getFirstName,
-}
+};

@@ -1,26 +1,26 @@
-import { yupResolver } from '@hookform/resolvers/yup'
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
-import { BsCheckAll } from 'react-icons/bs'
-import { MdCancel } from 'react-icons/md'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { yupResolver } from '@hookform/resolvers/yup';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { BsCheckAll } from 'react-icons/bs';
+import { MdCancel } from 'react-icons/md';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   albumListState,
   albumUpdateState,
   InitialUpdateAlbum,
-} from '../../../../state/albumState'
-import { loadingState } from '../../../../state/sharedState'
-import { IAlbums } from '../../domain'
-import { AlbumUseCase } from '../../usecase'
-import { newAlbumFormRule } from '../../validation'
-import './style.scss'
+} from '../../../../state/albumState';
+import { loadingState } from '../../../../state/sharedState';
+import { IAlbums } from '../../domain';
+import { AlbumUseCase } from '../../usecase';
+import { newAlbumFormRule } from '../../validation';
+import './style.scss';
 
 export const NewAlbum = () => {
-  const setAlbumsState = useSetRecoilState(albumListState)
-  const updateAlbum = useRecoilState(albumUpdateState)
-  const setUpdateAlbum = useSetRecoilState(albumUpdateState)
-  const setLoading = useSetRecoilState(loadingState)
+  const setAlbumsState = useSetRecoilState(albumListState);
+  const updateAlbum = useRecoilState(albumUpdateState);
+  const setUpdateAlbum = useSetRecoilState(albumUpdateState);
+  const setLoading = useSetRecoilState(loadingState);
 
   const {
     register,
@@ -32,7 +32,7 @@ export const NewAlbum = () => {
     reValidateMode: 'onBlur',
     shouldFocusError: true,
     resolver: yupResolver(newAlbumFormRule),
-  })
+  });
 
   const isEdition = React.useMemo(
     () => ({
@@ -41,55 +41,55 @@ export const NewAlbum = () => {
       length: updateAlbum[0].length || 1,
     }),
     [updateAlbum],
-  )
+  );
 
   const setFields = React.useCallback(() => {
     if (isEdition?.id) {
-      reset({ name: isEdition.name, length: isEdition.length })
-      return
+      reset({ name: isEdition.name, length: isEdition.length });
+      return;
     }
-    reset({ name: '', length: 1 })
-  }, [isEdition.id, isEdition.name, isEdition.length, reset])
+    reset({ name: '', length: 1 });
+  }, [isEdition.id, isEdition.name, isEdition.length, reset]);
 
   React.useEffect(() => {
-    setFields()
-  }, [setFields])
+    setFields();
+  }, [setFields]);
 
   const onSubmit = async (data: IAlbums) => {
     try {
-      setLoading(true)
+      setLoading(true);
       const newData: IAlbums = {
         ...data,
         length: +data.length,
-      }
+      };
       const newDataUpdate = {
         ...newData,
         id: updateAlbum[0].id,
-      }
+      };
 
-      const updateStatus = updateAlbum[0].id
+      const updateStatus = updateAlbum[0].id;
       updateStatus
         ? await AlbumUseCase.update(newDataUpdate)
-        : await AlbumUseCase.create(newData)
+        : await AlbumUseCase.create(newData);
 
-      const res = await AlbumUseCase.getAll()
-      setAlbumsState(res)
-      setUpdateAlbum(InitialUpdateAlbum)
-      reset({ name: '', length: 1 })
-      toast.success(updateStatus ? 'album updated' : 'album created')
+      const res = await AlbumUseCase.getAll();
+      setAlbumsState(res);
+      setUpdateAlbum(InitialUpdateAlbum);
+      reset({ name: '', length: 1 });
+      toast.success(updateStatus ? 'album updated' : 'album created');
     } catch (error) {
       toast.error(
         updateAlbum[0]?.id ? 'failed to update album' : 'failed to create album',
-      )
+      );
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleCancelUpdate = () => {
-    setUpdateAlbum(InitialUpdateAlbum)
-    reset({ name: '', length: 1 })
-  }
+    setUpdateAlbum(InitialUpdateAlbum);
+    reset({ name: '', length: 1 });
+  };
 
   return (
     <div className="container-new-album">
@@ -115,5 +115,5 @@ export const NewAlbum = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,6 +1,6 @@
-import React from 'react'
-import { Header } from '../Header'
-import { About } from './about'
+import React from 'react';
+import { Header } from '../Header';
+import { About } from './about';
 
 export const PageAbout = () => {
   return (
@@ -8,5 +8,5 @@ export const PageAbout = () => {
       <Header />
       <About />
     </React.Fragment>
-  )
-}
+  );
+};

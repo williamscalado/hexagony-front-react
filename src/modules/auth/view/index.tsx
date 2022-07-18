@@ -1,5 +1,5 @@
-import { FormLogin } from './FormLogin'
-import './style.scss'
+import { FormLogin } from './FormLogin';
+import './style.scss';
 
 export const PageLogin = () => {
   return (
@@ -11,5 +11,5 @@ export const PageLogin = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};

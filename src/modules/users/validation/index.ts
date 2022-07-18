@@ -1,5 +1,5 @@
-import * as yup from 'yup'
-import { IUser, IUserUpdate } from '../domain'
+import * as yup from 'yup';
+import { IUser, IUserUpdate } from '../domain';
 
 export const userFormValidation: yup.SchemaOf<IUser> = yup.object().shape({
   create_at: yup.string().notRequired(),
@@ -20,7 +20,7 @@ export const userFormValidation: yup.SchemaOf<IUser> = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'passwords do not match'),
   update_at: yup.string().notRequired(),
   isEdition: yup.boolean().notRequired(),
-})
+});
 
 export const userFormValidationUpdate: yup.SchemaOf<IUserUpdate> = yup.object().shape({
   create_at: yup.string().notRequired(),
@@ -31,4 +31,4 @@ export const userFormValidationUpdate: yup.SchemaOf<IUserUpdate> = yup.object().
   passwordConfirmation: yup.string().notRequired().min(8).max(100),
   update_at: yup.string().notRequired(),
   isEdition: yup.boolean().notRequired(),
-})
+});

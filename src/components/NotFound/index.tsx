@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import './style.scss'
+import { Link } from 'react-router-dom';
+import './style.scss';
 export const PageNotFound = () => {
   return (
     <div className="container-not-found">
@@ -15,5 +15,5 @@ export const PageNotFound = () => {
       </span>
       <Link to="/">back</Link>
     </div>
-  )
-}
+  );
+};

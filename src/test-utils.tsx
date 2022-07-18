@@ -1,10 +1,10 @@
-import React, { FC, ReactElement } from 'react'
-import { render, RenderOptions } from '@testing-library/react'
+import React, { FC, ReactElement } from 'react';
+import { render, RenderOptions } from '@testing-library/react';
 
-import { RecoilRoot } from 'recoil'
-import { BrowserRouter } from 'react-router-dom'
-import { Toaster } from 'react-hot-toast'
-import Loading from './components/Loading'
+import { RecoilRoot } from 'recoil';
+import { BrowserRouter } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import Loading from './components/Loading';
 
 const AllTheProviders: FC = ({ children }: any) => {
   return (
@@ -17,12 +17,12 @@ const AllTheProviders: FC = ({ children }: any) => {
         </React.StrictMode>
       </BrowserRouter>
     </RecoilRoot>
-  )
-}
+  );
+};
 
 const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
-  render(ui, { wrapper: AllTheProviders, ...options })
+  render(ui, { wrapper: AllTheProviders, ...options });
 
-export * from '@testing-library/react'
+export * from '@testing-library/react';
 
-export { customRender as render }
+export { customRender as render };

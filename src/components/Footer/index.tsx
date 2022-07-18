@@ -1,4 +1,4 @@
-import './style.scss'
+import './style.scss';
 
 export const Footer = () => {
   return (
@@ -15,5 +15,5 @@ export const Footer = () => {
         </small>
       </h1>
     </div>
-  )
-}
+  );
+};

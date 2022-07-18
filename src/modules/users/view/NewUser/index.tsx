@@ -1,27 +1,27 @@
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
-import { BsCheckAll, BsEye, BsEyeSlash } from 'react-icons/bs'
-import { useSetRecoilState } from 'recoil'
-import { loadingState } from '../../../../state/sharedState'
-import { userState } from '../../../../state/userState'
-import { IUser } from '../../domain'
-import { userUseCase } from '../../usecase'
-import { userFormValidation } from '../../validation'
-import './style.scss'
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { BsCheckAll, BsEye, BsEyeSlash } from 'react-icons/bs';
+import { useSetRecoilState } from 'recoil';
+import { loadingState } from '../../../../state/sharedState';
+import { userState } from '../../../../state/userState';
+import { IUser } from '../../domain';
+import { userUseCase } from '../../usecase';
+import { userFormValidation } from '../../validation';
+import './style.scss';
 
 interface IPassword {
-  [key: string]: boolean
+  [key: string]: boolean;
 }
 const InitialStatusPassword = {
   password: false,
   passwordConfirm: false,
-}
+};
 export const NewUserForm = () => {
-  const setUserAllUser = useSetRecoilState<IUser[]>(userState)
-  const [showPassword, setShowPassword] = useState<IPassword>(InitialStatusPassword)
-  const setLoading = useSetRecoilState(loadingState)
+  const setUserAllUser = useSetRecoilState<IUser[]>(userState);
+  const [showPassword, setShowPassword] = useState<IPassword>(InitialStatusPassword);
+  const setLoading = useSetRecoilState(loadingState);
 
   const handleVisiblePassword = (inputName: string) => {
     showPassword[`${inputName}`]
@@ -32,8 +32,8 @@ export const NewUserForm = () => {
       : setShowPassword({
           ...showPassword,
           [`${inputName}`]: true,
-        })
-  }
+        });
+  };
 
   const {
     register,
@@ -45,23 +45,23 @@ export const NewUserForm = () => {
     reValidateMode: 'onBlur',
     shouldFocusError: true,
     resolver: yupResolver(userFormValidation),
-  })
+  });
 
   const onSubmit = async (data: IUser) => {
     try {
-      setLoading(true)
-      delete data.passwordConfirmation
-      await userUseCase.create(data)
-      const res = await userUseCase.getAll()
-      setUserAllUser(res)
-      reset()
-      toast.success('user created')
+      setLoading(true);
+      delete data.passwordConfirmation;
+      await userUseCase.create(data);
+      const res = await userUseCase.getAll();
+      setUserAllUser(res);
+      reset();
+      toast.success('user created');
     } catch (err: Error | any) {
-      toast.error(err)
+      toast.error(err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="container-new-form-user">
@@ -105,5 +105,5 @@ export const NewUserForm = () => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};

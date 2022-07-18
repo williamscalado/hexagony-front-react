@@ -1,22 +1,22 @@
-import { yupResolver } from '@hookform/resolvers/yup'
-import React, { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
-import { BsCheckAll } from 'react-icons/bs'
-import { MdCancel } from 'react-icons/md'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import { loadingState } from '../../../../state/sharedState'
-import { userState, userUpdateState } from '../../../../state/userState'
-import { IUser, IUserUpdate } from '../../domain'
-import { userUseCase } from '../../usecase'
-import { userFormValidationUpdate } from '../../validation'
-import './style.scss'
+import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { BsCheckAll } from 'react-icons/bs';
+import { MdCancel } from 'react-icons/md';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { loadingState } from '../../../../state/sharedState';
+import { userState, userUpdateState } from '../../../../state/userState';
+import { IUser, IUserUpdate } from '../../domain';
+import { userUseCase } from '../../usecase';
+import { userFormValidationUpdate } from '../../validation';
+import './style.scss';
 
 export const FormUserUpdate = () => {
-  const stateUpdate = useRecoilState(userUpdateState)
-  const setStateUpdate = useSetRecoilState(userUpdateState)
-  const setUserList = useSetRecoilState(userState)
-  const setLoading = useSetRecoilState(loadingState)
+  const stateUpdate = useRecoilState(userUpdateState);
+  const setStateUpdate = useSetRecoilState(userUpdateState);
+  const setUserList = useSetRecoilState(userState);
+  const setLoading = useSetRecoilState(loadingState);
   const {
     register,
     handleSubmit,
@@ -27,7 +27,7 @@ export const FormUserUpdate = () => {
     reValidateMode: 'onBlur',
     shouldFocusError: true,
     resolver: yupResolver(userFormValidationUpdate),
-  })
+  });
 
   const isEdition = React.useMemo(
     () => ({
@@ -36,45 +36,45 @@ export const FormUserUpdate = () => {
       email: stateUpdate[0].email || '',
     }),
     [stateUpdate],
-  )
+  );
 
   const setFieldValue = React.useCallback(() => {
     reset({
       name: isEdition.name,
       email: isEdition.email,
-    })
-  }, [reset, isEdition.name, isEdition.email])
+    });
+  }, [reset, isEdition.name, isEdition.email]);
 
   useEffect(() => {
-    setFieldValue()
-  }, [setFieldValue])
+    setFieldValue();
+  }, [setFieldValue]);
 
   const handleCancelUpdate = () => {
     setStateUpdate({
       isEdition: false,
-    } as IUserUpdate)
-  }
+    } as IUserUpdate);
+  };
 
   const onSubmit = async (data: IUserUpdate) => {
     try {
-      setLoading(true)
+      setLoading(true);
       const newDataUpdate = {
         ...data,
         id: isEdition.id,
-      }
-      await userUseCase.update(newDataUpdate)
-      const res = await userUseCase.getAll()
-      setUserList(res)
+      };
+      await userUseCase.update(newDataUpdate);
+      const res = await userUseCase.getAll();
+      setUserList(res);
       setStateUpdate({
         isEdition: false,
-      } as IUserUpdate)
-      toast.success('user updated')
+      } as IUserUpdate);
+      toast.success('user updated');
     } catch (err: Error | any) {
-      toast.error(err)
+      toast.error(err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="container-new-form-user">
@@ -99,7 +99,7 @@ export const FormUserUpdate = () => {
           type="button"
           className="buttonCancel"
           onClick={() => {
-            handleCancelUpdate()
+            handleCancelUpdate();
           }}
         >
           <MdCancel className="btn-icon" />
@@ -107,5 +107,5 @@ export const FormUserUpdate = () => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
