@@ -5,11 +5,7 @@ import toast from 'react-hot-toast';
 import { BsCheckAll } from 'react-icons/bs';
 import { MdCancel } from 'react-icons/md';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import {
-  albumListState,
-  albumUpdateState,
-  InitialUpdateAlbum,
-} from '../../../../state/albumState';
+import { albumListState, albumUpdateState, InitialUpdateAlbum } from '../../../../state/albumState';
 import { loadingState } from '../../../../state/sharedState';
 import { IAlbums } from '../../domain';
 import { AlbumUseCase } from '../../usecase';
@@ -68,9 +64,7 @@ export const NewAlbum = () => {
       };
 
       const updateStatus = updateAlbum[0].id;
-      updateStatus
-        ? await AlbumUseCase.update(newDataUpdate)
-        : await AlbumUseCase.create(newData);
+      updateStatus ? await AlbumUseCase.update(newDataUpdate) : await AlbumUseCase.create(newData);
 
       const res = await AlbumUseCase.getAll();
       setAlbumsState(res);
@@ -78,9 +72,7 @@ export const NewAlbum = () => {
       reset({ name: '', length: 1 });
       toast.success(updateStatus ? 'album updated' : 'album created');
     } catch (error) {
-      toast.error(
-        updateAlbum[0]?.id ? 'failed to update album' : 'failed to create album',
-      );
+      toast.error(updateAlbum[0]?.id ? 'failed to update album' : 'failed to create album');
     } finally {
       setLoading(false);
     }

@@ -27,11 +27,7 @@ export const About = () => {
             <a href="https://github.com/cyruzin" target="_blank" rel="noreferrer">
               <BsGithub />
             </a>
-            <a
-              href="mailto:mailto:mailto:yourmail@domain.com"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="mailto:mailto:mailto:yourmail@domain.com" target="_blank" rel="noreferrer">
               <AiOutlineMail />
             </a>
 
@@ -62,11 +58,7 @@ export const About = () => {
               <BsGithub />
             </a>
 
-            <a
-              href="mailto:mailto:williamscalado@gmail.com"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="mailto:mailto:williamscalado@gmail.com" target="_blank" rel="noreferrer">
               <AiOutlineMail />
             </a>
 

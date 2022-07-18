@@ -46,12 +46,7 @@ export const FormLogin = () => {
       <div className="ContainerLogin">
         <form onSubmit={handleSubmit(onSubmit)} id="formLogin">
           <label htmlFor="email">E-mail </label>
-          <input
-            {...register('email')}
-            type="text"
-            data-testid="email"
-            placeholder="email@x.com"
-          />
+          <input {...register('email')} type="text" data-testid="email" placeholder="email@x.com" />
           {<span>{errors?.email?.message}</span>}
           <label htmlFor="password">Password </label>
           <span className="user-password">

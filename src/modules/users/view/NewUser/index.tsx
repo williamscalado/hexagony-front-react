@@ -79,10 +79,7 @@ export const NewUserForm = () => {
 
         <label htmlFor="password">Password</label>
         <span className="user-password">
-          <input
-            type={showPassword.password ? 'text' : 'password'}
-            {...register('password')}
-          />
+          <input type={showPassword.password ? 'text' : 'password'} {...register('password')} />
           <button type="button" onClick={() => handleVisiblePassword('password')}>
             {showPassword.password ? <BsEye /> : <BsEyeSlash />}
           </button>
