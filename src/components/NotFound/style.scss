@@ -19,18 +19,21 @@
   h1 {
     display: grid;
     margin-top: 2rem;
+    margin-bottom: 0.8rem;
     font-size: 1.5rem;
   }
   span {
     margin-top: 2rem;
   }
+}
 
-  a {
-    text-decoration: none;
-    margin-top: 2rem;
-    color: var(--bs-white);
-    &:hover {
-      color: var(--bs-gray);
-    }
+.go-back {
+  margin-top: 1rem;
+  color: var(--bs-cyan);
+
+  &:hover {
+    color: var(--bs-gray);
+    cursor: pointer;
   }
 }
+

@@ -4,6 +4,6 @@ export type IFormLogin = {
 };
 
 export interface IFormUseCase {
-  authenticate: (credentials: IFormLogin) => Promise<void>
-  logout: () => void
+  authenticate: (credentials: IFormLogin) => Promise<void>;
+  logout: () => void;
 }
